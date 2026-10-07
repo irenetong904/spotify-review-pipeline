@@ -1,0 +1,99 @@
+{
+  "accounting": {
+    "pending": 660609,
+    "quarantined_empty_review_text": 13,
+    "total": 660622
+  },
+  "all_checks_passed": true,
+  "checks": {
+    "distinct_nonempty_texts": {
+      "expected": 484189,
+      "observed": 484189,
+      "ok": true
+    },
+    "duplicate_review_ids": {
+      "expected": 0,
+      "observed": 0,
+      "ok": true
+    },
+    "empty_review_text": {
+      "expected": 13,
+      "observed": 13,
+      "ok": true
+    },
+    "file_sha256": {
+      "expected": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+      "observed": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+      "ok": true
+    },
+    "golden_disjoint_from_dev": {
+      "expected": 0,
+      "observed": 0,
+      "ok": true
+    },
+    "missing_app_version": {
+      "expected": 159701,
+      "observed": 159701,
+      "ok": true
+    },
+    "records": {
+      "expected": 660622,
+      "observed": 660622,
+      "ok": true
+    },
+    "sample_analysis_10000": {
+      "expected": "present, hash-matched",
+      "observed": {
+        "absent_from_full": 0,
+        "file": "analysis_10000.csv",
+        "file_sha256": "eaa62ca6d44d717302904a9c922e99b0b4584d174309cb45295ecbc2ba2a91b5",
+        "row_hash_mismatches": 0,
+        "rows": 10000
+      },
+      "ok": true
+    },
+    "sample_checkpoint_500": {
+      "expected": "present, hash-matched",
+      "observed": {
+        "absent_from_full": 0,
+        "file": "checkpoint_500.csv",
+        "file_sha256": "a94e31663ee7b7eaa77e23b7a8425b530cc0c866ed5e714953172a0afef6a12f",
+        "row_hash_mismatches": 0,
+        "rows": 500
+      },
+      "ok": true
+    },
+    "sample_cost_100": {
+      "expected": "present, hash-matched",
+      "observed": {
+        "absent_from_full": 0,
+        "file": "cost_100.csv",
+        "file_sha256": "c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e",
+        "row_hash_mismatches": 0,
+        "rows": 100
+      },
+      "ok": true
+    },
+    "sample_golden_50": {
+      "expected": "present, hash-matched",
+      "observed": {
+        "absent_from_full": 0,
+        "file": "golden_50_to_label.csv",
+        "file_sha256": "1a125c3e509f58b0246ba16d0ea332675a53ffadb1928be4338a0bd7053a11c7",
+        "row_hash_mismatches": 0,
+        "rows": 50
+      },
+      "ok": true
+    }
+  },
+  "distinct_nonempty_texts": 484189,
+  "file_sha256": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+  "ids_reusing_exact_text": 176420,
+  "input": "spotify_reviews_18months.csv",
+  "max_ids_per_text": 12845,
+  "note": "Missing app_version is profiled but is not an exclusion reason.",
+  "record_status_counts": {
+    "pending": 660609,
+    "quarantined": 13
+  }
+}
