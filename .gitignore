@@ -1,0 +1,18 @@
+# Secrets — must exist before first commit
+.env
+.env.*
+!.env.example
+
+# Raw / private data (not committed; see README for checksum + placement)
+data/raw/
+data/golden/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+data/Final Assignment - Spotify Reviews Dataset/
+self-check.json
+local-reference.json
