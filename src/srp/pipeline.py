@@ -56,8 +56,15 @@ def run_pipeline(*, input_csv, ws_dir, cache_path, cfg, stages=STAGES, paid=Fals
         timed("enrich", lambda: run_enrich(con, cache, calllog, jev_client, cfg, ledger=ledger, workers=workers,
                                            rps=rps, limit=limit, stop_event=stop))
         records, pending = write_enrich_outputs(con, ws)
+        enrich_stop = timings["enrich"]["result"]["stop_reason"]
         if pending:
             summary["incomplete"] = f"{len(pending)} records still pending; downstream stages use completed records only"
+        if enrich_stop != "queue_empty":  # interrupted / capped / failing: never run paid downstream stages on a partial corpus
+            summary.update(stopped_after="enrich", stop_reason=enrich_stop, wall_seconds=round(time.monotonic() - t0, 3),
+                           ended_at=now(), ledger=ledger.snapshot())
+            write_json_atomic(ws / "run_summary.json", summary)
+            print(f"[pipeline] enrich stopped ({enrich_stop}); progress saved. Re-run the same command to resume.", flush=True)
+            return summary
     if "verify" in stages:
         frac = cfg["verification"]["sample_fraction"] if verify_fraction is None else verify_fraction
         timed("verify", lambda: run_verify(con, cache, claude_client, cfg, ws, ledger, fraction=frac, workers=workers,
