@@ -19,7 +19,7 @@ subtopics:
   playback:
     crash_freeze: '\b(crash\w*|freez\w*|hang\w*|force clos\w*|not (open|opening)|won.?t open)\b'
     stops_pausing: '\b(stop(s|ped|ping)? (playing|working)?|paus\w*|keeps? stopping|cuts? out|interrupt\w*)\b'
-    connectivity: '\b(bluetooth|connect\w*|network|internet|wifi|offline mode|car|chromecast|speaker|wear ?os|watch)\b'
+    connectivity: '\b(bluetooth|connect\w*|network|internet|wifi|offline mode|car|chromecast|speaker|wear ?os|smart ?watch)\b'
     audio_quality: '\b(audio quality|sound quality|volume|quality|equali[sz]er|lag\w*|buffer\w*|glitch\w*)\b'
     resource_use: '\b(battery|storage|data usage|ram|memory|heat\w*|drain\w*)\b'
   downloads:
@@ -58,7 +58,7 @@ entities:
   bluetooth: '\bbluetooth\b'
   car: '\b(car|android auto|carplay)\b'
   smart speaker: '\b(alexa|google home|smart speaker|echo)\b'
-  smartwatch: '\b(watch|wear ?os)\b'
+  smartwatch: '\b(smart ?watch\w*|wear ?os|galaxy watch|apple watch|pixel watch)\b'
   tv: '\b(tv|television|chromecast)\b'
   premium: '\bpremium\b'
   family plan: '\bfamily (plan|premium)\b'

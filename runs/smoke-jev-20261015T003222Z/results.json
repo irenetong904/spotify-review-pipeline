@@ -1,0 +1,967 @@
+[
+  {
+    "fields": {
+      "entities": [
+        "smartwatch",
+        "podcasts",
+        "tv"
+      ],
+      "evidence_quote": "You took away the ability to watch video podcasts on my TV. This is literally the reason I have a paid subscription.",
+      "intent": "complaint",
+      "needs_review": false,
+      "sentiment": -0.98,
+      "severity": 4,
+      "topic": "billing"
+    },
+    "n_quote_candidates": 0,
+    "raw_response": {
+      "answers": {
+        "cancel": {
+          "noul": 0.06,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "complaint",
+          "confidence": 0.99,
+          "probabilities": {
+            "cancellation": 0.01,
+            "complaint": 0.99,
+            "praise": 0.0,
+            "request": 0.0,
+            "unclear": 0.0
+          },
+          "type": "choice"
+        },
+        "sentiment": {
+          "confidence": 0.97,
+          "legend": {
+            "0": "Very negative",
+            "1": "Somewhat negative",
+            "2": "Neutral or mixed",
+            "3": "Somewhat positive",
+            "4": "Very positive"
+          },
+          "probabilities": {
+            "0": 0.96,
+            "1": 0.04,
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "score": 0.04,
+          "type": "score"
+        },
+        "severity": {
+          "choice": "4",
+          "confidence": 0.76,
+          "probabilities": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.19,
+            "4": 0.81,
+            "5": 0.0
+          },
+          "type": "choice"
+        },
+        "topic": {
+          "choice": "billing",
+          "confidence": 0.38,
+          "probabilities": {
+            "access": 0.02,
+            "billing": 0.46,
+            "catalog": 0.01,
+            "downloads": 0.0,
+            "other": 0.0,
+            "playback": 0.45,
+            "support": 0.0,
+            "usability": 0.06
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1086,
+        "output_tokens": 212
+      }
+    },
+    "review_id": "00168741-ef81-4267-9cb9-b82ad5b43a8c",
+    "review_reasons": [],
+    "signals": {
+      "cancel_p": 0.06,
+      "evidence_quote": "You took away the ability to watch video podcasts on my TV. This is literally the reason I have a paid subscription.",
+      "intent_choice": "complaint",
+      "intent_conf": 0.99,
+      "intent_probs": {
+        "cancellation": 0.01,
+        "complaint": 0.99,
+        "praise": 0.0,
+        "request": 0.0,
+        "unclear": 0.0
+      },
+      "quote_conf": null,
+      "sentiment_conf": 0.97,
+      "sentiment_score": 0.04,
+      "severity_conf": 0.76,
+      "severity_raw": 4,
+      "topic": "billing",
+      "topic_conf": 0.38,
+      "topic_probs": {
+        "access": 0.02,
+        "billing": 0.46,
+        "catalog": 0.01,
+        "downloads": 0.0,
+        "other": 0.0,
+        "playback": 0.45,
+        "support": 0.0,
+        "usability": 0.06
+      }
+    },
+    "status": "completed",
+    "text": "You took away the ability to watch video podcasts on my TV. This is literally the reason I have a paid subscription."
+  },
+  {
+    "fields": {
+      "entities": [],
+      "evidence_quote": "Limited songs collection only showing adds",
+      "intent": "complaint",
+      "needs_review": false,
+      "sentiment": -0.52,
+      "severity": 3,
+      "topic": "catalog"
+    },
+    "n_quote_candidates": 0,
+    "raw_response": {
+      "answers": {
+        "cancel": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "complaint",
+          "confidence": 0.86,
+          "probabilities": {
+            "cancellation": 0.0,
+            "complaint": 0.89,
+            "praise": 0.0,
+            "request": 0.1,
+            "unclear": 0.01
+          },
+          "type": "choice"
+        },
+        "sentiment": {
+          "confidence": 0.88,
+          "legend": {
+            "0": "Very negative",
+            "1": "Somewhat negative",
+            "2": "Neutral or mixed",
+            "3": "Somewhat positive",
+            "4": "Very positive"
+          },
+          "probabilities": {
+            "0": 0.09,
+            "1": 0.87,
+            "2": 0.03,
+            "3": 0.01,
+            "4": 0.0
+          },
+          "score": 0.96,
+          "type": "score"
+        },
+        "severity": {
+          "choice": "3",
+          "confidence": 0.79,
+          "probabilities": {
+            "1": 0.09,
+            "2": 0.07,
+            "3": 0.83,
+            "4": 0.01,
+            "5": 0.0
+          },
+          "type": "choice"
+        },
+        "topic": {
+          "choice": "catalog",
+          "confidence": 0.82,
+          "probabilities": {
+            "access": 0.0,
+            "billing": 0.01,
+            "catalog": 0.84,
+            "downloads": 0.02,
+            "other": 0.0,
+            "playback": 0.0,
+            "support": 0.0,
+            "usability": 0.13
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1068,
+        "output_tokens": 212
+      }
+    },
+    "review_id": "0026e92b-3e23-46e6-8c45-99817c8cb888",
+    "review_reasons": [],
+    "signals": {
+      "cancel_p": 0.05,
+      "evidence_quote": "Limited songs collection only showing adds",
+      "intent_choice": "complaint",
+      "intent_conf": 0.86,
+      "intent_probs": {
+        "cancellation": 0.0,
+        "complaint": 0.89,
+        "praise": 0.0,
+        "request": 0.1,
+        "unclear": 0.01
+      },
+      "quote_conf": null,
+      "sentiment_conf": 0.88,
+      "sentiment_score": 0.96,
+      "severity_conf": 0.79,
+      "severity_raw": 3,
+      "topic": "catalog",
+      "topic_conf": 0.82,
+      "topic_probs": {
+        "access": 0.0,
+        "billing": 0.01,
+        "catalog": 0.84,
+        "downloads": 0.02,
+        "other": 0.0,
+        "playback": 0.0,
+        "support": 0.0,
+        "usability": 0.13
+      }
+    },
+    "status": "completed",
+    "text": "Limited songs collection only showing adds"
+  },
+  {
+    "fields": {
+      "entities": [],
+      "evidence_quote": "Finally removed waze, so 5 stars as promised.",
+      "intent": "praise",
+      "needs_review": true,
+      "sentiment": 0.69,
+      "severity": 1,
+      "topic": "other"
+    },
+    "n_quote_candidates": 0,
+    "raw_response": {
+      "answers": {
+        "cancel": {
+          "noul": 0.32,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "cancellation",
+          "confidence": 0.94,
+          "probabilities": {
+            "cancellation": 0.95,
+            "complaint": 0.0,
+            "praise": 0.05,
+            "request": 0.0,
+            "unclear": 0.0
+          },
+          "type": "choice"
+        },
+        "sentiment": {
+          "confidence": 0.47,
+          "legend": {
+            "0": "Very negative",
+            "1": "Somewhat negative",
+            "2": "Neutral or mixed",
+            "3": "Somewhat positive",
+            "4": "Very positive"
+          },
+          "probabilities": {
+            "0": 0.05,
+            "1": 0.07,
+            "2": 0.06,
+            "3": 0.1,
+            "4": 0.72
+          },
+          "score": 3.38,
+          "type": "score"
+        },
+        "severity": {
+          "choice": "1",
+          "confidence": 0.79,
+          "probabilities": {
+            "1": 0.83,
+            "2": 0.14,
+            "3": 0.01,
+            "4": 0.01,
+            "5": 0.01
+          },
+          "type": "choice"
+        },
+        "topic": {
+          "choice": "other",
+          "confidence": 0.83,
+          "probabilities": {
+            "access": 0.0,
+            "billing": 0.05,
+            "catalog": 0.0,
+            "downloads": 0.02,
+            "other": 0.85,
+            "playback": 0.0,
+            "support": 0.0,
+            "usability": 0.08
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1074,
+        "output_tokens": 214
+      }
+    },
+    "review_id": "0038eef5-f6c2-43f8-9cd6-e5bf379bf5fb",
+    "review_reasons": [
+      "intent_choice_cancellation_without_noul",
+      "cancel_p_uncertain"
+    ],
+    "signals": {
+      "cancel_p": 0.32,
+      "evidence_quote": "Finally removed waze, so 5 stars as promised.",
+      "intent_choice": "cancellation",
+      "intent_conf": 0.94,
+      "intent_probs": {
+        "cancellation": 0.95,
+        "complaint": 0.0,
+        "praise": 0.05,
+        "request": 0.0,
+        "unclear": 0.0
+      },
+      "quote_conf": null,
+      "sentiment_conf": 0.47,
+      "sentiment_score": 3.38,
+      "severity_conf": 0.79,
+      "severity_raw": 1,
+      "topic": "other",
+      "topic_conf": 0.83,
+      "topic_probs": {
+        "access": 0.0,
+        "billing": 0.05,
+        "catalog": 0.0,
+        "downloads": 0.02,
+        "other": 0.85,
+        "playback": 0.0,
+        "support": 0.0,
+        "usability": 0.08
+      }
+    },
+    "status": "completed",
+    "text": "Finally removed waze, so 5 stars as promised."
+  },
+  {
+    "fields": {
+      "entities": [],
+      "evidence_quote": "My favourite app is now completely ruined you ruined your app haha imma deleting this appp bye bye Spotify....... Wynk is better than you huh",
+      "intent": "cancellation",
+      "needs_review": false,
+      "sentiment": -0.995,
+      "severity": 2,
+      "topic": "other"
+    },
+    "n_quote_candidates": 0,
+    "raw_response": {
+      "answers": {
+        "cancel": {
+          "noul": 0.96,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "cancellation",
+          "confidence": 1.0,
+          "probabilities": {
+            "cancellation": 1.0,
+            "complaint": 0.0,
+            "praise": 0.0,
+            "request": 0.0,
+            "unclear": 0.0
+          },
+          "type": "choice"
+        },
+        "sentiment": {
+          "confidence": 1.0,
+          "legend": {
+            "0": "Very negative",
+            "1": "Somewhat negative",
+            "2": "Neutral or mixed",
+            "3": "Somewhat positive",
+            "4": "Very positive"
+          },
+          "probabilities": {
+            "0": 1.0,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "score": 0.01,
+          "type": "score"
+        },
+        "severity": {
+          "choice": "2",
+          "confidence": 0.84,
+          "probabilities": {
+            "1": 0.12,
+            "2": 0.87,
+            "3": 0.01,
+            "4": 0.0,
+            "5": 0.0
+          },
+          "type": "choice"
+        },
+        "topic": {
+          "choice": "other",
+          "confidence": 0.93,
+          "probabilities": {
+            "access": 0.0,
+            "billing": 0.0,
+            "catalog": 0.0,
+            "downloads": 0.0,
+            "other": 0.94,
+            "playback": 0.05,
+            "support": 0.0,
+            "usability": 0.01
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1090,
+        "output_tokens": 214
+      }
+    },
+    "review_id": "005d7110-a229-4ede-b1c4-384966e49804",
+    "review_reasons": [],
+    "signals": {
+      "cancel_p": 0.96,
+      "evidence_quote": "My favourite app is now completely ruined you ruined your app haha imma deleting this appp bye bye Spotify....... Wynk is better than you huh",
+      "intent_choice": "cancellation",
+      "intent_conf": 1.0,
+      "intent_probs": {
+        "cancellation": 1.0,
+        "complaint": 0.0,
+        "praise": 0.0,
+        "request": 0.0,
+        "unclear": 0.0
+      },
+      "quote_conf": null,
+      "sentiment_conf": 1.0,
+      "sentiment_score": 0.01,
+      "severity_conf": 0.84,
+      "severity_raw": 2,
+      "topic": "other",
+      "topic_conf": 0.93,
+      "topic_probs": {
+        "access": 0.0,
+        "billing": 0.0,
+        "catalog": 0.0,
+        "downloads": 0.0,
+        "other": 0.94,
+        "playback": 0.05,
+        "support": 0.0,
+        "usability": 0.01
+      }
+    },
+    "status": "completed",
+    "text": "My favourite app is now completely ruined you ruined your app haha imma deleting this appp bye bye Spotify....... Wynk is better than you huh"
+  },
+  {
+    "fields": {
+      "entities": [
+        "search"
+      ],
+      "evidence_quote": "Worst app , having bug every 7-8 days Can't search song showing no network connection even after having good network speed",
+      "intent": "complaint",
+      "needs_review": false,
+      "sentiment": -1.0,
+      "severity": 4,
+      "topic": "playback"
+    },
+    "n_quote_candidates": 0,
+    "raw_response": {
+      "answers": {
+        "cancel": {
+          "noul": 0.02,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "complaint",
+          "confidence": 1.0,
+          "probabilities": {
+            "cancellation": 0.0,
+            "complaint": 1.0,
+            "praise": 0.0,
+            "request": 0.0,
+            "unclear": 0.0
+          },
+          "type": "choice"
+        },
+        "sentiment": {
+          "confidence": 1.0,
+          "legend": {
+            "0": "Very negative",
+            "1": "Somewhat negative",
+            "2": "Neutral or mixed",
+            "3": "Somewhat positive",
+            "4": "Very positive"
+          },
+          "probabilities": {
+            "0": 1.0,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "score": 0.0,
+          "type": "score"
+        },
+        "severity": {
+          "choice": "4",
+          "confidence": 0.64,
+          "probabilities": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.29,
+            "4": 0.71,
+            "5": 0.0
+          },
+          "type": "choice"
+        },
+        "topic": {
+          "choice": "playback",
+          "confidence": 0.94,
+          "probabilities": {
+            "access": 0.0,
+            "billing": 0.0,
+            "catalog": 0.04,
+            "downloads": 0.0,
+            "other": 0.0,
+            "playback": 0.95,
+            "support": 0.0,
+            "usability": 0.01
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1088,
+        "output_tokens": 213
+      }
+    },
+    "review_id": "006b8080-637f-497f-893a-e8b2e44f1a0c",
+    "review_reasons": [],
+    "signals": {
+      "cancel_p": 0.02,
+      "evidence_quote": "Worst app , having bug every 7-8 days Can't search song showing no network connection even after having good network speed",
+      "intent_choice": "complaint",
+      "intent_conf": 1.0,
+      "intent_probs": {
+        "cancellation": 0.0,
+        "complaint": 1.0,
+        "praise": 0.0,
+        "request": 0.0,
+        "unclear": 0.0
+      },
+      "quote_conf": null,
+      "sentiment_conf": 1.0,
+      "sentiment_score": 0.0,
+      "severity_conf": 0.64,
+      "severity_raw": 4,
+      "topic": "playback",
+      "topic_conf": 0.94,
+      "topic_probs": {
+        "access": 0.0,
+        "billing": 0.0,
+        "catalog": 0.04,
+        "downloads": 0.0,
+        "other": 0.0,
+        "playback": 0.95,
+        "support": 0.0,
+        "usability": 0.01
+      }
+    },
+    "status": "completed",
+    "text": "Worst app , having bug every 7-8 days Can't search song showing no network connection even after having good network speed"
+  },
+  {
+    "fields": {
+      "entities": [
+        "repeat",
+        "premium"
+      ],
+      "evidence_quote": "The upgraded version is so bad that one can't even repeat a song or play it from where they want!",
+      "intent": "cancellation",
+      "needs_review": false,
+      "sentiment": -1.0,
+      "severity": 3,
+      "topic": "billing"
+    },
+    "n_quote_candidates": 8,
+    "raw_response": {
+      "answers": {
+        "cancel": {
+          "noul": 0.59,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "cancellation",
+          "confidence": 0.86,
+          "probabilities": {
+            "cancellation": 0.89,
+            "complaint": 0.11,
+            "praise": 0.0,
+            "request": 0.0,
+            "unclear": 0.0
+          },
+          "type": "choice"
+        },
+        "quote": {
+          "choice": "s0",
+          "confidence": 0.82,
+          "probabilities": {
+            "s0": 0.84,
+            "s1": 0.0,
+            "s2": 0.02,
+            "s3": 0.12,
+            "s4": 0.0,
+            "s5": 0.0,
+            "s6": 0.0,
+            "s7": 0.02
+          },
+          "type": "choice"
+        },
+        "sentiment": {
+          "confidence": 1.0,
+          "legend": {
+            "0": "Very negative",
+            "1": "Somewhat negative",
+            "2": "Neutral or mixed",
+            "3": "Somewhat positive",
+            "4": "Very positive"
+          },
+          "probabilities": {
+            "0": 1.0,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          },
+          "score": 0.0,
+          "type": "score"
+        },
+        "severity": {
+          "choice": "3",
+          "confidence": 0.61,
+          "probabilities": {
+            "1": 0.0,
+            "2": 0.01,
+            "3": 0.69,
+            "4": 0.3,
+            "5": 0.0
+          },
+          "type": "choice"
+        },
+        "topic": {
+          "choice": "billing",
+          "confidence": 0.37,
+          "probabilities": {
+            "access": 0.0,
+            "billing": 0.45,
+            "catalog": 0.0,
+            "downloads": 0.0,
+            "other": 0.0,
+            "playback": 0.29,
+            "support": 0.0,
+            "usability": 0.26
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1423,
+        "output_tokens": 292
+      }
+    },
+    "review_id": "0195d699-61d1-4fbb-a51b-508fc00c04db",
+    "review_reasons": [],
+    "signals": {
+      "cancel_p": 0.59,
+      "evidence_quote": "The upgraded version is so bad that one can't even repeat a song or play it from where they want!",
+      "intent_choice": "cancellation",
+      "intent_conf": 0.86,
+      "intent_probs": {
+        "cancellation": 0.89,
+        "complaint": 0.11,
+        "praise": 0.0,
+        "request": 0.0,
+        "unclear": 0.0
+      },
+      "quote_conf": 0.82,
+      "sentiment_conf": 1.0,
+      "sentiment_score": 0.0,
+      "severity_conf": 0.61,
+      "severity_raw": 3,
+      "topic": "billing",
+      "topic_conf": 0.37,
+      "topic_probs": {
+        "access": 0.0,
+        "billing": 0.45,
+        "catalog": 0.0,
+        "downloads": 0.0,
+        "other": 0.0,
+        "playback": 0.29,
+        "support": 0.0,
+        "usability": 0.26
+      }
+    },
+    "status": "completed",
+    "text": "The upgraded version is so bad that one can't even repeat a song or play it from where they want! How greedy this people are.... they want us to pay FOR basic functionality of a music app. I am extremely disappointed and disgusted right now never ever using this AGAIN. Make the app just as before or else just see your users go down faster than Apple dropping from a tree. It was my comfort app but now I just purely hate it. I WILL NOT TAKE PREMIUM DO WHATEVER YOU WANT!!! It's a less than 1!"
+  },
+  {
+    "fields": {
+      "entities": [],
+      "evidence_quote": "Bᴇsᴛ ᴍᴜsɪᴄ ғʀᴀᴇᴇ ᴀᴘᴘ ..... sᴏʀʀʏ ʙᴇsᴛ ᴀᴅ ғʀᴇᴇ ᴀᴘᴘ...",
+      "intent": "complaint",
+      "needs_review": true,
+      "sentiment": -0.35,
+      "severity": 2,
+      "topic": "usability"
+    },
+    "n_quote_candidates": 0,
+    "raw_response": {
+      "answers": {
+        "cancel": {
+          "noul": 0.02,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "complaint",
+          "confidence": 0.54,
+          "probabilities": {
+            "cancellation": 0.01,
+            "complaint": 0.63,
+            "praise": 0.05,
+            "request": 0.14,
+            "unclear": 0.17
+          },
+          "type": "choice"
+        },
+        "sentiment": {
+          "confidence": 0.49,
+          "legend": {
+            "0": "Very negative",
+            "1": "Somewhat negative",
+            "2": "Neutral or mixed",
+            "3": "Somewhat positive",
+            "4": "Very positive"
+          },
+          "probabilities": {
+            "0": 0.15,
+            "1": 0.57,
+            "2": 0.14,
+            "3": 0.1,
+            "4": 0.04
+          },
+          "score": 1.3,
+          "type": "score"
+        },
+        "severity": {
+          "choice": "2",
+          "confidence": 0.73,
+          "probabilities": {
+            "1": 0.16,
+            "2": 0.78,
+            "3": 0.05,
+            "4": 0.01,
+            "5": 0.0
+          },
+          "type": "choice"
+        },
+        "topic": {
+          "choice": "usability",
+          "confidence": 0.66,
+          "probabilities": {
+            "access": 0.0,
+            "billing": 0.02,
+            "catalog": 0.0,
+            "downloads": 0.0,
+            "other": 0.28,
+            "playback": 0.0,
+            "support": 0.0,
+            "usability": 0.7
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1134,
+        "output_tokens": 214
+      }
+    },
+    "review_id": "073e6344-34d9-4bca-9c33-f1911d43a9b1",
+    "review_reasons": [
+      "non_latin_script"
+    ],
+    "signals": {
+      "cancel_p": 0.02,
+      "evidence_quote": "Bᴇsᴛ ᴍᴜsɪᴄ ғʀᴀᴇᴇ ᴀᴘᴘ ..... sᴏʀʀʏ ʙᴇsᴛ ᴀᴅ ғʀᴇᴇ ᴀᴘᴘ...",
+      "intent_choice": "complaint",
+      "intent_conf": 0.54,
+      "intent_probs": {
+        "cancellation": 0.01,
+        "complaint": 0.63,
+        "praise": 0.05,
+        "request": 0.14,
+        "unclear": 0.17
+      },
+      "quote_conf": null,
+      "sentiment_conf": 0.49,
+      "sentiment_score": 1.3,
+      "severity_conf": 0.73,
+      "severity_raw": 2,
+      "topic": "usability",
+      "topic_conf": 0.66,
+      "topic_probs": {
+        "access": 0.0,
+        "billing": 0.02,
+        "catalog": 0.0,
+        "downloads": 0.0,
+        "other": 0.28,
+        "playback": 0.0,
+        "support": 0.0,
+        "usability": 0.7
+      }
+    },
+    "status": "completed",
+    "text": "Bᴇsᴛ ᴍᴜsɪᴄ ғʀᴀᴇᴇ ᴀᴘᴘ ..... sᴏʀʀʏ ʙᴇsᴛ ᴀᴅ ғʀᴇᴇ ᴀᴘᴘ..."
+  },
+  {
+    "fields": {
+      "entities": [],
+      "evidence_quote": "es muy buena aplicacion, yo tengo el plan de estudiante y por el precio, que son 56 pesos mexicanos esta super bien, pero es cierto que el plan completo individual puede ser un poco caro, hay cosas que no me encantan como que hay canciones que no son muy populares o de artistas independientes pequeños que su musica no esta, pero eso es por que esos artistas son de paises donde la app no es popular, fuera de eso puedes descargar tu musica de alguna pagina y escucharla en la app si esque no está.",
+      "intent": "complaint",
+      "needs_review": false,
+      "sentiment": 0.49,
+      "severity": 2,
+      "topic": "catalog"
+    },
+    "n_quote_candidates": 0,
+    "raw_response": {
+      "answers": {
+        "cancel": {
+          "noul": 0.01,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "complaint",
+          "confidence": 0.45,
+          "probabilities": {
+            "cancellation": 0.0,
+            "complaint": 0.56,
+            "praise": 0.44,
+            "request": 0.0,
+            "unclear": 0.0
+          },
+          "type": "choice"
+        },
+        "sentiment": {
+          "confidence": 0.93,
+          "legend": {
+            "0": "Very negative",
+            "1": "Somewhat negative",
+            "2": "Neutral or mixed",
+            "3": "Somewhat positive",
+            "4": "Very positive"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.05,
+            "3": 0.92,
+            "4": 0.03
+          },
+          "score": 2.98,
+          "type": "score"
+        },
+        "severity": {
+          "choice": "2",
+          "confidence": 0.5,
+          "probabilities": {
+            "1": 0.05,
+            "2": 0.6,
+            "3": 0.35,
+            "4": 0.0,
+            "5": 0.0
+          },
+          "type": "choice"
+        },
+        "topic": {
+          "choice": "catalog",
+          "confidence": 0.5,
+          "probabilities": {
+            "access": 0.0,
+            "billing": 0.29,
+            "catalog": 0.56,
+            "downloads": 0.0,
+            "other": 0.15,
+            "playback": 0.0,
+            "support": 0.0,
+            "usability": 0.0
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1173,
+        "output_tokens": 212
+      }
+    },
+    "review_id": "1192182f-5b33-4159-ba71-ace3fa16175c",
+    "review_reasons": [],
+    "signals": {
+      "cancel_p": 0.01,
+      "evidence_quote": "es muy buena aplicacion, yo tengo el plan de estudiante y por el precio, que son 56 pesos mexicanos esta super bien, pero es cierto que el plan completo individual puede ser un poco caro, hay cosas que no me encantan como que hay canciones que no son muy populares o de artistas independientes pequeños que su musica no esta, pero eso es por que esos artistas son de paises donde la app no es popular, fuera de eso puedes descargar tu musica de alguna pagina y escucharla en la app si esque no está.",
+      "intent_choice": "complaint",
+      "intent_conf": 0.45,
+      "intent_probs": {
+        "cancellation": 0.0,
+        "complaint": 0.56,
+        "praise": 0.44,
+        "request": 0.0,
+        "unclear": 0.0
+      },
+      "quote_conf": null,
+      "sentiment_conf": 0.93,
+      "sentiment_score": 2.98,
+      "severity_conf": 0.5,
+      "severity_raw": 2,
+      "topic": "catalog",
+      "topic_conf": 0.5,
+      "topic_probs": {
+        "access": 0.0,
+        "billing": 0.29,
+        "catalog": 0.56,
+        "downloads": 0.0,
+        "other": 0.15,
+        "playback": 0.0,
+        "support": 0.0,
+        "usability": 0.0
+      }
+    },
+    "status": "completed",
+    "text": "es muy buena aplicacion, yo tengo el plan de estudiante y por el precio, que son 56 pesos mexicanos esta super bien, pero es cierto que el plan completo individual puede ser un poco caro, hay cosas que no me encantan como que hay canciones que no son muy populares o de artistas independientes pequeños que su musica no esta, pero eso es por que esos artistas son de paises donde la app no es popular, fuera de eso puedes descargar tu musica de alguna pagina y escucharla en la app si esque no está."
+  }
+]

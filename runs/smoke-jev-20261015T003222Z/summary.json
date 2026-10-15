@@ -1,0 +1,27 @@
+{
+  "attempts": 8,
+  "cost_usd": 0.00038371,
+  "input_tokens": 9136,
+  "label_config": "jev-1.13.0+rubric-v1.002865e8+q1.ad74bb89",
+  "latency_ms": [
+    174,
+    94,
+    99,
+    94,
+    85,
+    98,
+    94,
+    87
+  ],
+  "output_tokens": 1783,
+  "response_models": [
+    "jev-1.13.0"
+  ],
+  "reviews": 8,
+  "run_id": "smoke-jev-20261015T003222Z",
+  "statuses": {
+    "completed": 8
+  },
+  "succeeded_calls": 8,
+  "wall_seconds": 0.84
+}
