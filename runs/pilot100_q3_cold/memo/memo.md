@@ -1,0 +1,13 @@
+# Prioritize Usability: it carries the largest complaint volume and severity among the four in-scope areas
+
+## Recommendation
+Put next quarter's main product effort into Usability. Across the four in-scope areas it has the most complaints (15 [C051] complaints, 43 [C052] severity points, mean severity 2.866667 [C053], share 0.300000 [C054]). Its lead issue is the homescreen and player layout problem `usability/ui_layout` (baseline rank 3 [C015], complaint count 5 [C011]). Ads and general usability complaints (`usability/ads`, `usability/general`) sit in the same area.
+
+## Evidence
+The single highest-ranked issue overall is `billing/subscription_entitlement` (rank 1 [C005], priority score 24 [C004]). It is about basic playback controls being locked behind premium. It is a real and severe theme, but it is one issue with 7 [C001] complaints, and the billing/support area as a whole totals 8 [C059] complaints and 26 [C060] severity points. Reviewers describe the layout update as hard to use, for example `e16a4550-43e7-4ae1-b538-a65cc652c31b` and `94c9f2f9-36fa-4c11-936e-660514fe7a35`. Ad load is raised in `e5e6c55f-3069-4b7c-9807-f8b5d5bf2726` and `c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd`.
+
+## Alternatives considered
+Playback: 7 [C063] complaints, 26 [C064] severity points, mean severity 3.714286 [C065]. Most of this comes from `playback/general` (2 [C026] complaints), so the area is smaller and concentrated in one issue. Access: only 2 [C067] complaints (8 [C068] severity points), with mean severity 4.000000 [C069] driven by `access/account_recovery` at rank 10 [C050]. It is serious for affected users but narrow. Billing/support: 8 [C059] complaints and mean severity 3.250000 [C061]. Its top issue is the strongest single signal, which is why a targeted entitlement review is listed below. Outside the four areas: 18 [C055] complaints and 38 [C056] severity points, but much of it is vague feedback in `other/general` (rank 2 [C010]) or catalog items such as lyrics and recommendations, which are not clearly actionable product areas.
+
+## Limitations
+Reviews are self-selected public app-store text. Cancellation language reflects stated intent, not observed churn, and the 7 [C074] cancellation-intent records are not churn measurements. No revenue, churn, or causal effect is estimated here. Completed records total 100 [C071], and 50 [C072] are complaint or cancellation records. Unresolved, pending, or quarantined records number 0 [C073], so no records were excluded for that reason. Severity values are used as saved, and mean severity is a summary, not a measure of impact.

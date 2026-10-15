@@ -1,0 +1,237 @@
+{
+  "area_mapping": {
+    "access": "Access",
+    "billing": "Billing/support",
+    "catalog": "Outside the four areas",
+    "downloads": "Playback",
+    "other": "Outside the four areas",
+    "playback": "Playback",
+    "support": "Billing/support",
+    "usability": "Usability"
+  },
+  "areas": [
+    {
+      "area": "Outside the four areas",
+      "complaint_count": 19,
+      "mean_severity": "2.210526",
+      "severity_sum": 42,
+      "share_of_complaints": "0.380000",
+      "topics": [
+        "catalog",
+        "other"
+      ]
+    },
+    {
+      "area": "Usability",
+      "complaint_count": 14,
+      "mean_severity": "2.571429",
+      "severity_sum": 36,
+      "share_of_complaints": "0.280000",
+      "topics": [
+        "usability"
+      ]
+    },
+    {
+      "area": "Playback",
+      "complaint_count": 8,
+      "mean_severity": "3.625000",
+      "severity_sum": 29,
+      "share_of_complaints": "0.160000",
+      "topics": [
+        "downloads",
+        "playback"
+      ]
+    },
+    {
+      "area": "Billing/support",
+      "complaint_count": 7,
+      "mean_severity": "2.857143",
+      "severity_sum": 20,
+      "share_of_complaints": "0.140000",
+      "topics": [
+        "billing"
+      ]
+    },
+    {
+      "area": "Access",
+      "complaint_count": 2,
+      "mean_severity": "4.000000",
+      "severity_sum": 8,
+      "share_of_complaints": "0.040000",
+      "topics": [
+        "access"
+      ]
+    }
+  ],
+  "complaint_or_cancellation_total": 50,
+  "completed_non_synthetic": 100,
+  "intent_counts": {
+    "cancellation": 8,
+    "complaint": 42,
+    "praise": 38,
+    "request": 4,
+    "unclear": 8
+  },
+  "issue_count": 18,
+  "method": "areas: playback+downloads=Playback, billing+support=Billing/support; complaint+cancellation only",
+  "needs_review_count": 4,
+  "origin_counts": {
+    "model": 100
+  },
+  "quarantine_reasons": {},
+  "record_status_counts": {
+    "completed": 100
+  },
+  "top_issues": [
+    {
+      "complaint_count": 13,
+      "issue_id": "other/general",
+      "mean_severity": "2.153846",
+      "priority_score": 28,
+      "rank": 1,
+      "severity_sum": 28
+    },
+    {
+      "complaint_count": 6,
+      "issue_id": "billing/subscription_entitlement",
+      "mean_severity": "3.000000",
+      "priority_score": 18,
+      "rank": 2,
+      "severity_sum": 18
+    },
+    {
+      "complaint_count": 5,
+      "issue_id": "usability/general",
+      "mean_severity": "2.400000",
+      "priority_score": 12,
+      "rank": 3,
+      "severity_sum": 12
+    },
+    {
+      "complaint_count": 3,
+      "issue_id": "playback/general",
+      "mean_severity": "3.666667",
+      "priority_score": 11,
+      "rank": 4,
+      "severity_sum": 11
+    },
+    {
+      "complaint_count": 4,
+      "issue_id": "usability/ui_layout",
+      "mean_severity": "2.750000",
+      "priority_score": 11,
+      "rank": 5,
+      "severity_sum": 11
+    },
+    {
+      "complaint_count": 3,
+      "issue_id": "usability/ads",
+      "mean_severity": "2.333333",
+      "priority_score": 7,
+      "rank": 6,
+      "severity_sum": 7
+    },
+    {
+      "complaint_count": 2,
+      "issue_id": "usability/queue_playlist",
+      "mean_severity": "3.000000",
+      "priority_score": 6,
+      "rank": 7,
+      "severity_sum": 6
+    },
+    {
+      "complaint_count": 2,
+      "issue_id": "catalog/general",
+      "mean_severity": "2.500000",
+      "priority_score": 5,
+      "rank": 8,
+      "severity_sum": 5
+    },
+    {
+      "complaint_count": 2,
+      "issue_id": "catalog/lyrics",
+      "mean_severity": "2.500000",
+      "priority_score": 5,
+      "rank": 9,
+      "severity_sum": 5
+    },
+    {
+      "complaint_count": 1,
+      "issue_id": "access/account_recovery",
+      "mean_severity": "4.000000",
+      "priority_score": 4,
+      "rank": 10,
+      "severity_sum": 4
+    },
+    {
+      "complaint_count": 1,
+      "issue_id": "access/general",
+      "mean_severity": "4.000000",
+      "priority_score": 4,
+      "rank": 11,
+      "severity_sum": 4
+    },
+    {
+      "complaint_count": 2,
+      "issue_id": "catalog/recommendations",
+      "mean_severity": "2.000000",
+      "priority_score": 4,
+      "rank": 12,
+      "severity_sum": 4
+    },
+    {
+      "complaint_count": 1,
+      "issue_id": "downloads/offline_listening",
+      "mean_severity": "4.000000",
+      "priority_score": 4,
+      "rank": 13,
+      "severity_sum": 4
+    },
+    {
+      "complaint_count": 1,
+      "issue_id": "playback/connectivity",
+      "mean_severity": "4.000000",
+      "priority_score": 4,
+      "rank": 14,
+      "severity_sum": 4
+    },
+    {
+      "complaint_count": 1,
+      "issue_id": "playback/crash_freeze",
+      "mean_severity": "4.000000",
+      "priority_score": 4,
+      "rank": 15,
+      "severity_sum": 4
+    }
+  ],
+  "topic_counts": {
+    "access": 2,
+    "billing": 7,
+    "catalog": 10,
+    "downloads": 3,
+    "other": 57,
+    "playback": 6,
+    "usability": 15
+  },
+  "topic_intent_counts": {
+    "access|complaint": 2,
+    "billing|cancellation": 1,
+    "billing|complaint": 6,
+    "catalog|cancellation": 1,
+    "catalog|complaint": 5,
+    "catalog|praise": 3,
+    "catalog|request": 1,
+    "downloads|cancellation": 1,
+    "downloads|complaint": 1,
+    "downloads|request": 1,
+    "other|cancellation": 2,
+    "other|complaint": 11,
+    "other|praise": 35,
+    "other|request": 1,
+    "other|unclear": 8,
+    "playback|complaint": 6,
+    "usability|cancellation": 3,
+    "usability|complaint": 11,
+    "usability|request": 1
+  }
+}

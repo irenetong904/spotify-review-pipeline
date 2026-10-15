@@ -1,0 +1,47 @@
+{
+  "by_enricher_topic": {
+    "billing": {
+      "n": 2,
+      "topic_agreement": 1.0
+    },
+    "catalog": {
+      "n": 5,
+      "topic_agreement": 1.0
+    },
+    "downloads": {
+      "n": 1,
+      "topic_agreement": 1.0
+    },
+    "other": {
+      "n": 27,
+      "topic_agreement": 0.9259
+    },
+    "playback": {
+      "n": 5,
+      "topic_agreement": 1.0
+    },
+    "usability": {
+      "n": 9,
+      "topic_agreement": 0.7778
+    }
+  },
+  "cache_hits": 3,
+  "fraction": 1.0,
+  "intent_agreement": 0.9388,
+  "new_calls_needed": 46,
+  "non_latin": {
+    "n": 0,
+    "topic_agreement": null
+  },
+  "sample_size": 49,
+  "seed": "srp-verify-v1",
+  "sentiment_mae": 0.1682,
+  "severity_exact": 0.898,
+  "severity_mae": 0.102,
+  "stop_reason": "sample_exhausted",
+  "topic_agreement": 0.9184,
+  "unverified": 0,
+  "verified": 49,
+  "verifier_quote_substring_rate": 0.9796,
+  "verify_config": "claude-haiku-5-5+effort-low+verify-v1+rubric.002865e8"
+}

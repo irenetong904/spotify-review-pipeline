@@ -1,0 +1,600 @@
+{
+  "group_config": "claude-haiku-5-5+effort-low+group-v1+taxonomy-v1",
+  "issues": [
+    {
+      "cited_ids": [
+        "de0a9cdf-8974-48bc-802f-331228df4619"
+      ],
+      "description": "Customers report the app does not accept their correct password when trying to sign in.",
+      "example_ids": [
+        "de0a9cdf-8974-48bc-802f-331228df4619"
+      ],
+      "issue_id": "access/account_recovery",
+      "member_count": 1,
+      "name": "Password rejected during login",
+      "named_by": "model_cached",
+      "subtopic": "account_recovery",
+      "topic": "access"
+    },
+    {
+      "cited_ids": [
+        "32fb340f-4f9f-4551-8dae-755221e58d6a",
+        "c1726764-f0ce-4abc-ad9e-6cd143e1b2c7",
+        "686fa8a8-f220-4ddd-b283-d61dd242051a"
+      ],
+      "description": "Several customers report being unable to log in or open content in the app, with some seeing error messages and considering cancelling their subscriptions.",
+      "example_ids": [
+        "32fb340f-4f9f-4551-8dae-755221e58d6a",
+        "c1726764-f0ce-4abc-ad9e-6cd143e1b2c7",
+        "686fa8a8-f220-4ddd-b283-d61dd242051a"
+      ],
+      "issue_id": "access/general",
+      "member_count": 3,
+      "name": "Users unable to access their accounts",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "access"
+    },
+    {
+      "cited_ids": [
+        "12efd15d-4d4f-4a71-8e71-69d03b6f983a",
+        "84acb6b0-dd91-4330-944f-2686cbd15ce0",
+        "f6f9c680-0970-443f-b422-b1a6ad85e7ce",
+        "0a7f2420-1b49-41fa-8cfc-0b2e178bea6b"
+      ],
+      "description": "Users are repeatedly logged out or blocked at login, receiving connection or number errors even when their internet and phone number are correct.",
+      "example_ids": [
+        "12efd15d-4d4f-4a71-8e71-69d03b6f983a",
+        "84acb6b0-dd91-4330-944f-2686cbd15ce0",
+        "9ce5f16c-aef0-48eb-ace1-91905796bc3d",
+        "f6f9c680-0970-443f-b422-b1a6ad85e7ce",
+        "0a7f2420-1b49-41fa-8cfc-0b2e178bea6b",
+        "1f13c3a2-e57b-460c-b569-964e6b2b1f31"
+      ],
+      "issue_id": "access/login_failure",
+      "member_count": 6,
+      "name": "Unable to log in to app",
+      "named_by": "model",
+      "subtopic": "login_failure",
+      "topic": "access"
+    },
+    {
+      "cited_ids": [
+        "9db060c5-2ff5-493a-8a19-01a3da91ff1d",
+        "61e0ddbb-6ec4-4d3a-acd3-41eb5f64afb7",
+        "58511d69-67c2-4432-84d8-f3c556592f2b",
+        "67835dbd-10ac-4325-b93e-453d1bd5ec36"
+      ],
+      "description": "Customers feel basic playback features like repeat, skip, and song choice now require paid premium, and they object to the charges.",
+      "example_ids": [
+        "9db060c5-2ff5-493a-8a19-01a3da91ff1d",
+        "61e0ddbb-6ec4-4d3a-acd3-41eb5f64afb7",
+        "58511d69-67c2-4432-84d8-f3c556592f2b",
+        "67835dbd-10ac-4325-b93e-453d1bd5ec36"
+      ],
+      "issue_id": "billing/charges_refunds",
+      "member_count": 4,
+      "name": "Core features locked behind paid subscription",
+      "named_by": "model",
+      "subtopic": "charges_refunds",
+      "topic": "billing"
+    },
+    {
+      "cited_ids": [
+        "074efbfd-f69e-46ca-9cea-e5204a192a2a",
+        "82aedd59-debc-4147-9ff4-5a95c3d3a4e4",
+        "7a5919ad-16d4-4f29-8e6e-1041415d7eee",
+        "a8170750-1671-4962-bba3-bd297d78f0bc"
+      ],
+      "description": "Customers feel core functions like repeating songs, better audio quality, and normal playback now require a paid Premium subscription, causing frustration and uninstall threats.",
+      "example_ids": [
+        "074efbfd-f69e-46ca-9cea-e5204a192a2a",
+        "82aedd59-debc-4147-9ff4-5a95c3d3a4e4",
+        "7a5919ad-16d4-4f29-8e6e-1041415d7eee",
+        "a8170750-1671-4962-bba3-bd297d78f0bc",
+        "3e82cf28-6b0a-4980-902c-b6aa154d353a"
+      ],
+      "issue_id": "billing/general",
+      "member_count": 5,
+      "name": "Basic features locked behind paywall",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "billing"
+    },
+    {
+      "cited_ids": [
+        "4a2ba740-231c-406e-a7a1-c31349e99c44",
+        "6a4f84b4-18e2-47d9-adb8-2461a9319c11"
+      ],
+      "description": "Customers report that recent changes restrict free users so heavily that the app effectively requires a premium subscription, prompting some to stop using it.",
+      "example_ids": [
+        "4a2ba740-231c-406e-a7a1-c31349e99c44",
+        "6a4f84b4-18e2-47d9-adb8-2461a9319c11"
+      ],
+      "issue_id": "billing/premium_paywall",
+      "member_count": 2,
+      "name": "Free users blocked by premium paywall",
+      "named_by": "model",
+      "subtopic": "premium_paywall",
+      "topic": "billing"
+    },
+    {
+      "cited_ids": [
+        "d146397f-4a94-4980-be00-ae9212eca3a7",
+        "a3605554-5c3a-441d-836e-e9fdea83eb2e",
+        "16929558-ce1e-4b87-8738-a1de3f557f66",
+        "f66a61ed-c4f6-4e7f-8f3b-a4c0d9fbf6af"
+      ],
+      "description": "After a recent update, free users report that core playback functions such as skipping, repeating, choosing songs, and queue ordering now require a Premium subscription, and some paying users still see paywall screens or cannot purchase.",
+      "example_ids": [
+        "cc39673b-e332-4f1d-a6c6-ce378a715dcb",
+        "384008ad-eb79-4525-a794-b0b67f7fb3f5",
+        "2313bd8e-43bd-4777-bff9-3ae753288f0e",
+        "16929558-ce1e-4b87-8738-a1de3f557f66",
+        "57aca404-d58b-4bb4-97b1-c64db92f054a",
+        "d146397f-4a94-4980-be00-ae9212eca3a7",
+        "21915fcd-9a35-48ba-b277-6296c4154603",
+        "a06df5ff-01c8-4aff-a89c-a0c2ddc88f76",
+        "88439ec2-7c49-4c57-bedb-c5e098692aff",
+        "af53cf35-c680-4ccb-b30c-cfd85bb61c57",
+        "c374ef2d-3676-4c5e-a0d2-02242a254f22",
+        "1d1480fb-0142-46da-8570-45bf3983bf6d",
+        "5cbc9acd-8d44-4719-9409-b40ad0db4211",
+        "ad730d1a-829a-4dc4-9561-7e1cd07e2c30",
+        "89ea2c30-db8b-459d-8ab7-bbcb7f92c774",
+        "f66a61ed-c4f6-4e7f-8f3b-a4c0d9fbf6af",
+        "a78d831a-69f4-428a-9235-cfdd9775c509",
+        "66c56c76-ca94-46ef-b0a1-931654ead16d",
+        "a3605554-5c3a-441d-836e-e9fdea83eb2e",
+        "86adc9b6-be58-400c-9a08-aa082ff0535c"
+      ],
+      "issue_id": "billing/subscription_entitlement",
+      "member_count": 29,
+      "name": "Basic features locked behind premium subscription",
+      "named_by": "model",
+      "subtopic": "subscription_entitlement",
+      "topic": "billing"
+    },
+    {
+      "cited_ids": [
+        "4d327494-7846-481a-bf00-f4b5abc099c4",
+        "0658feaa-5bec-416e-b6b0-3de2a4c14580",
+        "a1a28752-3256-4f81-b888-3e943343529f",
+        "7c5d9a4d-1bb1-4da3-bc3b-2500ae0246f1"
+      ],
+      "description": "Users report that the library lacks songs they want, shows only short clips, or offers music that does not match their taste.",
+      "example_ids": [
+        "4d327494-7846-481a-bf00-f4b5abc099c4",
+        "0b716a9d-85bf-4f4e-8e2e-be71e4a379a6",
+        "7c5d9a4d-1bb1-4da3-bc3b-2500ae0246f1",
+        "9f3626e0-1bcb-4788-a412-f812102502d1",
+        "a1a28752-3256-4f81-b888-3e943343529f",
+        "0658feaa-5bec-416e-b6b0-3de2a4c14580"
+      ],
+      "issue_id": "catalog/general",
+      "member_count": 6,
+      "name": "Missing songs and limited catalog content",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "catalog"
+    },
+    {
+      "cited_ids": [
+        "e0127547-4edd-44a0-8d5e-e8398bc07086",
+        "9f7a013a-082e-4ec1-8a65-a1e0a0395d20",
+        "59f31721-b2c8-40c5-ba3c-b9fe64a58d68",
+        "47becad0-8ae5-4a10-9731-fde8f2091862"
+      ],
+      "description": "Users report that lyrics often do not display for songs, including across whole playlists, and sometimes only work on one device.",
+      "example_ids": [
+        "e0127547-4edd-44a0-8d5e-e8398bc07086",
+        "9f7a013a-082e-4ec1-8a65-a1e0a0395d20",
+        "59f31721-b2c8-40c5-ba3c-b9fe64a58d68",
+        "4b3ace8e-b199-40b3-8ad4-5c0580e38203",
+        "47becad0-8ae5-4a10-9731-fde8f2091862"
+      ],
+      "issue_id": "catalog/lyrics",
+      "member_count": 5,
+      "name": "Song lyrics fail to load",
+      "named_by": "model",
+      "subtopic": "lyrics",
+      "topic": "catalog"
+    },
+    {
+      "cited_ids": [
+        "ed8efdfe-43e3-4baa-bbed-317807663531",
+        "544a8481-e12b-4878-92d0-ec3a5256e13a",
+        "618d1dbb-0186-4537-923a-7b4dabf19afb",
+        "1807cc68-ba99-4edc-b6f1-2a1478e69109"
+      ],
+      "description": "Users report that recommended songs keep appearing in their own playlists even after turning recommendations off, and that the recommendations feel repetitive or unwanted.",
+      "example_ids": [
+        "ed8efdfe-43e3-4baa-bbed-317807663531",
+        "544a8481-e12b-4878-92d0-ec3a5256e13a",
+        "1807cc68-ba99-4edc-b6f1-2a1478e69109",
+        "618d1dbb-0186-4537-923a-7b4dabf19afb"
+      ],
+      "issue_id": "catalog/recommendations",
+      "member_count": 4,
+      "name": "Unwanted recommendations mixed into playlists",
+      "named_by": "model",
+      "subtopic": "recommendations",
+      "topic": "catalog"
+    },
+    {
+      "cited_ids": [
+        "b4f4440f-d952-405d-bf7b-f19fb0adf484"
+      ],
+      "description": "Customers say the search feature was removed from playlists, making it hard to find content and prompting requests to restore it.",
+      "example_ids": [
+        "b4f4440f-d952-405d-bf7b-f19fb0adf484"
+      ],
+      "issue_id": "catalog/search",
+      "member_count": 1,
+      "name": "Missing search function in playlists",
+      "named_by": "model",
+      "subtopic": "search",
+      "topic": "catalog"
+    },
+    {
+      "cited_ids": [
+        "2ffdf599-a0d5-4c01-bf26-025215d44c06",
+        "5be3399d-dcd2-405b-a931-29b02ffc966e",
+        "1d3f978e-b31f-4a4b-ab17-ec46ab4966b3"
+      ],
+      "description": "Users report that downloads get stuck until the app is opened, or saved content vanishes before offline playback, undermining the offline listening they pay for.",
+      "example_ids": [
+        "2ffdf599-a0d5-4c01-bf26-025215d44c06",
+        "5be3399d-dcd2-405b-a931-29b02ffc966e",
+        "1d3f978e-b31f-4a4b-ab17-ec46ab4966b3",
+        "c64af4d8-ac17-48fe-ae38-fd54b41b16b1"
+      ],
+      "issue_id": "downloads/download_failure",
+      "member_count": 4,
+      "name": "Downloads stalling or disappearing offline",
+      "named_by": "model",
+      "subtopic": "download_failure",
+      "topic": "downloads"
+    },
+    {
+      "cited_ids": [
+        "5a4a0f00-ce5f-448d-8425-48eeeba76b4d"
+      ],
+      "description": "Customers report that music downloads are not working properly, with the audio quality described as bad.",
+      "example_ids": [
+        "5a4a0f00-ce5f-448d-8425-48eeeba76b4d"
+      ],
+      "issue_id": "downloads/general",
+      "member_count": 1,
+      "name": "Music downloads failing or poor quality",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "downloads"
+    },
+    {
+      "cited_ids": [
+        "b03d6dc9-449a-4647-b112-559186656759",
+        "dcff57c6-abd6-413b-b255-aec3dc34fcbd"
+      ],
+      "description": "Customers report that offline listening is unusable or fails to work, and downloads ignore metered-connection settings.",
+      "example_ids": [
+        "b03d6dc9-449a-4647-b112-559186656759",
+        "dcff57c6-abd6-413b-b255-aec3dc34fcbd"
+      ],
+      "issue_id": "downloads/offline_listening",
+      "member_count": 2,
+      "name": "Offline mode and downloads not working",
+      "named_by": "model",
+      "subtopic": "offline_listening",
+      "topic": "downloads"
+    },
+    {
+      "cited_ids": [
+        "f5cc511f-ae71-4985-a737-1c0075156e2b",
+        "1db044db-d184-4335-877c-d8fc364b282e",
+        "b1beb540-0a06-4396-9677-161fbd8029b6",
+        "51bfd887-24a0-4741-8b59-68e0a726dd7a"
+      ],
+      "description": "Users express broad negative sentiment about the app and recent updates without specifying a concrete functional problem.",
+      "example_ids": [
+        "a598cfe0-473b-4665-9eb2-4eebb3c1d877",
+        "8cd35162-9223-42d1-8097-06e22fde94ea",
+        "f5cc511f-ae71-4985-a737-1c0075156e2b",
+        "1db044db-d184-4335-877c-d8fc364b282e",
+        "2f40c0be-faf9-450d-8823-da8dbf9ec3f5",
+        "c55970e2-9223-4e83-92de-9b7e4aac0663",
+        "68107809-52c1-469d-a78a-569280e49ed6",
+        "08c07310-e802-4a88-bd97-2a5f240c0b44",
+        "b0fb4c8e-e2be-432d-84bc-b4f30b0d2aa5",
+        "f7cc1aa7-c306-4f5b-a5e9-911cca07fa60",
+        "3feb5ba7-4a0d-47e0-a803-eb2dce85dd5e",
+        "2d5cdd20-3094-40a5-bc6e-653302b59b56",
+        "57c09fe7-3f31-42ab-8bc3-016229670470",
+        "42644f9d-f2b5-4399-8d32-68626340f1ce",
+        "8b6e028a-5f63-4011-9841-cbbade4830eb",
+        "b1beb540-0a06-4396-9677-161fbd8029b6",
+        "9d15352b-b78f-477b-b56f-44a6698ba55a",
+        "b47c203f-366e-4409-922d-cd52aa8bbef6",
+        "b92a7381-b5cd-4c77-9176-e5c4b4818c8a",
+        "51bfd887-24a0-4741-8b59-68e0a726dd7a"
+      ],
+      "issue_id": "other/general",
+      "member_count": 66,
+      "name": "Vague general dissatisfaction with app",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "other"
+    },
+    {
+      "cited_ids": [
+        "06d4c78d-73b4-4b54-9ef3-3d5a0d18cb96",
+        "98d936e1-fd1d-475a-89ee-0e1517cb60d3",
+        "3899ed22-7b96-4c4f-9706-42985b8d8049"
+      ],
+      "description": "Customers report music or podcasts failing to play or lagging, often requiring app restarts or reinstalls to recover.",
+      "example_ids": [
+        "06d4c78d-73b4-4b54-9ef3-3d5a0d18cb96",
+        "98d936e1-fd1d-475a-89ee-0e1517cb60d3",
+        "3899ed22-7b96-4c4f-9706-42985b8d8049"
+      ],
+      "issue_id": "playback/audio_quality",
+      "member_count": 3,
+      "name": "Playback failures and audio lag",
+      "named_by": "model",
+      "subtopic": "audio_quality",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "4ab2089a-ffa8-49e7-a8a3-aeb583a96796",
+        "3df77a78-ad9a-4456-8be8-8178ffd43d67",
+        "bcdf315e-c82d-41f0-9fcd-ba5933dfe77e",
+        "179d79f7-d052-490f-a9d6-f97525b32642"
+      ],
+      "description": "Users report the app shows no internet connection or stops playing even when their Wi-Fi or network works fine for other apps, and some also struggle to connect to other devices.",
+      "example_ids": [
+        "4ab2089a-ffa8-49e7-a8a3-aeb583a96796",
+        "4526d439-a6e4-4e0a-b0bc-ae0f9ce5bd96",
+        "05fa5b8a-a49b-43be-bab5-38af789a65a7",
+        "3df77a78-ad9a-4456-8be8-8178ffd43d67",
+        "bcdf315e-c82d-41f0-9fcd-ba5933dfe77e",
+        "01124066-b5dd-4c79-8618-d1bea99d197a",
+        "179d79f7-d052-490f-a9d6-f97525b32642",
+        "8b9d84a8-f650-4272-b332-4d60cb42377d"
+      ],
+      "issue_id": "playback/connectivity",
+      "member_count": 8,
+      "name": "Playback fails with false no-internet errors",
+      "named_by": "model",
+      "subtopic": "connectivity",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "4a806587-0dde-4fb4-b4f1-f5c7d197c927",
+        "55cc3abf-c295-4591-8c3a-78085cfdefaa",
+        "89be32ab-664a-4647-a5e3-e4006a67e4e1"
+      ],
+      "description": "Customers report the app crashes or freezes during playback or on launch following the most recent update.",
+      "example_ids": [
+        "4a806587-0dde-4fb4-b4f1-f5c7d197c927",
+        "55cc3abf-c295-4591-8c3a-78085cfdefaa",
+        "89be32ab-664a-4647-a5e3-e4006a67e4e1"
+      ],
+      "issue_id": "playback/crash_freeze",
+      "member_count": 3,
+      "name": "App crashes after latest update",
+      "named_by": "model",
+      "subtopic": "crash_freeze",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "4c34f240-76d4-451a-ac74-5bc6bd484825",
+        "66a29b3c-c14d-440e-b722-b23e0c99ae82",
+        "065c418e-7f18-42a3-b241-fe693b7a2b0c",
+        "a0cbc9d6-51bb-46f0-9ba9-ad4f4593c266"
+      ],
+      "description": "Users report that tracks won't start, playback stalls on loading or a black screen, and songs or playlists play the wrong content or cut out.",
+      "example_ids": [
+        "0fcf89b2-0b81-4838-bf5f-41c684e43b2d",
+        "d3b74f36-aa48-42af-ae4a-d4a8b0499a60",
+        "a0cbc9d6-51bb-46f0-9ba9-ad4f4593c266",
+        "c7df9cb8-7bec-4036-a6a1-1353d2d705d8",
+        "4c34f240-76d4-451a-ac74-5bc6bd484825",
+        "065c418e-7f18-42a3-b241-fe693b7a2b0c",
+        "46ff0c74-5e86-4e5b-b4cd-36201aab0f9e",
+        "66a29b3c-c14d-440e-b722-b23e0c99ae82",
+        "f87fb3d9-501a-4119-bc40-b0669270ae44",
+        "145ea602-b8fb-41c1-bfdd-79293a18681f",
+        "e07b106c-f454-46aa-a592-0b92d644bac0",
+        "232c669e-8bfe-4642-b0c9-229c2911cc6c",
+        "530b7128-1b64-46a7-81ad-d69c4bf821cf",
+        "d767f1af-e8eb-41af-9cc4-8bfa35253870",
+        "509915ba-cf86-4baa-9bea-a73af229ca48"
+      ],
+      "issue_id": "playback/general",
+      "member_count": 15,
+      "name": "Songs fail to play or stop unexpectedly",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "1cdc5bb2-8e8d-4267-8853-6c1dd4c7ef13",
+        "651e6e7b-f93e-4369-9631-15c73ddcd4ad",
+        "f1abd13b-2391-4b04-8109-efa7f3cfed0b",
+        "039112fc-bbed-4540-83cc-890fcb129751",
+        "6c257eba-3dca-49f6-b7f0-4c4484d81e26"
+      ],
+      "description": "Users report music and podcasts stopping or pausing unexpectedly and sometimes failing to resume on demand, interrupting listening sessions.",
+      "example_ids": [
+        "a7b7539a-c8d3-4f4e-9edd-d46cd1b1fd12",
+        "1cdc5bb2-8e8d-4267-8853-6c1dd4c7ef13",
+        "651e6e7b-f93e-4369-9631-15c73ddcd4ad",
+        "f1abd13b-2391-4b04-8109-efa7f3cfed0b",
+        "d218ffde-42f9-48f8-a793-832507454b35",
+        "039112fc-bbed-4540-83cc-890fcb129751",
+        "6c257eba-3dca-49f6-b7f0-4c4484d81e26"
+      ],
+      "issue_id": "playback/stops_pausing",
+      "member_count": 7,
+      "name": "Playback randomly stops or pauses",
+      "named_by": "model",
+      "subtopic": "stops_pausing",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "3bfefa06-133c-419b-a435-1fea919d6a44",
+        "50626053-301c-42fa-91aa-2f88aef82e64",
+        "b9ae23d2-1152-4bfe-a876-afc09c005377",
+        "71095e1c-86d0-4639-8db0-9b74afdf6d4e",
+        "ab67a772-c3b7-42ba-9b80-8d21d3857018"
+      ],
+      "description": "Users find the frequency, length, loudness, and unskippable nature of ads so heavy that they disrupt listening and make the free experience feel unusable.",
+      "example_ids": [
+        "6eb64519-37d4-4591-a47a-bbb96357de36",
+        "bfda45a9-d2a3-4aa6-8530-9abe87a63df8",
+        "e5e6c55f-3069-4b7c-9807-f8b5d5bf2726",
+        "3bfefa06-133c-419b-a435-1fea919d6a44",
+        "50626053-301c-42fa-91aa-2f88aef82e64",
+        "3252de76-f17f-47e2-9517-fe47f66a1fdb",
+        "864e390b-135e-411a-9d03-f28648086cfd",
+        "5e42046c-b29b-4035-ba83-a8e222789e98",
+        "ec96a982-68d0-44c4-b2be-13a999be4094",
+        "ab67a772-c3b7-42ba-9b80-8d21d3857018",
+        "b9ae23d2-1152-4bfe-a876-afc09c005377",
+        "70b76b68-4876-42a9-b1fe-80087693908b",
+        "4d7c1b3b-b7f8-417e-a984-6ae27c3acef5",
+        "85e978f0-13e5-4264-8d3d-251ac5c36461",
+        "a3c6d913-4b67-4025-b34e-3760e5f7795f",
+        "71095e1c-86d0-4639-8db0-9b74afdf6d4e",
+        "c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd",
+        "92c43612-30bb-4514-bd51-cb7419c7e4d2",
+        "d4d68992-96bf-4fb1-a370-cb47234022d9",
+        "aa86aa43-19d5-40b4-8b03-535a96346e18"
+      ],
+      "issue_id": "usability/ads",
+      "member_count": 21,
+      "name": "Excessive and intrusive advertisements in free listening",
+      "named_by": "model",
+      "subtopic": "ads",
+      "topic": "usability"
+    },
+    {
+      "cited_ids": [
+        "0e5a2a0d-7f67-48a5-9edd-27064f670656",
+        "0853c56b-0fa1-4d12-9cb9-6817d52233f5",
+        "91755919-64e7-4613-94f9-4cfb44976c44",
+        "e8f2fb9b-ad3b-4fec-8194-ab67956ee50a"
+      ],
+      "description": "Customers report that the app is hard to navigate, plays unexpected songs or demos instead of what they selected, and has bugs that make it feel unfriendly.",
+      "example_ids": [
+        "0e5a2a0d-7f67-48a5-9edd-27064f670656",
+        "cf6166ae-d71a-4839-9add-088645ad3b78",
+        "caa9bb7e-814c-4895-b872-10637419b9ba",
+        "0853c56b-0fa1-4d12-9cb9-6817d52233f5",
+        "9c9757da-6b99-4c95-a0e7-0661ee858027",
+        "4966b59e-cf09-4881-b3ea-34fd4118a553",
+        "91755919-64e7-4613-94f9-4cfb44976c44",
+        "10775595-01b9-4623-9163-51619e2a0fa9",
+        "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+        "7f057d48-0855-4325-950b-44f9e6fc2ee1",
+        "80e2b39e-11a5-485a-aace-8a8d8c564dc1",
+        "e8f2fb9b-ad3b-4fec-8194-ab67956ee50a",
+        "3a88c96b-2760-4eb8-9271-6c55e2304392",
+        "035213ba-b1b9-411c-b028-70296e5f0e73",
+        "85383985-844d-4f9b-bcd9-d6016ac35f6b",
+        "ee17dcd6-07c0-4441-8e64-e7ea57877c78"
+      ],
+      "issue_id": "usability/general",
+      "member_count": 16,
+      "name": "General usability frustrations and unexpected behavior",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "usability"
+    },
+    {
+      "cited_ids": [
+        "08d3a5a9-1ec1-4b10-a5c8-393da33843e1",
+        "5c9c17d3-9d6a-4fa1-a2a4-ae98eefbbd25",
+        "ebc64fe2-9553-4528-87d5-cb4bb9783be6",
+        "f9cf3b4a-c40e-4578-9f6f-358807450b0f"
+      ],
+      "description": "Users report that tapping a specific song or playlist item causes the app to play random or other playlist tracks, limiting skips and making it hard to find and play what they selected.",
+      "example_ids": [
+        "d87536c5-6fe0-4b38-b0b1-c47936e4a0d8",
+        "08d3a5a9-1ec1-4b10-a5c8-393da33843e1",
+        "991dc66a-aba8-4844-be48-816539680877",
+        "5c9c17d3-9d6a-4fa1-a2a4-ae98eefbbd25",
+        "0e71515c-ecf1-4b23-b783-00f58e51d96a",
+        "ebc64fe2-9553-4528-87d5-cb4bb9783be6",
+        "4f6a50a1-9440-468c-b35f-961bca94fd88",
+        "f9cf3b4a-c40e-4578-9f6f-358807450b0f",
+        "d26566f7-a898-4298-a06a-50bd3f7319c1"
+      ],
+      "issue_id": "usability/queue_playlist",
+      "member_count": 9,
+      "name": "Cannot play chosen song; playlist shuffles instead",
+      "named_by": "model",
+      "subtopic": "queue_playlist",
+      "topic": "usability"
+    },
+    {
+      "cited_ids": [
+        "77a53aa5-a453-4bcb-8267-d4f44a492dd3",
+        "c13dcedc-50da-48a8-a90d-cfb037a66478",
+        "f8a85378-c4dd-40e2-b548-beebcdf3b991",
+        "11ad400f-4487-4dfa-a9da-c8d624f4f107"
+      ],
+      "description": "Users say the app restricts skipping, rewinding, and choosing specific songs, and forces shuffle or repeated tracks, which frustrates playlist listening.",
+      "example_ids": [
+        "77a53aa5-a453-4bcb-8267-d4f44a492dd3",
+        "c13dcedc-50da-48a8-a90d-cfb037a66478",
+        "ac581cea-24f2-4251-a062-53cdd77cfed7",
+        "f8a85378-c4dd-40e2-b548-beebcdf3b991",
+        "11ad400f-4487-4dfa-a9da-c8d624f4f107",
+        "e393cec1-67e8-4f58-a484-8d9d76dc8fd6"
+      ],
+      "issue_id": "usability/shuffle_and_control",
+      "member_count": 6,
+      "name": "Limited skips and forced shuffle control",
+      "named_by": "model",
+      "subtopic": "shuffle_and_control",
+      "topic": "usability"
+    },
+    {
+      "cited_ids": [
+        "2aae0ce4-ae4a-46ce-b2fe-0d901eb23c06",
+        "94c9f2f9-36fa-4c11-936e-660514fe7a35",
+        "2e2480c1-7799-4a66-be67-a947a2d99680",
+        "0070e713-4cb7-4d78-954f-1764d5593c91"
+      ],
+      "description": "Users find the redesigned home screen and layout hard to navigate, with key features like playlists, lyrics, and queue options harder to reach or removed after the update.",
+      "example_ids": [
+        "45c561b9-cc47-4d80-95d3-f0d20bc84af3",
+        "0070e713-4cb7-4d78-954f-1764d5593c91",
+        "6ba8fc67-700c-4d33-ad84-ef67a05b2ae1",
+        "2aae0ce4-ae4a-46ce-b2fe-0d901eb23c06",
+        "7f27bbab-ef19-4fb1-80d8-cd014da3e002",
+        "dd89d3d3-e4c1-446e-b899-fc038cfbcf95",
+        "adc4c3e4-3717-4888-ad86-c9381c224d2f",
+        "e16a4550-43e7-4ae1-b538-a65cc652c31b",
+        "02777996-211f-447b-94c4-99b61f049f78",
+        "9e5f9745-f8be-48d3-b9de-4d118507d94a",
+        "5d50e8f0-18d7-4510-8b1d-eb6b2323f3c9",
+        "7084ced1-0428-4093-9328-442f74719b4f",
+        "94c9f2f9-36fa-4c11-936e-660514fe7a35",
+        "2e2480c1-7799-4a66-be67-a947a2d99680"
+      ],
+      "issue_id": "usability/ui_layout",
+      "member_count": 14,
+      "name": "Confusing new layout and missing features",
+      "named_by": "model",
+      "subtopic": "ui_layout",
+      "topic": "usability"
+    }
+  ]
+}

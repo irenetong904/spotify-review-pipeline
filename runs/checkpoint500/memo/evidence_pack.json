@@ -1,0 +1,107 @@
+[
+  {
+    "intent": "cancellation",
+    "issue_id": "other/general",
+    "quote": "New update had made this app worst for streaming music. Shifting to better apps",
+    "review_id": "a598cfe0-473b-4665-9eb2-4eebb3c1d877",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "Apps automatically starts even after you have disabled all permissions.",
+    "review_id": "8cd35162-9223-42d1-8097-06e22fde94ea",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "Worst app ever they only care about money",
+    "review_id": "f5cc511f-ae71-4985-a737-1c0075156e2b",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "The recent update of Spotify really affects me a lot .",
+    "review_id": "cc39673b-e332-4f1d-a6c6-ce378a715dcb",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "Canvas not available after recent update, what's the point of having premium -______-",
+    "review_id": "384008ad-eb79-4525-a794-b0b67f7fb3f5",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "It is absolutely useless after the latest update. There's nothing I can do without the \"try premium\" option popping up every damn time.",
+    "review_id": "2313bd8e-43bd-4777-bff9-3ae753288f0e",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "playback/general",
+    "quote": "When I playing song the app is shoutdowning",
+    "review_id": "0fcf89b2-0b81-4838-bf5f-41c684e43b2d",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "playback/general",
+    "quote": "I have a Samsung and after a week of using this app it like wouldn't let me listen to music",
+    "review_id": "d3b74f36-aa48-42af-ae4a-d4a8b0499a60",
+    "severity": 4
+  },
+  {
+    "intent": "cancellation",
+    "issue_id": "playback/general",
+    "quote": "I keep on running into issues where I click on songs in my liked music and they don't play.",
+    "review_id": "a0cbc9d6-51bb-46f0-9ba9-ad4f4593c266",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "useless music app music k naam pe khaali ad dikhata hai.",
+    "review_id": "6eb64519-37d4-4591-a47a-bbb96357de36",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "It's good it's just ads and I'm having troubles getting my Playlist",
+    "review_id": "bfda45a9-d2a3-4aa6-8530-9abe87a63df8",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "Too many ads.... it's literally useless if u hv not taken premium",
+    "review_id": "e5e6c55f-3069-4b7c-9807-f8b5d5bf2726",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ui_layout",
+    "quote": "The update made the app useless .... Uninstall krdia ye app ab bekar hai ... Wynk hi theek h",
+    "review_id": "45c561b9-cc47-4d80-95d3-f0d20bc84af3",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ui_layout",
+    "quote": "I've loved Spotify but it's baffling to me how every update they make seems to make the app LESS user friendly.",
+    "review_id": "0070e713-4cb7-4d78-954f-1764d5593c91",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ui_layout",
+    "quote": "With the new update, I lose the pleasure of listening to songs in the application, for example, why do I only have 6 skips per hour",
+    "review_id": "6ba8fc67-700c-4d33-ad84-ef67a05b2ae1",
+    "severity": 3
+  }
+]

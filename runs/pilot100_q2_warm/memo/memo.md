@@ -1,0 +1,13 @@
+# Prioritize Usability next quarter, with a fast-track fix for Playback
+
+## Recommendation
+Put next quarter's main product effort into Usability, led by `usability/ui_layout` and `usability/ads`. Usability has the most complaints and the largest total severity among the four named areas (14 [C055] complaints, severity total 36 [C056]). Playback is a close second and should get a fast-track fix because it has the highest mean severity among the higher-volume areas (3.625000 [C061]).
+
+## Evidence
+Usability is the largest of the four areas by volume and total severity: 14 [C055] complaints with severity total 36 [C056], versus Playback at 8 [C059] complaints and severity total 29 [C060]. Its issues are spread across layout changes (`usability/ui_layout`, 4 [C021] complaints), advertising (`usability/ads`, 3 [C026] complaints) and queue controls (`usability/queue_playlist`, 2 [C031] complaints). Playback is more concentrated: `playback/general` shows 3 [C016] complaints at a mean severity of 3.666667 [C018], covering loading failures and screens that stall. Billing/support has 7 [C063] complaints with severity total 20 [C064]. Its top issue, `billing/subscription_entitlement` (6 [C006] complaints), describes features moved behind premium, which overlaps with playback controls. Access has few complaints (2 [C067]) but the highest mean severity (4.000000 [C069]), so it needs monitoring rather than a major investment. Some reviews use cancellation language. That is stated intent only, not observed churn, and 8 [C074] records carry it.
+
+## Alternatives considered
+Playback (8 [C059] complaints, mean severity 3.625000 [C061]) is the strongest alternative. It ranks 4 [C020] overall, but its severity sits mostly in one issue cluster. Billing/support (7 [C063] complaints) ranks 2 [C010] as an issue, driven by premium gating. That is partly a pricing and entitlement decision, so billing/support ownership may be the better fit for it. Access is smallest by volume. Outside the four areas holds the largest share (0.380000 [C054]), but it is mostly vague or catalog complaints (`other/general` at 13 [C001] complaints, `catalog/general` at 2 [C036]). Those are not yet actionable for a single product area.
+
+## Limitations
+Reviews are self-selected public app-store text, not a random sample. Cancellation language is stated intent, not observed churn, and this memo estimates no revenue, churn, or causal effect. Unresolved or quarantined records: 0 [C073], so no records are pending review. Completed records total 100 [C071], of which 50 [C072] are complaint or cancellation records. Issue-level counts are small, so rankings could shift with a few additional reviews.

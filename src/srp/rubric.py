@@ -10,7 +10,7 @@ from srp.paths import ROOT
 
 RUBRIC_PATH = ROOT / "rubric" / "rubric_v1.yaml"
 ENRICH_MODEL = "jev-1.13.0"  # pinned; never an alias
-QUESTION_SCHEMA_VERSION = "q2"  # q1 = first pilot (longer wording)
+QUESTION_SCHEMA_VERSION = "q4"  # q1/q2 = earlier pilots (longer wording); see docs/jev_question_versions.md
 
 
 @lru_cache(maxsize=1)

@@ -1,0 +1,94 @@
+{
+  "ended_at": "2026-10-15T02:27:15+00:00",
+  "input": "data/Final Assignment - Spotify Reviews Dataset/golden_50_to_label.csv",
+  "ledger": {
+    "cap_usd": 0.2,
+    "reserved_usd": -0.0,
+    "spent_usd": 0.00958462
+  },
+  "ranking_sha256": null,
+  "spend_cap_usd": 0.2,
+  "stages": {
+    "enrich": {
+      "result": {
+        "attempts": 46,
+        "exact_text_reuse": 1,
+        "label_config": "jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b",
+        "ledger": {
+          "cap_usd": 0.2,
+          "reserved_usd": -0.0,
+          "spent_usd": 0.00157282
+        },
+        "model_completed": 46,
+        "phase": "initial",
+        "quarantined": 0,
+        "queue_at_start": 49,
+        "result_cache_hits": 3,
+        "rps_limit": 20.0,
+        "session_id": "enrich-20261014T192645-25267a",
+        "status_counts": {
+          "completed": 50
+        },
+        "still_pending_after_failures": 0,
+        "stop_reason": "queue_empty",
+        "wall_seconds": 2.641,
+        "workers": 2
+      },
+      "seconds": 2.646
+    },
+    "verify": {
+      "result": {
+        "by_enricher_topic": {
+          "billing": {
+            "n": 2,
+            "topic_agreement": 1.0
+          },
+          "catalog": {
+            "n": 5,
+            "topic_agreement": 1.0
+          },
+          "downloads": {
+            "n": 1,
+            "topic_agreement": 1.0
+          },
+          "other": {
+            "n": 27,
+            "topic_agreement": 0.9259
+          },
+          "playback": {
+            "n": 5,
+            "topic_agreement": 1.0
+          },
+          "usability": {
+            "n": 9,
+            "topic_agreement": 0.7778
+          }
+        },
+        "cache_hits": 3,
+        "fraction": 1.0,
+        "intent_agreement": 0.9388,
+        "new_calls_needed": 46,
+        "non_latin": {
+          "n": 0,
+          "topic_agreement": null
+        },
+        "sample_size": 49,
+        "seed": "srp-verify-v1",
+        "sentiment_mae": 0.1682,
+        "severity_exact": 0.898,
+        "severity_mae": 0.102,
+        "stop_reason": "sample_exhausted",
+        "topic_agreement": 0.9184,
+        "unverified": 0,
+        "verified": 49,
+        "verifier_quote_substring_rate": 0.9796,
+        "verify_config": "claude-haiku-5-5+effort-low+verify-v1+rubric.002865e8"
+      },
+      "seconds": 26.744
+    }
+  },
+  "started_at": "2026-10-15T02:26:45+00:00",
+  "wall_seconds": 29.395,
+  "workers": 2,
+  "workspace": "runs/golden50"
+}

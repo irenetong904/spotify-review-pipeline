@@ -1,0 +1,15 @@
+review_id,enricher_topic,verifier_topic,enricher_intent,verifier_intent,enricher_severity,verifier_severity,sentiment_diff
+0a5ff524-27b1-4f3b-a761-17ca48ee731d,other,other,request,praise,1,1,0.72
+0b52ac4e-1982-46ed-aeaa-74eedaefb5c9,other,other,unclear,praise,1,1,0.54
+33526c6f-7a49-4b3d-bd20-d1bc191c494c,other,support,complaint,complaint,2,2,0.155
+3e82cf28-6b0a-4980-902c-b6aa154d353a,billing,other,complaint,complaint,2,2,0.185
+45c561b9-cc47-4d80-95d3-f0d20bc84af3,other,other,complaint,cancellation,4,2,0.085
+89a8e180-7846-4421-a2b6-fa7787e9d0d2,other,usability,complaint,complaint,2,2,0.025
+89ea2c30-db8b-459d-8ab7-bbcb7f92c774,billing,usability,complaint,complaint,3,3,0.09
+916d1cb1-3a9f-42c0-9c36-fee4b1983c68,other,other,praise,unclear,1,1,0.535
+a3605554-5c3a-441d-836e-e9fdea83eb2e,billing,usability,complaint,complaint,3,3,0.01
+a78d831a-69f4-428a-9235-cfdd9775c509,playback,usability,complaint,complaint,3,3,0.18
+b9a3e661-0eac-4cc9-a30e-7b1e11ef1315,other,other,unclear,praise,1,1,0.02
+e16a4550-43e7-4ae1-b538-a65cc652c31b,usability,playback,cancellation,cancellation,3,4,0.175
+ed15bb17-865a-492b-ba1b-268f4cab78f6,other,usability,praise,complaint,1,2,0.49
+ff14ea84-fdec-4363-9b1b-a23dcab287c5,other,other,praise,complaint,1,2,0.9

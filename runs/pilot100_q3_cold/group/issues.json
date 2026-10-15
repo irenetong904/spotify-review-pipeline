@@ -1,0 +1,326 @@
+{
+  "group_config": "claude-haiku-5-5+effort-low+group-v1+taxonomy-v1",
+  "issues": [
+    {
+      "cited_ids": [
+        "de0a9cdf-8974-48bc-802f-331228df4619"
+      ],
+      "description": "Customers report the app refuses their correct password, blocking account access.",
+      "example_ids": [
+        "de0a9cdf-8974-48bc-802f-331228df4619"
+      ],
+      "issue_id": "access/account_recovery",
+      "member_count": 1,
+      "name": "Password rejected during login",
+      "named_by": "model",
+      "subtopic": "account_recovery",
+      "topic": "access"
+    },
+    {
+      "cited_ids": [
+        "32fb340f-4f9f-4551-8dae-755221e58d6a"
+      ],
+      "description": "Customers report being unable to access their accounts, and one also notes too many ads.",
+      "example_ids": [
+        "32fb340f-4f9f-4551-8dae-755221e58d6a"
+      ],
+      "issue_id": "access/general",
+      "member_count": 1,
+      "name": "Cannot log in to account",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "access"
+    },
+    {
+      "cited_ids": [
+        "3e82cf28-6b0a-4980-902c-b6aa154d353a"
+      ],
+      "description": "A single abusive review objects to Spotify asking users for money, which the reviewer finds demeaning, though the review gives little detail about the specific billing issue.",
+      "example_ids": [
+        "3e82cf28-6b0a-4980-902c-b6aa154d353a"
+      ],
+      "issue_id": "billing/general",
+      "member_count": 1,
+      "name": "Spotify payment request perceived as begging",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "billing"
+    },
+    {
+      "cited_ids": [
+        "a3605554-5c3a-441d-836e-e9fdea83eb2e",
+        "d146397f-4a94-4980-be00-ae9212eca3a7",
+        "ad730d1a-829a-4dc4-9561-7e1cd07e2c30",
+        "a78d831a-69f4-428a-9235-cfdd9775c509"
+      ],
+      "description": "Free users find core controls like choosing specific songs, skipping, and replaying previous tracks restricted after an update, which they see as a forced push toward paying for premium.",
+      "example_ids": [
+        "88439ec2-7c49-4c57-bedb-c5e098692aff",
+        "ad730d1a-829a-4dc4-9561-7e1cd07e2c30",
+        "89ea2c30-db8b-459d-8ab7-bbcb7f92c774",
+        "a78d831a-69f4-428a-9235-cfdd9775c509",
+        "d146397f-4a94-4980-be00-ae9212eca3a7",
+        "a3605554-5c3a-441d-836e-e9fdea83eb2e",
+        "21915fcd-9a35-48ba-b277-6296c4154603"
+      ],
+      "issue_id": "billing/subscription_entitlement",
+      "member_count": 7,
+      "name": "Basic playback controls locked behind premium",
+      "named_by": "model",
+      "subtopic": "subscription_entitlement",
+      "topic": "billing"
+    },
+    {
+      "cited_ids": [
+        "a1a28752-3256-4f81-b888-3e943343529f",
+        "0658feaa-5bec-416e-b6b0-3de2a4c14580"
+      ],
+      "description": "Customers report that the app lacks certain songs and genres, such as gospel music, which limits its usefulness.",
+      "example_ids": [
+        "a1a28752-3256-4f81-b888-3e943343529f",
+        "0658feaa-5bec-416e-b6b0-3de2a4c14580"
+      ],
+      "issue_id": "catalog/general",
+      "member_count": 2,
+      "name": "Limited song catalog and missing music",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "catalog"
+    },
+    {
+      "cited_ids": [
+        "e0127547-4edd-44a0-8d5e-e8398bc07086",
+        "47becad0-8ae5-4a10-9731-fde8f2091862"
+      ],
+      "description": "Users report that lyrics fail to display for certain songs while appearing for others, making the feature inconsistent.",
+      "example_ids": [
+        "e0127547-4edd-44a0-8d5e-e8398bc07086",
+        "47becad0-8ae5-4a10-9731-fde8f2091862"
+      ],
+      "issue_id": "catalog/lyrics",
+      "member_count": 2,
+      "name": "Lyrics missing for some songs",
+      "named_by": "model",
+      "subtopic": "lyrics",
+      "topic": "catalog"
+    },
+    {
+      "cited_ids": [
+        "618d1dbb-0186-4537-923a-7b4dabf19afb",
+        "1807cc68-ba99-4edc-b6f1-2a1478e69109"
+      ],
+      "description": "Customers report that recommended tracks are inserted into their own playlists or feel less relevant and fresher than before, frustrating listeners who want only their chosen music.",
+      "example_ids": [
+        "618d1dbb-0186-4537-923a-7b4dabf19afb",
+        "1807cc68-ba99-4edc-b6f1-2a1478e69109"
+      ],
+      "issue_id": "catalog/recommendations",
+      "member_count": 2,
+      "name": "Recommendations interfering with playlists and music discovery",
+      "named_by": "model",
+      "subtopic": "recommendations",
+      "topic": "catalog"
+    },
+    {
+      "cited_ids": [
+        "2ffdf599-a0d5-4c01-bf26-025215d44c06"
+      ],
+      "description": "Customers report that song downloads get stuck in the background and only resume or complete after they manually reopen the app.",
+      "example_ids": [
+        "2ffdf599-a0d5-4c01-bf26-025215d44c06"
+      ],
+      "issue_id": "downloads/download_failure",
+      "member_count": 1,
+      "name": "Background downloads stall until app reopened",
+      "named_by": "model",
+      "subtopic": "download_failure",
+      "topic": "downloads"
+    },
+    {
+      "cited_ids": [
+        "dcff57c6-abd6-413b-b255-aec3dc34fcbd"
+      ],
+      "description": "Customers report that offline mode or downloaded content does not function as expected.",
+      "example_ids": [
+        "dcff57c6-abd6-413b-b255-aec3dc34fcbd"
+      ],
+      "issue_id": "downloads/offline_listening",
+      "member_count": 1,
+      "name": "Offline listening downloads not working",
+      "named_by": "model",
+      "subtopic": "offline_listening",
+      "topic": "downloads"
+    },
+    {
+      "cited_ids": [
+        "8b6e028a-5f63-4011-9841-cbbade4830eb",
+        "06a45bd5-3ed9-43af-b7f2-8b9487e2ffff",
+        "51bfd887-24a0-4741-8b59-68e0a726dd7a",
+        "b47c203f-366e-4409-922d-cd52aa8bbef6"
+      ],
+      "description": "Many reviews express general dissatisfaction or call the app bad without naming a specific feature or problem, sometimes tied to a recent update.",
+      "example_ids": [
+        "2d5cdd20-3094-40a5-bc6e-653302b59b56",
+        "8b6e028a-5f63-4011-9841-cbbade4830eb",
+        "b47c203f-366e-4409-922d-cd52aa8bbef6",
+        "b92a7381-b5cd-4c77-9176-e5c4b4818c8a",
+        "51bfd887-24a0-4741-8b59-68e0a726dd7a",
+        "06a45bd5-3ed9-43af-b7f2-8b9487e2ffff",
+        "ca16e65d-d2ff-4453-a495-b8c422809330",
+        "33526c6f-7a49-4b3d-bd20-d1bc191c494c",
+        "178c3b49-b689-4fe4-92a2-2257a58e6d95",
+        "c1ab120a-f91f-4ee3-87f5-66f352e2d47f",
+        "486d1d7a-d6f6-41ea-81ad-ed875452729c",
+        "89a8e180-7846-4421-a2b6-fa7787e9d0d2"
+      ],
+      "issue_id": "other/general",
+      "member_count": 12,
+      "name": "Vague negative feedback about app quality",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "other"
+    },
+    {
+      "cited_ids": [
+        "4ab2089a-ffa8-49e7-a8a3-aeb583a96796"
+      ],
+      "description": "Premium users report the app cannot connect to the internet over Wi-Fi while mobile data works, and some songs play at poor audio quality.",
+      "example_ids": [
+        "4ab2089a-ffa8-49e7-a8a3-aeb583a96796"
+      ],
+      "issue_id": "playback/connectivity",
+      "member_count": 1,
+      "name": "Playback fails on Wi-Fi but works on mobile data",
+      "named_by": "model",
+      "subtopic": "connectivity",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "55cc3abf-c295-4591-8c3a-78085cfdefaa"
+      ],
+      "description": "Users report the app crashing or freezing after an update, preventing them from opening or using it.",
+      "example_ids": [
+        "55cc3abf-c295-4591-8c3a-78085cfdefaa"
+      ],
+      "issue_id": "playback/crash_freeze",
+      "member_count": 1,
+      "name": "App crashes or freezes on launch",
+      "named_by": "model",
+      "subtopic": "crash_freeze",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "46ff0c74-5e86-4e5b-b4cd-36201aab0f9e",
+        "66a29b3c-c14d-440e-b722-b23e0c99ae82"
+      ],
+      "description": "Customers report that music does not play, whether through Google Assistant with Spotify playlists or because the app gets stuck on the loading logo screen.",
+      "example_ids": [
+        "46ff0c74-5e86-4e5b-b4cd-36201aab0f9e",
+        "66a29b3c-c14d-440e-b722-b23e0c99ae82"
+      ],
+      "issue_id": "playback/general",
+      "member_count": 2,
+      "name": "Playback fails and app stalls on loading",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "6c257eba-3dca-49f6-b7f0-4c4484d81e26"
+      ],
+      "description": "Music playback halts partway through a song and does not resume where it left off, instead starting a different track.",
+      "example_ids": [
+        "6c257eba-3dca-49f6-b7f0-4c4484d81e26"
+      ],
+      "issue_id": "playback/stops_pausing",
+      "member_count": 1,
+      "name": "Playback stops unexpectedly mid-track",
+      "named_by": "model",
+      "subtopic": "stops_pausing",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "e5e6c55f-3069-4b7c-9807-f8b5d5bf2726",
+        "c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd",
+        "ab67a772-c3b7-42ba-9b80-8d21d3857018"
+      ],
+      "description": "Customers say the app shows too many ads, especially loud ones, making it frustrating or useless without a premium subscription.",
+      "example_ids": [
+        "e5e6c55f-3069-4b7c-9807-f8b5d5bf2726",
+        "c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd",
+        "ab67a772-c3b7-42ba-9b80-8d21d3857018"
+      ],
+      "issue_id": "usability/ads",
+      "member_count": 3,
+      "name": "Excessive ads making app hard to use",
+      "named_by": "model",
+      "subtopic": "ads",
+      "topic": "usability"
+    },
+    {
+      "cited_ids": [
+        "cf6166ae-d71a-4839-9add-088645ad3b78",
+        "9c9757da-6b99-4c95-a0e7-0661ee858027",
+        "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+        "035213ba-b1b9-411c-b028-70296e5f0e73"
+      ],
+      "description": "Customers report that the app's interface and features behave in unexpected ways, including ads replacing music, broken controls, and UX changes that are hard to disable.",
+      "example_ids": [
+        "cf6166ae-d71a-4839-9add-088645ad3b78",
+        "9c9757da-6b99-4c95-a0e7-0661ee858027",
+        "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+        "035213ba-b1b9-411c-b028-70296e5f0e73",
+        "85383985-844d-4f9b-bcd9-d6016ac35f6b"
+      ],
+      "issue_id": "usability/general",
+      "member_count": 5,
+      "name": "Confusing usability and intrusive ads",
+      "named_by": "model",
+      "subtopic": "general",
+      "topic": "usability"
+    },
+    {
+      "cited_ids": [
+        "5c9c17d3-9d6a-4fa1-a2a4-ae98eefbbd25",
+        "ebc64fe2-9553-4528-87d5-cb4bb9783be6"
+      ],
+      "description": "Customers report that playlists play songs in unwanted random order and that they cannot easily play a single chosen song without going through the whole playlist and hitting a limited skip allowance.",
+      "example_ids": [
+        "5c9c17d3-9d6a-4fa1-a2a4-ae98eefbbd25",
+        "ebc64fe2-9553-4528-87d5-cb4bb9783be6"
+      ],
+      "issue_id": "usability/queue_playlist",
+      "member_count": 2,
+      "name": "Playlist playback and queue control frustrations",
+      "named_by": "model",
+      "subtopic": "queue_playlist",
+      "topic": "usability"
+    },
+    {
+      "cited_ids": [
+        "94c9f2f9-36fa-4c11-936e-660514fe7a35",
+        "e16a4550-43e7-4ae1-b538-a65cc652c31b",
+        "9e5f9745-f8be-48d3-b9de-4d118507d94a",
+        "7084ced1-0428-4093-9328-442f74719b4f"
+      ],
+      "description": "Users find the redesigned homescreen and music player layout harder to use, with basic playback controls such as seeking and repeat missing or hard to reach.",
+      "example_ids": [
+        "45c561b9-cc47-4d80-95d3-f0d20bc84af3",
+        "94c9f2f9-36fa-4c11-936e-660514fe7a35",
+        "e16a4550-43e7-4ae1-b538-a65cc652c31b",
+        "9e5f9745-f8be-48d3-b9de-4d118507d94a",
+        "7084ced1-0428-4093-9328-442f74719b4f"
+      ],
+      "issue_id": "usability/ui_layout",
+      "member_count": 5,
+      "name": "Confusing homescreen and player layout after update",
+      "named_by": "model",
+      "subtopic": "ui_layout",
+      "topic": "usability"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "intent": "cancellation",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "I would request to remove all the new features .",
+    "review_id": "88439ec2-7c49-4c57-bedb-c5e098692aff",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "Why it requires premium just to play next music / to choose music ?? And why the specific part of song cannot be played ?",
+    "review_id": "ad730d1a-829a-4dc4-9561-7e1cd07e2c30",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "Na queue m lgte h gaane, na skip kr skte h, na random chla skte h, kya bkchodi h ye???",
+    "review_id": "89ea2c30-db8b-459d-8ab7-bbcb7f92c774",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "Noob app",
+    "review_id": "2d5cdd20-3094-40a5-bc6e-653302b59b56",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "Very bad app",
+    "review_id": "8b6e028a-5f63-4011-9841-cbbade4830eb",
+    "severity": 2
+  },
+  {
+    "intent": "cancellation",
+    "issue_id": "other/general",
+    "quote": "Used to love the app but recent update is very disappointing bye Spotify",
+    "review_id": "b47c203f-366e-4409-922d-cd52aa8bbef6",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ui_layout",
+    "quote": "The update made the app useless .... Uninstall krdia ye app ab bekar hai ... Wynk hi theek h",
+    "review_id": "45c561b9-cc47-4d80-95d3-f0d20bc84af3",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ui_layout",
+    "quote": "Spotify is great, but the new homescreen update is horrible. You're not tiktok or Instagram. I don't want to scroll through 1 playlist or album or artist at a time.",
+    "review_id": "94c9f2f9-36fa-4c11-936e-660514fe7a35",
+    "severity": 3
+  },
+  {
+    "intent": "cancellation",
+    "issue_id": "usability/ui_layout",
+    "quote": "Am very sad about the new spotfy update. i can't play song happly . Can't repeat and play specific part.please solve this matter. I'm leaving spotfy",
+    "review_id": "e16a4550-43e7-4ae1-b538-a65cc652c31b",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "DON'T DOWNLOAD THIS:Such a worst app ... that always plays adds instead of songs ...if want to enjoy music free without adds don't download this app ..",
+    "review_id": "cf6166ae-d71a-4839-9add-088645ad3b78",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "There is some bugs like music adjustment doesn't work Perporly plz do something about this bug",
+    "review_id": "9c9757da-6b99-4c95-a0e7-0661ee858027",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "Spotify constantly rolls out new major UX updates without any use of their beta program.",
+    "review_id": "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "Too many ads.... it's literally useless if u hv not taken premium",
+    "review_id": "e5e6c55f-3069-4b7c-9807-f8b5d5bf2726",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "Soo trash wayy to many ads I don't want premium but too much ads",
+    "review_id": "c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "The ads are so loud :'(",
+    "review_id": "ab67a772-c3b7-42ba-9b80-8d21d3857018",
+    "severity": 2
+  }
+]

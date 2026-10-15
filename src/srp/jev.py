@@ -58,10 +58,53 @@ def _q2_questions():
     }
 
 
+def _q3_questions():
+    """q3: the assignment brief's own short label forms. Token probe 2026-10-14: ~260 fixed tokens per request,
+    topic ~260, intent ~145, severity ~133, sentiment ~52, cancel ~22 (q2 wording)."""
+    return {
+        "topic": {
+            "type": "choice",
+            "instructions": "Main topic. Several problems: most severe, else first. Praise: first praised feature. "
+                            "A paid-plan mention alone is not billing.",
+            "criteria": {
+                "access": "login/account access", "usability": "controls/navigation/ads/queue/playlists",
+                "playback": "playback failures/crashes/lag/connection/audio", "downloads": "offline/saved music",
+                "catalog": "content/search/recommendations/lyrics",
+                "billing": "price/charges/paywalls/premium entitlement/premium-only controls",
+                "support": "support contact/response", "other": "general praise/criticism or unrelated",
+            },
+        },
+        "intent": {
+            "type": "choice",
+            "instructions": "Primary intent.",
+            "criteria": {"cancellation": "leaving/uninstalling/cancelling or threatening to",
+                         "complaint": "negative experience, incl. mixed", "request": "wants a change; nothing broken",
+                         "praise": "positive only", "unclear": "meaningless, unrelated or slogan"},
+        },
+        "cancel": {"type": "noul", "instructions": "Explicitly leaving or cancelling Spotify, or threatening to?"},
+        "severity": {
+            "type": "choice",
+            "instructions": "Severity of the reported problem (not anger).",
+            "criteria": {"1": "no problem, or a request", "2": "annoyance or generic criticism",
+                         "3": "function degraded, still usable", "4": "core task blocked",
+                         "5": "serious financial/privacy/data harm"},
+        },
+        "sentiment": {"type": "score", "instructions": "Sentiment.",
+                      "criteria": ["very negative", "negative", "neutral/mixed", "positive", "very positive"]},
+    }
+
+
+def _q4_questions():
+    """q4: q3 (short topic/intent/sentiment/cancel) + q2 severity wording; q3's terse severity overstated level 4."""
+    q = _q3_questions()
+    q["severity"] = _q2_questions()["severity"]
+    return q
+
+
 def _static_questions():
     from srp.rubric import QUESTION_SCHEMA_VERSION
 
-    return _q2_questions() if QUESTION_SCHEMA_VERSION == "q2" else _q1_questions()
+    return {"q4": _q4_questions, "q3": _q3_questions, "q2": _q2_questions, "q1": _q1_questions}[QUESTION_SCHEMA_VERSION]()
 
 
 def _q1_questions():
@@ -110,7 +153,7 @@ def build_request(review_text):
     if sents:
         questions["quote"] = {
             "type": "choice",
-            "instructions": "Best evidence sentence for the main topic and severity (or praised feature).",
+            "instructions": "Best evidence sentence for the main topic.",
             "criteria": {f"s{i}": s for i, s in enumerate(sents)},
         }
     return {"model": ENRICH_MODEL, "state": review_text, "questions": questions}, sents
