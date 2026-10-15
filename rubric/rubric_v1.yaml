@@ -1,0 +1,138 @@
+# Label rubric v1 — single source of truth for Jev questions, the Haiku verifier prompt and the README.
+# Definitions are copied verbatim from GRADING_CONTRACT.md ("Common labels for fair comparison").
+# Worked examples come ONLY from analysis_10000.csv rows outside checkpoint_500/cost_100 (never golden_50);
+# tests/test_rubric.py enforces this. Labels on examples are our application of the shared definitions.
+version: rubric-v1
+
+topic:
+  rules:
+    - Classify the review text itself; stars and metadata are never inputs.
+    - Choose the problem with the highest supported severity. On a tie, choose the first specific problem mentioned.
+    - For a positive review, choose the first specific praised feature; general praise is `other`.
+    - Mentioning a paid plan alone does not make the topic `billing`. A subscription failing to activate does; music crashing for a paying customer is `playback`.
+    - Explicitly premium-only controls go to `billing`.
+  labels:
+    access: Login, signup, password or account access
+    usability: Navigation, controls, layout, queue/playlist management, ad interruptions
+    playback: Playback failure, crashes, lag, connection failures, audio quality, resource use
+    downloads: Downloading, saved music, offline listening, disappearing downloads
+    catalog: Missing songs/artists, search/discovery, recommendations, lyrics availability
+    billing: Price, charges, subscriptions, paywalls, premium entitlement; explicitly premium-only controls go here
+    support: Contacting support and the support response
+    other: General praise/criticism, unrelated content, or no supported specific topic
+
+intent:
+  precedence: [cancellation, complaint, request, praise, unclear]
+  labels:
+    cancellation: Explicitly leaving, uninstalling, cancelling, or threatening to do so
+    complaint: Negative experience, including mixed praise/criticism. General "bad app" is a complaint; do not infer a specific defect.
+    request: Desired change without a reported failure
+    praise: Positive experience with no complaint or request
+    unclear: Bare boycott slogans and unrelated/meaningless text, unless there is a product complaint or explicit personal departure
+
+severity:
+  labels:
+    1: "No reported problem: praise, neutral/unclear content, or a pure feature request"
+    2: "Dislike, generic criticism, minor annoyance, or a cosmetic issue; no supported functional loss"
+    3: "A degraded or restricted function; some use or workaround remains"
+    4: "A clearly blocked core task, such as inability to log in or play music"
+    5: "Explicit serious financial, privacy, or data harm; an expensive plan, a crash, or angry language alone is insufficient"
+  notes:
+    - Cancellation intent does not automatically raise severity.
+    - Missing context should trigger needs_review; do not invent impact.
+
+sentiment:
+  # Jev Score levels (index 0..4) -> sentiment = score / 2 - 1  (range -1..1)
+  levels:
+    - Very negative
+    - Somewhat negative
+    - Neutral or mixed
+    - Somewhat positive
+    - Very positive
+
+# Worked examples (dev-only). Each shows how the shared definitions were applied.
+examples:
+  - review_id: 0cf2eda1-5309-4a5c-9127-d8f26e298283
+    text_excerpt: "I cant login and even get it to the apps, cant login with facebooks"
+    topic: access
+    intent: complaint
+    severity: 4
+    why: Login is a clearly blocked core task.
+  - review_id: 13567290-9860-4cbe-ac9a-775b8407fa99
+    text_excerpt: "spotify will suddenly get disconnected ... now that I installed it again i cannot log in!"
+    topic: access
+    intent: complaint
+    severity: 4
+    why: Two problems (disconnects = playback sev 3; cannot log in = access sev 4). Highest supported severity wins -> access. Reinstalling is not leaving, so not cancellation.
+  - review_id: 1772262f-23bc-4f87-a8a5-9d12c3d8dde2
+    text_excerpt: "it keeps stopping which is most irritating ... Next step is to cancel my sub."
+    topic: playback
+    intent: cancellation
+    severity: 3
+    why: Threat to cancel takes intent precedence; the paid plan is mentioned but the problem is playback. Music still plays intermittently -> degraded (3); cancellation does not raise severity.
+  - review_id: 056236f6-68cd-4fa5-9df6-c1dc42b12eed
+    text_excerpt: "u can't listen song while u were offline"
+    topic: downloads
+    intent: complaint
+    severity: 3
+    why: Offline listening restricted; online use remains.
+  - review_id: 0335ab02-832f-45ce-b827-092ef2aa6c50
+    text_excerpt: "I'm uninstalling, because there are no lyrics at all"
+    topic: catalog
+    intent: cancellation
+    severity: 3
+    why: Lyrics availability is catalog; explicit uninstall -> cancellation; lyrics missing is a restricted function, music still plays.
+  - review_id: 0325394d-ff7f-4620-93f2-3878f52923f1
+    text_excerpt: "It's ok. I feel it could try harder to recommend different stuff though"
+    topic: catalog
+    intent: request
+    severity: 1
+    why: Desired change to recommendations without a reported failure.
+  - review_id: 00be5a50-60b4-4659-9a86-11de9251a439
+    text_excerpt: "can't play specific portion of the song or even repeat the song unless u chose premium. I am thinking of uninstalling"
+    topic: billing
+    intent: cancellation
+    severity: 3
+    why: Explicitly premium-only controls go to billing; "thinking of uninstalling" is a threat to leave.
+  - review_id: 065e5b47-02ab-4524-a309-068d8c51f3f1
+    text_excerpt: "Why am i getting ads on podcasts on my premium account?"
+    topic: billing
+    intent: complaint
+    severity: 3
+    why: Paid entitlement (ad-free) not honored -> premium entitlement, not just a plan mention.
+  - review_id: 009bede3-8a34-438f-b481-0efab1791658
+    text_excerpt: "there are literally 9 ads when I want to play one song"
+    topic: usability
+    intent: complaint
+    severity: 2
+    why: Ad interruptions are usability; annoyance without lost function.
+  - review_id: 0f1d7211-cd8d-4264-a433-2a5511bba7a1
+    text_excerpt: "Tried sending support an email, that glitches out too. What a joke of customer support"
+    topic: billing
+    intent: complaint
+    severity: 4
+    why: Buying audiobooks "doesnt work" (blocked purchase = billing, sev 4) is mentioned first and is more severe than the support failure.
+  - review_id: 2c2fefc7-e33e-42d3-be93-6ff1243c1fbd
+    text_excerpt: "Always great! Even the support team is amazing!"
+    topic: support
+    intent: praise
+    severity: 1
+    why: First specific praised feature is the support team.
+  - review_id: 1f41e81e-55ea-4335-abf8-f4fae27078db
+    text_excerpt: "An \"autoplay when connecting to bluetooth\" feature would be nice"
+    topic: playback
+    intent: request
+    severity: 1
+    why: Pure feature request about playback/connection behaviour.
+  - review_id: 055fb361-f5be-411d-a60e-b86b37e5affc
+    text_excerpt: "Completely totally west app. Don't download the app"
+    topic: other
+    intent: complaint
+    severity: 2
+    why: General "bad app" is a complaint with no specific defect; "download" here is not the downloads feature.
+  - review_id: 01f0c94a-f470-48ad-b32e-f1801372cf02
+    text_excerpt: "AMAZING great service and music for all generations"
+    topic: other
+    intent: praise
+    severity: 1
+    why: General praise -> other.

@@ -1,0 +1,20 @@
+# Editable run controls. Paid commands refuse to start without --paid and a spend cap.
+controls:
+  spend_cap_usd: 5.00            # per run; raised explicitly for the full run after projections
+  max_output_tokens: 400         # cap for Claude roles (Jev output is free and not generated text)
+  max_workers: 1                 # pilot requirement: start at 1, then 2
+  fallback_fraction: 0.0         # declared max share of records sent to a stronger model (none in v1)
+  batch_save_every: 25           # records per atomic checkpoint
+  max_attempts: 5                # HTTP attempts per request (429/529/5xx/timeout); invalid output retried once
+
+# needs_review thresholds — PROVISIONAL, tuned only on dev files (never golden_50).
+thresholds:
+  cancel_p: 0.5
+  cancel_uncertain_low: 0.3
+  min_topic_conf: 0.35
+  min_intent_conf: 0.35
+  min_severity_conf: 0.30
+
+verification:
+  sample_fraction: 0.05          # stratified by topic; dev pilots verify 100%
+  seed: srp-verify-v1

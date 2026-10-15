@@ -1,0 +1,71 @@
+# Taxonomy v1: subtopic keyword rules (issue grouping) + entity terms. Code-only, no model.
+# Issue id = "<topic>/<subtopic>"; a complaint whose text matches no subtopic of its topic -> "<topic>/general".
+# When several subtopics match, the one whose first keyword match appears earliest in the evidence quote wins,
+# then earliest in the full text, then file order below (stable tie-break).
+# Tuned only on dev files (analysis_10000 / checkpoint_500 / cost_100); never on golden_50.
+version: taxonomy-v1
+
+subtopics:
+  access:
+    login_failure: '\b(log ?in|login|sign ?in|logged out|log me out|logging out|sign(ed)? out)\b'
+    account_recovery: '\b(password|reset|verification|verify|code|email address|hacked|recover)\b'
+    signup: '\b(sign ?up|create (an )?account|creating account|registration|register)\b'
+    third_party_login: '\b(facebook|google account|apple id)\b'
+  usability:
+    ads: '\b(ads?|advert\w*|commercials?)\b'
+    shuffle_and_control: '\b(shuffle|repeat|skip(s|ping)?|choose (the |a )?song|select (a )?song)\b'
+    queue_playlist: '\b(queue|playlists?|library|liked songs)\b'
+    ui_layout: '\b(ui|interface|layout|design|button|navigation|home ?page|update|feed|tiktok)\b'
+  playback:
+    crash_freeze: '\b(crash\w*|freez\w*|hang\w*|force clos\w*|not (open|opening)|won.?t open)\b'
+    stops_pausing: '\b(stop(s|ped|ping)? (playing|working)?|paus\w*|keeps? stopping|cuts? out|interrupt\w*)\b'
+    connectivity: '\b(bluetooth|connect\w*|network|internet|wifi|offline mode|car|chromecast|speaker|wear ?os|watch)\b'
+    audio_quality: '\b(audio quality|sound quality|volume|quality|equali[sz]er|lag\w*|buffer\w*|glitch\w*)\b'
+    resource_use: '\b(battery|storage|data usage|ram|memory|heat\w*|drain\w*)\b'
+  downloads:
+    offline_listening: '\b(offline)\b'
+    disappearing_downloads: '\b(disappear\w*|deleted|delet\w*|redownload\w*|removed)\b'
+    download_failure: '\b(download\w*|saved (songs|music))\b'
+  catalog:
+    lyrics: '\b(lyrics?)\b'
+    search: '\b(search\w*|find)\b'
+    recommendations: '\b(recommend\w*|suggest\w*|algorithm|discover\w*|daily mix|radio|same songs?)\b'
+    missing_content: '\b(missing|unavailable|not available|removed|greyed|grayed|region|podcasts?|audiobooks?)\b'
+  billing:
+    premium_paywall: '\b(only (for|with|in) premium|need premium|premium (only|required)|forced? to (buy|pay)|pay ?wall|free (version|users?|plan|tier))\b'
+    price: '\b(price\w*|expensive|cost\w*|afford\w*|cheap\w*|increase\w*)\b'
+    charges_refunds: '\b(charg\w*|refund\w*|billed|payment|card|money|stole\w*|scam|robbery|robo)\b'
+    subscription_entitlement: '\b(subscri\w*|premium|family plan|student|trial|plan)\b'
+  support:
+    support_response: '\b(customer (service|support|care)|support|help ?desk|agent|contact\w*|respon\w*|reply|chat)\b'
+  other: {}
+
+# Entity terms: explicitly matched feature names -> canonical entity string. No model involvement.
+entities:
+  ads: '\b(ads?|advert\w*)\b'
+  shuffle: '\bshuffle\b'
+  repeat: '\brepeat\b'
+  queue: '\bqueue\b'
+  playlist: '\bplaylists?\b'
+  library: '\b(library|liked songs)\b'
+  lyrics: '\blyrics?\b'
+  search: '\bsearch\w*\b'
+  recommendations: '\b(recommend\w*|algorithm)\b'
+  podcasts: '\bpodcasts?\b'
+  audiobooks: '\baudiobooks?\b'
+  downloads: '\bdownload\w*\b'
+  offline mode: '\boffline\b'
+  bluetooth: '\bbluetooth\b'
+  car: '\b(car|android auto|carplay)\b'
+  smart speaker: '\b(alexa|google home|smart speaker|echo)\b'
+  smartwatch: '\b(watch|wear ?os)\b'
+  tv: '\b(tv|television|chromecast)\b'
+  premium: '\bpremium\b'
+  family plan: '\bfamily (plan|premium)\b'
+  student plan: '\bstudent\b'
+  login: '\b(log ?in|login|sign ?in)\b'
+  password: '\bpassword\b'
+  customer support: '\b(customer (service|support|care)|support team)\b'
+  update: '\bupdate\w*\b'
+  widget: '\bwidget\b'
+  dj: '\b(ai dj|dj)\b'
