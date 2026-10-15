@@ -1,0 +1,107 @@
+[
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "App's not perfect. Still got a long way to go. It's the best out there though.",
+    "review_id": "54c143cd-66a8-4935-85e7-acc012e4af60",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "I hate 👎 this Application, Because I love Quran.",
+    "review_id": "37ec3c7f-1f0e-41f1-b0ff-dfe34ad681d5",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "It's really bad app not working properly nonsense",
+    "review_id": "3f462947-3f4b-4d38-ada4-7dab21c0055e",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "Pathetic user experience as it requires only premium users and force users to pay user subscription",
+    "review_id": "c917e047-2d4b-41c5-ad41-bc9355b6d6e4",
+    "severity": 3
+  },
+  {
+    "intent": "cancellation",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "and I'm going to uninstall your app Request to the others to uninstall such kind of greedy apps.",
+    "review_id": "4ff359d6-ce1b-4074-a63f-2e97e566d294",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "this spotify just looking for profit.",
+    "review_id": "5332a9f1-d7ff-4062-ad9f-47cd3cc7bacc",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "I love this app. It plays my favorite ads. But every 12 or so ads these weird songs start playing. It's pretty rare but it's still annoying. Please fix this Spotify",
+    "review_id": "45e2aab4-449c-4c23-83d0-69bd568a9e08",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "but i removed this one star cause there are too many ads.",
+    "review_id": "92bd7ff4-4322-4406-9033-f13e3079aa74",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "4 stars but not 5 for too many ads. Else love it",
+    "review_id": "d3c809f6-c059-417a-83ac-50753c9a0449",
+    "severity": 2
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "playback/general",
+    "quote": "Your app is suppose to stay on when you go on another app and is not letting me",
+    "review_id": "ec296b31-61cb-4588-ba80-e8ab992b2281",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "playback/general",
+    "quote": "When you select a song to play, it plays a completely different song.",
+    "review_id": "557527a9-d504-4387-a2e5-47d80048747c",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "playback/general",
+    "quote": "UPDATE SEPTEMBER 2023: Moved it down to 3 stars because music constantly after a few seconds",
+    "review_id": "303c3d70-06d6-4600-a3cb-b4d8c120a2ed",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "but not tat u hav to cut down d basic feature of playing songs in order and limiting it to premium users ..",
+    "review_id": "9b42b7f8-2477-4516-b2de-6d46831fbad9",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "Even if I want to play music from a different platform it will autoplay the podcast first and there is NO WAY to close of dismiss it.",
+    "review_id": "f7ead10f-db26-479f-b2d7-411c2804f044",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "Wants to choose songs for you constantly. Useless if you want to listen to what you want to listen to. Mind boggling.",
+    "review_id": "257d14d1-776a-42d9-a08d-396adc567692",
+    "severity": 3
+  }
+]

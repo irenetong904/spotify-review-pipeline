@@ -1,0 +1,823 @@
+{
+  "claims": [
+    {
+      "claim_id": "C001",
+      "issue_id": "other/general",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "99133"
+    },
+    {
+      "claim_id": "C002",
+      "issue_id": "other/general",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "204580"
+    },
+    {
+      "claim_id": "C003",
+      "issue_id": "other/general",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "2.063692"
+    },
+    {
+      "claim_id": "C004",
+      "issue_id": "other/general",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "204580"
+    },
+    {
+      "claim_id": "C005",
+      "issue_id": "other/general",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "1"
+    },
+    {
+      "claim_id": "C006",
+      "issue_id": "billing/subscription_entitlement",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "28301"
+    },
+    {
+      "claim_id": "C007",
+      "issue_id": "billing/subscription_entitlement",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "81740"
+    },
+    {
+      "claim_id": "C008",
+      "issue_id": "billing/subscription_entitlement",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "2.888237"
+    },
+    {
+      "claim_id": "C009",
+      "issue_id": "billing/subscription_entitlement",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "81740"
+    },
+    {
+      "claim_id": "C010",
+      "issue_id": "billing/subscription_entitlement",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "2"
+    },
+    {
+      "claim_id": "C011",
+      "issue_id": "usability/ads",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "28991"
+    },
+    {
+      "claim_id": "C012",
+      "issue_id": "usability/ads",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "66771"
+    },
+    {
+      "claim_id": "C013",
+      "issue_id": "usability/ads",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "2.303163"
+    },
+    {
+      "claim_id": "C014",
+      "issue_id": "usability/ads",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "66771"
+    },
+    {
+      "claim_id": "C015",
+      "issue_id": "usability/ads",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "3"
+    },
+    {
+      "claim_id": "C016",
+      "issue_id": "playback/general",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "15778"
+    },
+    {
+      "claim_id": "C017",
+      "issue_id": "playback/general",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "53498"
+    },
+    {
+      "claim_id": "C018",
+      "issue_id": "playback/general",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "3.390671"
+    },
+    {
+      "claim_id": "C019",
+      "issue_id": "playback/general",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "53498"
+    },
+    {
+      "claim_id": "C020",
+      "issue_id": "playback/general",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "4"
+    },
+    {
+      "claim_id": "C021",
+      "issue_id": "usability/general",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "19060"
+    },
+    {
+      "claim_id": "C022",
+      "issue_id": "usability/general",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "49396"
+    },
+    {
+      "claim_id": "C023",
+      "issue_id": "usability/general",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "2.591605"
+    },
+    {
+      "claim_id": "C024",
+      "issue_id": "usability/general",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "49396"
+    },
+    {
+      "claim_id": "C025",
+      "issue_id": "usability/general",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "5"
+    },
+    {
+      "claim_id": "C026",
+      "issue_id": "usability/ui_layout",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "13755"
+    },
+    {
+      "claim_id": "C027",
+      "issue_id": "usability/ui_layout",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "38513"
+    },
+    {
+      "claim_id": "C028",
+      "issue_id": "usability/ui_layout",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "2.799927"
+    },
+    {
+      "claim_id": "C029",
+      "issue_id": "usability/ui_layout",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "38513"
+    },
+    {
+      "claim_id": "C030",
+      "issue_id": "usability/ui_layout",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "6"
+    },
+    {
+      "claim_id": "C031",
+      "issue_id": "usability/queue_playlist",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "12329"
+    },
+    {
+      "claim_id": "C032",
+      "issue_id": "usability/queue_playlist",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "35893"
+    },
+    {
+      "claim_id": "C033",
+      "issue_id": "usability/queue_playlist",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "2.911266"
+    },
+    {
+      "claim_id": "C034",
+      "issue_id": "usability/queue_playlist",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "35893"
+    },
+    {
+      "claim_id": "C035",
+      "issue_id": "usability/queue_playlist",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "7"
+    },
+    {
+      "claim_id": "C036",
+      "issue_id": "access/login_failure",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "6620"
+    },
+    {
+      "claim_id": "C037",
+      "issue_id": "access/login_failure",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "26239"
+    },
+    {
+      "claim_id": "C038",
+      "issue_id": "access/login_failure",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "3.963595"
+    },
+    {
+      "claim_id": "C039",
+      "issue_id": "access/login_failure",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "26239"
+    },
+    {
+      "claim_id": "C040",
+      "issue_id": "access/login_failure",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "8"
+    },
+    {
+      "claim_id": "C041",
+      "issue_id": "usability/shuffle_and_control",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "8853"
+    },
+    {
+      "claim_id": "C042",
+      "issue_id": "usability/shuffle_and_control",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "25389"
+    },
+    {
+      "claim_id": "C043",
+      "issue_id": "usability/shuffle_and_control",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "2.867841"
+    },
+    {
+      "claim_id": "C044",
+      "issue_id": "usability/shuffle_and_control",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "25389"
+    },
+    {
+      "claim_id": "C045",
+      "issue_id": "usability/shuffle_and_control",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "9"
+    },
+    {
+      "claim_id": "C046",
+      "issue_id": "playback/stops_pausing",
+      "metric": "complaint_count",
+      "source": "rank/ranking.csv",
+      "value": "6656"
+    },
+    {
+      "claim_id": "C047",
+      "issue_id": "playback/stops_pausing",
+      "metric": "severity_sum",
+      "source": "rank/ranking.csv",
+      "value": "22460"
+    },
+    {
+      "claim_id": "C048",
+      "issue_id": "playback/stops_pausing",
+      "metric": "mean_severity",
+      "source": "rank/ranking.csv",
+      "value": "3.374399"
+    },
+    {
+      "claim_id": "C049",
+      "issue_id": "playback/stops_pausing",
+      "metric": "priority_score",
+      "source": "rank/ranking.csv",
+      "value": "22460"
+    },
+    {
+      "claim_id": "C050",
+      "issue_id": "playback/stops_pausing",
+      "metric": "rank",
+      "source": "rank/ranking.csv",
+      "value": "10"
+    },
+    {
+      "claim_id": "C051",
+      "issue_id": "area:Usability",
+      "metric": "rank_among_four_areas_by_severity_sum",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "1"
+    },
+    {
+      "claim_id": "C052",
+      "issue_id": "area:Usability",
+      "metric": "rank_among_four_areas_by_mean_severity",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "4"
+    },
+    {
+      "claim_id": "C053",
+      "issue_id": "area:Usability",
+      "metric": "rank_among_four_areas_by_complaint_count",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "1"
+    },
+    {
+      "claim_id": "C054",
+      "issue_id": "area:Usability",
+      "metric": "complaint_count",
+      "source": "rank/aggregates.json areas",
+      "value": "82988"
+    },
+    {
+      "claim_id": "C055",
+      "issue_id": "area:Usability",
+      "metric": "severity_sum",
+      "source": "rank/aggregates.json areas",
+      "value": "215962"
+    },
+    {
+      "claim_id": "C056",
+      "issue_id": "area:Usability",
+      "metric": "mean_severity",
+      "source": "rank/aggregates.json areas",
+      "value": "2.602328"
+    },
+    {
+      "claim_id": "C057",
+      "issue_id": "area:Usability",
+      "metric": "share_of_complaints",
+      "source": "rank/aggregates.json areas",
+      "value": "0.279780"
+    },
+    {
+      "claim_id": "C058",
+      "issue_id": "area:Playback",
+      "metric": "rank_among_four_areas_by_severity_sum",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "2"
+    },
+    {
+      "claim_id": "C059",
+      "issue_id": "area:Playback",
+      "metric": "rank_among_four_areas_by_mean_severity",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "2"
+    },
+    {
+      "claim_id": "C060",
+      "issue_id": "area:Playback",
+      "metric": "rank_among_four_areas_by_complaint_count",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "3"
+    },
+    {
+      "claim_id": "C061",
+      "issue_id": "area:Playback",
+      "metric": "complaint_count",
+      "source": "rank/aggregates.json areas",
+      "value": "42366"
+    },
+    {
+      "claim_id": "C062",
+      "issue_id": "area:Playback",
+      "metric": "severity_sum",
+      "source": "rank/aggregates.json areas",
+      "value": "143019"
+    },
+    {
+      "claim_id": "C063",
+      "issue_id": "area:Playback",
+      "metric": "mean_severity",
+      "source": "rank/aggregates.json areas",
+      "value": "3.375797"
+    },
+    {
+      "claim_id": "C064",
+      "issue_id": "area:Playback",
+      "metric": "share_of_complaints",
+      "source": "rank/aggregates.json areas",
+      "value": "0.142830"
+    },
+    {
+      "claim_id": "C065",
+      "issue_id": "area:Billing/support",
+      "metric": "rank_among_four_areas_by_severity_sum",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "3"
+    },
+    {
+      "claim_id": "C066",
+      "issue_id": "area:Billing/support",
+      "metric": "rank_among_four_areas_by_mean_severity",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "3"
+    },
+    {
+      "claim_id": "C067",
+      "issue_id": "area:Billing/support",
+      "metric": "rank_among_four_areas_by_complaint_count",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "2"
+    },
+    {
+      "claim_id": "C068",
+      "issue_id": "area:Billing/support",
+      "metric": "complaint_count",
+      "source": "rank/aggregates.json areas",
+      "value": "45504"
+    },
+    {
+      "claim_id": "C069",
+      "issue_id": "area:Billing/support",
+      "metric": "severity_sum",
+      "source": "rank/aggregates.json areas",
+      "value": "128973"
+    },
+    {
+      "claim_id": "C070",
+      "issue_id": "area:Billing/support",
+      "metric": "mean_severity",
+      "source": "rank/aggregates.json areas",
+      "value": "2.834322"
+    },
+    {
+      "claim_id": "C071",
+      "issue_id": "area:Billing/support",
+      "metric": "share_of_complaints",
+      "source": "rank/aggregates.json areas",
+      "value": "0.153409"
+    },
+    {
+      "claim_id": "C072",
+      "issue_id": "area:Access",
+      "metric": "rank_among_four_areas_by_severity_sum",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "4"
+    },
+    {
+      "claim_id": "C073",
+      "issue_id": "area:Access",
+      "metric": "rank_among_four_areas_by_mean_severity",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "1"
+    },
+    {
+      "claim_id": "C074",
+      "issue_id": "area:Access",
+      "metric": "rank_among_four_areas_by_complaint_count",
+      "source": "rank/aggregates.json areas (sorted)",
+      "value": "4"
+    },
+    {
+      "claim_id": "C075",
+      "issue_id": "area:Access",
+      "metric": "complaint_count",
+      "source": "rank/aggregates.json areas",
+      "value": "11455"
+    },
+    {
+      "claim_id": "C076",
+      "issue_id": "area:Access",
+      "metric": "severity_sum",
+      "source": "rank/aggregates.json areas",
+      "value": "44570"
+    },
+    {
+      "claim_id": "C077",
+      "issue_id": "area:Access",
+      "metric": "mean_severity",
+      "source": "rank/aggregates.json areas",
+      "value": "3.890877"
+    },
+    {
+      "claim_id": "C078",
+      "issue_id": "area:Access",
+      "metric": "share_of_complaints",
+      "source": "rank/aggregates.json areas",
+      "value": "0.038619"
+    },
+    {
+      "claim_id": "C079",
+      "issue_id": "area:Outside the four areas",
+      "metric": "complaint_count",
+      "source": "rank/aggregates.json areas",
+      "value": "114306"
+    },
+    {
+      "claim_id": "C080",
+      "issue_id": "area:Outside the four areas",
+      "metric": "severity_sum",
+      "source": "rank/aggregates.json areas",
+      "value": "245796"
+    },
+    {
+      "claim_id": "C081",
+      "issue_id": "area:Outside the four areas",
+      "metric": "mean_severity",
+      "source": "rank/aggregates.json areas",
+      "value": "2.150333"
+    },
+    {
+      "claim_id": "C082",
+      "issue_id": "area:Outside the four areas",
+      "metric": "share_of_complaints",
+      "source": "rank/aggregates.json areas",
+      "value": "0.385363"
+    },
+    {
+      "claim_id": "C083",
+      "issue_id": "overall",
+      "metric": "completed_records",
+      "source": "rank/aggregates.json",
+      "value": "660609"
+    },
+    {
+      "claim_id": "C084",
+      "issue_id": "overall",
+      "metric": "complaint_or_cancellation_records",
+      "source": "rank/aggregates.json",
+      "value": "296619"
+    },
+    {
+      "claim_id": "C085",
+      "issue_id": "overall",
+      "metric": "unresolved_records_pending_or_quarantined",
+      "source": "rank/aggregates.json record_status_counts",
+      "value": "13"
+    },
+    {
+      "claim_id": "C086",
+      "issue_id": "overall",
+      "metric": "cancellation_intent_records",
+      "source": "rank/aggregates.json",
+      "value": "26366"
+    }
+  ],
+  "evidence": [
+    {
+      "intent": "complaint",
+      "issue_id": "other/general",
+      "quote": "App's not perfect. Still got a long way to go. It's the best out there though.",
+      "review_id": "54c143cd-66a8-4935-85e7-acc012e4af60",
+      "severity": 2
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "other/general",
+      "quote": "I hate 👎 this Application, Because I love Quran.",
+      "review_id": "37ec3c7f-1f0e-41f1-b0ff-dfe34ad681d5",
+      "severity": 2
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "other/general",
+      "quote": "It's really bad app not working properly nonsense",
+      "review_id": "3f462947-3f4b-4d38-ada4-7dab21c0055e",
+      "severity": 2
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "billing/subscription_entitlement",
+      "quote": "Pathetic user experience as it requires only premium users and force users to pay user subscription",
+      "review_id": "c917e047-2d4b-41c5-ad41-bc9355b6d6e4",
+      "severity": 3
+    },
+    {
+      "intent": "cancellation",
+      "issue_id": "billing/subscription_entitlement",
+      "quote": "and I'm going to uninstall your app Request to the others to uninstall such kind of greedy apps.",
+      "review_id": "4ff359d6-ce1b-4074-a63f-2e97e566d294",
+      "severity": 3
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "billing/subscription_entitlement",
+      "quote": "this spotify just looking for profit.",
+      "review_id": "5332a9f1-d7ff-4062-ad9f-47cd3cc7bacc",
+      "severity": 3
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "usability/ads",
+      "quote": "I love this app. It plays my favorite ads. But every 12 or so ads these weird songs start playing. It's pretty rare but it's still annoying. Please fix this Spotify",
+      "review_id": "45e2aab4-449c-4c23-83d0-69bd568a9e08",
+      "severity": 2
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "usability/ads",
+      "quote": "but i removed this one star cause there are too many ads.",
+      "review_id": "92bd7ff4-4322-4406-9033-f13e3079aa74",
+      "severity": 2
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "usability/ads",
+      "quote": "4 stars but not 5 for too many ads. Else love it",
+      "review_id": "d3c809f6-c059-417a-83ac-50753c9a0449",
+      "severity": 2
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "playback/general",
+      "quote": "Your app is suppose to stay on when you go on another app and is not letting me",
+      "review_id": "ec296b31-61cb-4588-ba80-e8ab992b2281",
+      "severity": 3
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "playback/general",
+      "quote": "When you select a song to play, it plays a completely different song.",
+      "review_id": "557527a9-d504-4387-a2e5-47d80048747c",
+      "severity": 3
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "playback/general",
+      "quote": "UPDATE SEPTEMBER 2023: Moved it down to 3 stars because music constantly after a few seconds",
+      "review_id": "303c3d70-06d6-4600-a3cb-b4d8c120a2ed",
+      "severity": 3
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "usability/general",
+      "quote": "but not tat u hav to cut down d basic feature of playing songs in order and limiting it to premium users ..",
+      "review_id": "9b42b7f8-2477-4516-b2de-6d46831fbad9",
+      "severity": 3
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "usability/general",
+      "quote": "Even if I want to play music from a different platform it will autoplay the podcast first and there is NO WAY to close of dismiss it.",
+      "review_id": "f7ead10f-db26-479f-b2d7-411c2804f044",
+      "severity": 3
+    },
+    {
+      "intent": "complaint",
+      "issue_id": "usability/general",
+      "quote": "Wants to choose songs for you constantly. Useless if you want to listen to what you want to listen to. Mind boggling.",
+      "review_id": "257d14d1-776a-42d9-a08d-396adc567692",
+      "severity": 3
+    }
+  ],
+  "raw": {
+    "headline": "Prioritize Usability on severity sum, while noting its lower mean severity",
+    "memo_markdown": "## Recommendation\nPut next quarter's main product effort into Usability. It ranks first on severity sum ({{C051}}) and first on complaint count ({{C053}}), with a severity sum of {{C055}} across {{C054}} complaints. This is a severity-sum decision: Usability ranks fourth on mean severity ({{C052}}), so its complaints are not the most intense per report. Access ranks first on mean severity ({{C073}}) but fourth on severity sum ({{C072}}), so it is a targeted fix rather than the main bet.\n\n## Evidence\nUsability's weight comes from several issues. `usability/ads` ranks third overall ({{C015}}) with a severity sum of {{C012}} and {{C011}} complaints. `usability/general` ranks fifth ({{C025}}), `usability/ui_layout` sixth ({{C030}}), `usability/queue_playlist` seventh ({{C035}}), and `usability/shuffle_and_control` ninth ({{C045}}). Ad reviews describe too many ads and songs interrupting listening, and forced-playback reviews describe song selection being limited. These are self-selected public app-store text.\n\n## Alternatives considered\nPlayback is second on severity sum ({{C058}}) and second on mean severity ({{C059}}), with a mean of {{C063}} across {{C061}} complaints. Its leading issue `playback/general` ranks fourth overall ({{C020}}), and its reviews describe playback starting or switching to a different song. Billing/support is third on severity sum ({{C065}}) but second on complaint count ({{C067}}), with {{C068}} complaints. Its leading issue `billing/subscription_entitlement` ranks second overall ({{C010}}) with a mean severity of {{C008}}. Access is fourth on severity sum ({{C072}}) and first on mean severity ({{C073}}), with {{C075}} complaints, led by `access/login_failure`, ranked eighth overall ({{C040}}). Access is a strong candidate for a focused reliability fix, but its smaller volume does not justify it as the main bet.\n\n## Limitations\nReviews are self-selected public app-store text and do not represent the full user base. Cancellation-intent records ({{C086}}) are stated intent, not observed churn, and no revenue, churn, or causal effect is estimated here. Of {{C083}} completed records, {{C084}} are complaint or cancellation records. Unresolved, pending, or quarantined records number {{C085}}, so the ranking may shift once they resolve. Outside the four areas holds {{C079}} complaints and sits outside this comparison.",
+    "recommendations": [
+      {
+        "claim_ids": [
+          "C015",
+          "C011",
+          "C012",
+          "C025"
+        ],
+        "issue_ids": [
+          "usability/ads",
+          "usability/general"
+        ],
+        "rationale": "Usability ranks first on severity sum, and its ads and general issues are the strongest contributors within it.",
+        "review_ids": [
+          "45e2aab4-449c-4c23-83d0-69bd568a9e08",
+          "92bd7ff4-4322-4406-9033-f13e3079aa74",
+          "9b42b7f8-2477-4516-b2de-6d46831fbad9"
+        ],
+        "title": "Fix ad interruptions and forced song behavior first"
+      },
+      {
+        "claim_ids": [
+          "C030",
+          "C035",
+          "C045",
+          "C051"
+        ],
+        "issue_ids": [
+          "usability/ui_layout",
+          "usability/queue_playlist",
+          "usability/shuffle_and_control"
+        ],
+        "rationale": "These issues sit within the Usability area that ranks first on severity sum, but they rank lower individually, so they follow the ads and general fixes.",
+        "review_ids": [],
+        "title": "Stabilize interface and playlist behavior"
+      },
+      {
+        "claim_ids": [
+          "C073",
+          "C072",
+          "C040"
+        ],
+        "issue_ids": [
+          "access/login_failure"
+        ],
+        "rationale": "Access ranks first on mean severity but fourth on severity sum, so a small focused fix is justified without making it the main investment.",
+        "review_ids": [],
+        "title": "Run a targeted reliability fix for login failures alongside Usability"
+      }
+    ],
+    "recommended_area": "Usability"
+  },
+  "rendered": {
+    "headline": "Prioritize Usability on severity sum, while noting its lower mean severity",
+    "memo_markdown": "## Recommendation\nPut next quarter's main product effort into Usability. It ranks first on severity sum (1 [C051]) and first on complaint count (1 [C053]), with a severity sum of 215962 [C055] across 82988 [C054] complaints. This is a severity-sum decision: Usability ranks fourth on mean severity (4 [C052]), so its complaints are not the most intense per report. Access ranks first on mean severity (1 [C073]) but fourth on severity sum (4 [C072]), so it is a targeted fix rather than the main bet.\n\n## Evidence\nUsability's weight comes from several issues. `usability/ads` ranks third overall (3 [C015]) with a severity sum of 66771 [C012] and 28991 [C011] complaints. `usability/general` ranks fifth (5 [C025]), `usability/ui_layout` sixth (6 [C030]), `usability/queue_playlist` seventh (7 [C035]), and `usability/shuffle_and_control` ninth (9 [C045]). Ad reviews describe too many ads and songs interrupting listening, and forced-playback reviews describe song selection being limited. These are self-selected public app-store text.\n\n## Alternatives considered\nPlayback is second on severity sum (2 [C058]) and second on mean severity (2 [C059]), with a mean of 3.375797 [C063] across 42366 [C061] complaints. Its leading issue `playback/general` ranks fourth overall (4 [C020]), and its reviews describe playback starting or switching to a different song. Billing/support is third on severity sum (3 [C065]) but second on complaint count (2 [C067]), with 45504 [C068] complaints. Its leading issue `billing/subscription_entitlement` ranks second overall (2 [C010]) with a mean severity of 2.888237 [C008]. Access is fourth on severity sum (4 [C072]) and first on mean severity (1 [C073]), with 11455 [C075] complaints, led by `access/login_failure`, ranked eighth overall (8 [C040]). Access is a strong candidate for a focused reliability fix, but its smaller volume does not justify it as the main bet.\n\n## Limitations\nReviews are self-selected public app-store text and do not represent the full user base. Cancellation-intent records (26366 [C086]) are stated intent, not observed churn, and no revenue, churn, or causal effect is estimated here. Of 660609 [C083] completed records, 296619 [C084] are complaint or cancellation records. Unresolved, pending, or quarantined records number 13 [C085], so the ranking may shift once they resolve. Outside the four areas holds 114306 [C079] complaints and sits outside this comparison.",
+    "recommendations": [
+      {
+        "claim_ids": [
+          "C015",
+          "C011",
+          "C012",
+          "C025"
+        ],
+        "issue_ids": [
+          "usability/ads",
+          "usability/general"
+        ],
+        "rationale": "Usability ranks first on severity sum, and its ads and general issues are the strongest contributors within it.",
+        "review_ids": [
+          "45e2aab4-449c-4c23-83d0-69bd568a9e08",
+          "92bd7ff4-4322-4406-9033-f13e3079aa74",
+          "9b42b7f8-2477-4516-b2de-6d46831fbad9"
+        ],
+        "title": "Fix ad interruptions and forced song behavior first"
+      },
+      {
+        "claim_ids": [
+          "C030",
+          "C035",
+          "C045",
+          "C051"
+        ],
+        "issue_ids": [
+          "usability/ui_layout",
+          "usability/queue_playlist",
+          "usability/shuffle_and_control"
+        ],
+        "rationale": "These issues sit within the Usability area that ranks first on severity sum, but they rank lower individually, so they follow the ads and general fixes.",
+        "review_ids": [],
+        "title": "Stabilize interface and playlist behavior"
+      },
+      {
+        "claim_ids": [
+          "C073",
+          "C072",
+          "C040"
+        ],
+        "issue_ids": [
+          "access/login_failure"
+        ],
+        "rationale": "Access ranks first on mean severity but fourth on severity sum, so a small focused fix is justified without making it the main investment.",
+        "review_ids": [],
+        "title": "Run a targeted reliability fix for login failures alongside Usability"
+      }
+    ],
+    "recommended_area": "Usability"
+  }
+}
