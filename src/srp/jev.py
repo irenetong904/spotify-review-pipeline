@@ -140,7 +140,8 @@ class JevClient:
         self._http.close()
 
     def call(self, body, review_ids, context):
-        """Returns parsed JSON or None after exhausting retries / non-retryable 4xx. context is merged into logs."""
+        """Returns (parsed_json | None, info) where info = {request_id, http_status, error, attempts}.
+        None after exhausting retries or on a non-retryable 4xx. context is merged into every log line."""
         import httpx
 
         for attempt in range(1, self.max_attempts + 1):
@@ -160,22 +161,27 @@ class JevClient:
                 request_id, err = local_id, f"{type(e).__name__}: {e}"[:300]
             latency_ms = round((time.monotonic() - t0) * 1000)
             usage = (data or {}).get("usage") or {}
+            from srp.rates import call_cost
+
             self.on_attempt({
+                "cost_usd": call_cost(body["model"], {"input_tokens": usage.get("input_tokens"),
+                                                      "output_tokens": usage.get("output_tokens")}),
                 **context, "request_id": request_id, "review_ids": review_ids, "model": body["model"],
                 "attempt": attempt, "http_status": status, "latency_ms": latency_ms,
                 "outcome": "succeeded" if data is not None else "failed",
                 "input_tokens": usage.get("input_tokens"), "output_tokens": usage.get("output_tokens"),
                 "response_model": (data or {}).get("model"), "error": err,
             })
+            info = {"request_id": request_id, "http_status": status, "error": err, "attempts": attempt}
             if data is not None:
-                return data
+                return data, info
             if status == 401:
                 raise FatalAPIError("401 Unauthorized from TypeSafe — check TYPESAFE_API_KEY")
             if status is not None and status not in RETRYABLE:
-                return None  # 400/413/415/422: retrying the identical body will not help
+                return None, info  # 400/413/415/422: retrying the identical body will not help
             if attempt < self.max_attempts:
                 delay = min(self.backoff_cap, self.backoff_base * 2 ** (attempt - 1)) * (0.5 + random.random())
                 if retry_after and retry_after.replace(".", "", 1).isdigit():
                     delay = max(delay, float(retry_after))
                 time.sleep(delay)
-        return None
+        return None, info

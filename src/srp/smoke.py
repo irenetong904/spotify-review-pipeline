@@ -58,7 +58,7 @@ def run_smoke(n, spend_cap_usd, thresholds):
                 results.append({"review_id": rid, "status": "skipped_spend_cap"})
                 break
             ctx = {"run_id": run_id, "role": "enrich", "phase": "initial", "label_config": lc}
-            resp = client.call(body, [rid], ctx)
+            resp, _info = client.call(body, [rid], ctx)
             if resp is None:
                 results.append({"review_id": rid, "status": "failed_call"})
                 continue

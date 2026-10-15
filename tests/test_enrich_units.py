@@ -120,7 +120,7 @@ def test_retry_429_then_success_logs_every_attempt(monkeypatch):
                 httpx.Response(200, json=fake_response())])
     log = []
     c = make_client(monkeypatch, lambda req: next(seq), log)
-    assert c.call({"model": ENRICH_MODEL}, ["r1"], {"role": "enrich"}) is not None
+    assert c.call({"model": ENRICH_MODEL}, ["r1"], {"role": "enrich"})[0] is not None
     assert [e["outcome"] for e in log] == ["failed", "failed", "succeeded"]
     assert [e["attempt"] for e in log] == [1, 2, 3]
     assert all("test-not-a-real-key" not in json.dumps(e) for e in log)
@@ -133,10 +133,11 @@ def test_401_is_fatal_and_422_not_retried(monkeypatch):
         c.call({"model": ENRICH_MODEL}, ["r1"], {})
     log.clear()
     c = make_client(monkeypatch, lambda req: httpx.Response(422, text="bad question"), log)
-    assert c.call({"model": ENRICH_MODEL}, ["r1"], {}) is None and len(log) == 1
+    data, info = c.call({"model": ENRICH_MODEL}, ["r1"], {})
+    assert data is None and info["http_status"] == 422 and len(log) == 1
 
 
 def test_retries_are_bounded(monkeypatch):
     log = []
     c = make_client(monkeypatch, lambda req: httpx.Response(529), log)
-    assert c.call({"model": ENRICH_MODEL}, ["r1"], {}) is None and len(log) == 3
+    assert c.call({"model": ENRICH_MODEL}, ["r1"], {})[0] is None and len(log) == 3

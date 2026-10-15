@@ -32,7 +32,8 @@ CREATE TABLE texts (
 CREATE TABLE records (
   review_id TEXT PRIMARY KEY REFERENCES reviews(review_id),
   status TEXT NOT NULL CHECK (status IN ('pending','completed','quarantined')),
-  reason TEXT
+  reason TEXT,
+  attempt_count INTEGER NOT NULL DEFAULT 0
 );
 CREATE TABLE samples (
   sample TEXT NOT NULL, review_id TEXT NOT NULL REFERENCES reviews(review_id),
@@ -44,6 +45,39 @@ CREATE TABLE meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
 
 def text_sha(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def load_source(con, csv_path):
+    """Parse any input CSV (multiline-safe), insert reviews/texts/records. Empty texts are quarantined.
+    Returns (counts, texts {text_sha: [canonical_id, n]}, sources {review_id: source_sha256})."""
+    counts = Counter(records=0, duplicate_review_ids=0, empty_review_text=0, missing_app_version=0)
+    seen, texts, sources = set(), {}, {}
+    rows = []
+    for order, row in enumerate(csv_rows(csv_path)):
+        rid = row["review_id"]
+        counts["records"] += 1
+        if rid in seen:
+            counts["duplicate_review_ids"] += 1
+            continue  # keep the first occurrence; duplicates are reported, never double-counted
+        seen.add(rid)
+        empty = not row["review_text"].strip()  # same rule as check_submission.py
+        counts["empty_review_text"] += empty
+        counts["missing_app_version"] += not row["app_version"].strip()
+        tsha = text_sha(row["review_text"])
+        ssha = row_sha(row)
+        sources[rid] = ssha
+        if not empty:
+            entry = texts.setdefault(tsha, [rid, 0])
+            entry[1] += 1
+        rows.append((rid, order, row["review_text"], row["review_rating"], row["review_likes"],
+                     row["app_version"], row["review_timestamp"], ssha, tsha, int(empty)))
+    con.executemany("INSERT INTO reviews VALUES (?,?,?,?,?,?,?,?,?,?)", rows)
+    con.executemany("INSERT INTO texts VALUES (?,?,?)", [(k, v[0], v[1]) for k, v in texts.items()])
+    con.executemany(
+        "INSERT INTO records (review_id, status, reason, attempt_count) VALUES (?,?,?,0)",
+        [(r[0], "quarantined", "empty_review_text") if r[9] else (r[0], "pending", None) for r in rows],
+    )
+    return counts, texts, sources
 
 
 def run_ingest(full_csv=None, db_path=None, report_path=None, manifest_path=None, samples=None):
@@ -68,32 +102,7 @@ def run_ingest(full_csv=None, db_path=None, report_path=None, manifest_path=None
     tmp_path.unlink(missing_ok=True)
     con = sqlite3.connect(tmp_path)
     con.executescript(SCHEMA)
-
-    counts = Counter(records=0, duplicate_review_ids=0, empty_review_text=0, missing_app_version=0)
-    seen, texts, sources = set(), {}, {}
-    rows = []
-    for order, row in enumerate(csv_rows(full_csv)):
-        rid = row["review_id"]
-        counts["records"] += 1
-        counts["duplicate_review_ids"] += rid in seen
-        seen.add(rid)
-        empty = not row["review_text"].strip()  # same rule as check_submission.py
-        counts["empty_review_text"] += empty
-        counts["missing_app_version"] += not row["app_version"].strip()
-        tsha = text_sha(row["review_text"])
-        ssha = row_sha(row)
-        sources[rid] = ssha
-        if not empty:
-            entry = texts.setdefault(tsha, [rid, 0])
-            entry[1] += 1
-        rows.append((rid, order, row["review_text"], row["review_rating"], row["review_likes"],
-                     row["app_version"], row["review_timestamp"], ssha, tsha, int(empty)))
-    con.executemany("INSERT INTO reviews VALUES (?,?,?,?,?,?,?,?,?,?)", rows)
-    con.executemany("INSERT INTO texts VALUES (?,?,?)", [(k, v[0], v[1]) for k, v in texts.items()])
-    con.executemany(
-        "INSERT INTO records (review_id, status, reason) VALUES (?,?,?)",
-        [(r[0], "quarantined", "empty_review_text") if r[9] else (r[0], "pending", None) for r in rows],
-    )
+    counts, texts, sources = load_source(con, full_csv)
 
     sample_report = {}
     for name, path in samples.items():

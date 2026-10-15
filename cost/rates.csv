@@ -1,0 +1,7 @@
+provider,model,billing_item,unit,price_usd_per_unit,price_as_quoted,source_url,checked_on,notes
+typesafe,jev-1.13.0,input_tokens,token,0.000000042,$0.042 per 1M input tokens,https://docs.typesafe.ai/models,2026-10-14,standard tier; per-org rate limits in console
+typesafe,jev-1.13.0,output_tokens,token,0,free,https://docs.typesafe.ai/models,2026-10-14,output tokens are not billed
+anthropic,claude-haiku-4-5-20251001,input_tokens,token,0.000001,$1 per 1M input tokens,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-14,standard tier; uncached input only
+anthropic,claude-haiku-4-5-20251001,cache_write_input_tokens,token,0.00000125,$1.25 per 1M (5-min cache write),https://platform.claude.com/docs/en/about-claude/pricing,2026-10-14,only if prompt caching occurs
+anthropic,claude-haiku-4-5-20251001,cache_read_input_tokens,token,0.0000001,$0.10 per 1M (cache read),https://platform.claude.com/docs/en/about-claude/pricing,2026-10-14,only if prompt caching occurs
+anthropic,claude-haiku-4-5-20251001,output_tokens,token,0.000005,$5 per 1M output tokens,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-14,no extended thinking used

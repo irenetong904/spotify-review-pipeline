@@ -1,0 +1,33 @@
+# Editable calculator controls and projection assumptions. Measured pilot results never depend on this file.
+controls:
+  budget_usd: 60.00              # declared spend limit for the full run (API only)
+  max_output_tokens: 400         # cap on Claude role outputs (memo uses its own 1500 cap in code)
+  max_workers: 4                 # maximum concurrency for the full run
+  rps_limit: 20                  # shared requests/second limit across workers
+  fallback_fraction: 0.0         # declared max share of records sent to a stronger model (none used)
+
+full_run:
+  rows: 660622
+  nonempty_classifications: 660609
+  empty_text_quarantines: 13
+  distinct_nonempty_texts: 484189
+  issues_named: 40               # group naming calls (one per issue)
+  memo_calls: 2                  # one memo + at most one regeneration
+  fixed_overhead_seconds: 17     # measured full-file ingest (reports/ingestion_report run)
+
+scenarios:
+  base:
+    token_stat: mean             # per-call billed tokens from the pilot
+    latency_stat: mean
+    retry_multiplier: 1.0        # x measured attempts per unit
+    verify_fraction: 0.05
+  conservative:
+    token_stat: p90
+    latency_stat: p90
+    retry_multiplier: 1.5
+    extra_attempt_rate: 0.05     # +5% re-attempts on top of measured
+    verify_fraction: 0.05
+
+local_compute:
+  note: "Pipeline orchestration runs on a personal laptop; electricity/hardware cost not metered."
+  cost_usd: unknown
