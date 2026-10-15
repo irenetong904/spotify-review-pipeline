@@ -28,3 +28,6 @@ runs/full/enrich/*.jsonl
 # Screen recordings (original is too large for GitHub; a compressed copy or link is published)
 *.mov
 runs/full/enrich/pending_ids.json
+
+# Full-run workspace stays local; its evidence is exported to grading/, evals/, cost/ and release assets
+runs/full/
