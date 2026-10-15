@@ -260,13 +260,42 @@ def collect(cold_ws, warm_ws, base=HERE):
     (base / "pilot_runs.json").write_text(json.dumps(runs, indent=2), encoding="utf-8")
 
 
+def refresh(ws, label, base=HERE):
+    """Offline: re-project the full run from a larger dev checkpoint's measured calls (500 / 10,000)."""
+    base, ws = Path(base), Path(ws)
+    rates = load_rates(base / "rates.csv")
+    assumptions = yaml.safe_load((base / "assumptions.yaml").read_text())
+    calls = [{**c, "pilot_run": "cold"} for c in read_jsonl(ws / "calls.jsonl")]
+    proj = projections(calls, assumptions, rates)
+    summary = json.loads((ws / "run_summary.json").read_text())
+    (base / f"projections_{label}.csv").write_text(to_csv(proj), encoding="utf-8")
+    measured_cost = sum(c.get("cost_usd") or 0 for c in calls)
+    L = [f"# Projection refresh from the {label} checkpoint", "",
+         f"Source: `{ws}/calls.jsonl` ({len(calls)} attempts, {sum(c['outcome'] == 'failed' for c in calls)} failed); "
+         f"measured spend ${measured_cost:.4f}; wall-clock {summary['wall_seconds']} s with {summary['workers']} workers.", "",
+         "| scenario | reuse | stage | units | attempts/unit | $/call | cost $ | rps | seconds | note |", "|---|---|---|---|---|---|---|---|---|---|"]
+    for p in proj:
+        L.append(f"| {p['scenario']} | {p['exact_text_reuse']} | {p['stage']} | {p['work_units']} | {p.get('attempts_per_unit', '')} "
+                 f"| {p.get('cost_per_call_usd', '')} | {p['cost_usd']} | {p.get('throughput_rps', '')} | {p['seconds']} | {p['note']} |")
+    (base / f"refresh_{label}.md").write_text("\n".join(L) + "\n", encoding="utf-8")
+    return proj
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd")
     c = sub.add_parser("collect")
     c.add_argument("--cold", required=True)
     c.add_argument("--warm", required=True)
+    r = sub.add_parser("refresh")
+    r.add_argument("--workspace", required=True)
+    r.add_argument("--label", required=True)
     args = p.parse_args(argv)
+    if args.cmd == "refresh":
+        for row in refresh(args.workspace, args.label):
+            if row["stage"] == "TOTAL":
+                print(f"{args.label}: {row['scenario']:>12} reuse={str(row['exact_text_reuse']):5} ${row['cost_usd']} {row['seconds']} s {row['note']}")
+        return
     if args.cmd == "collect":
         collect(args.cold, args.warm)
     meas, proj = replay()

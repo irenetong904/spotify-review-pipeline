@@ -1,0 +1,107 @@
+[
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "This is a very very bad app and is a very data has hacking for our mobile",
+    "review_id": "68a5d92a-1dca-40ba-b9f8-fc61a24b12a8",
+    "severity": 5
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "Wrost app fraud",
+    "review_id": "c252dd96-c248-411c-99db-92905dc1785b",
+    "severity": 5
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "other/general",
+    "quote": "This app support cyberbullying to female artist .",
+    "review_id": "f9dd82ed-59e7-441e-b999-41863d09dc1f",
+    "severity": 5
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "Worst music platform I ever seen in my life. I tried to buy student plan but they are not approving it and took my money also",
+    "review_id": "e51bcefb-8071-4e36-9c57-87281443bd29",
+    "severity": 5
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "Terrible experience to be honest, 1- I have linked my google account so when i click on the google connect it says there is no account and i am sure and yave the screenshot from my account to confirms it 2- the monthly subscription is 14 da",
+    "review_id": "a551564e-db4a-489a-a210-1d994984150e",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "billing/subscription_entitlement",
+    "quote": "Very bad app and the only thing to orpreat the app is subscription without subscription this app is nothing very bad experience 😡😡",
+    "review_id": "9b23baab-3f51-464a-86d2-cead2f192df6",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "When asked to watch an ad for 30 minutes of uninterrupted listening upon clicking ok it will play 3 or 4 ads and not ten minutes later play another.",
+    "review_id": "ee11e1df-cb73-4c3a-b5e8-7268c7872b01",
+    "severity": 5
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "This app is not good it trase our history and their are many ads in it and it is very difficult to use.",
+    "review_id": "117770a7-cec9-4bc3-8a9f-a5d6f3544b5d",
+    "severity": 5
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ads",
+    "quote": "Works worse than ever before and honestly literally anything else is better, even audio jungle and you hear it screaming at you half the time but it's still better than back to back ads and to fix all of the horribly stupid problems that ar",
+    "review_id": "dc3134bd-f34a-4493-a395-958cd400c633",
+    "severity": 4
+  },
+  {
+    "intent": "cancellation",
+    "issue_id": "playback/general",
+    "quote": "It's absolutely trash and I would suggest that no one use it because it takes takes over too many permissions on your phone and it really really does spy on your privacy",
+    "review_id": "91132204-877d-4ac1-9d08-20d03f1414f6",
+    "severity": 5
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "playback/general",
+    "quote": "App closing automatically when playing songs",
+    "review_id": "40abba11-6cce-4eff-ae74-9ec4579550e0",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "playback/general",
+    "quote": "Can't able to play the song at different time",
+    "review_id": "10878c3f-c43e-43cb-86fe-c993b56403cc",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "It stays on even when u turn off wasting data",
+    "review_id": "273cb2d7-7f93-458c-bf3b-4bf7b54427a2",
+    "severity": 5
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "Not working showing play list empty all the time",
+    "review_id": "ff434191-87c8-4a76-a30a-de1591982192",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/general",
+    "quote": "I don't like this app because they have shuffled the songs so I can't listen to them",
+    "review_id": "40ddeafd-a71d-4757-8103-a86b47ba18ea",
+    "severity": 4
+  }
+]

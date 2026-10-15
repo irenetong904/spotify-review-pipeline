@@ -1,0 +1,21 @@
+{
+  "workspace": "runs/analysis10k",
+  "input": "data/Final Assignment - Spotify Reviews Dataset/analysis_10000.csv",
+  "started_at": "2026-10-15T02:32:40+00:00",
+  "spend_cap_usd": 1.0,
+  "workers": 4,
+  "wall_seconds": 599.849,
+  "ended_at": "2026-10-15T02:42:40+00:00",
+  "ledger": {
+    "cap_usd": 1.0,
+    "spent_usd": 0.35710889,
+    "reserved_usd": -0.0
+  },
+  "ranking_sha256": "b1be812f5e0026d030138b34d730eb193f5379e15a0ce9be3149a33868851a14"
+}
+[enrich] 401.011s {"session_id": "enrich-20261014T193240-b683e3", "phase": "initial", "label_config": "jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b", "workers": 4, "rps_limit": 20.0, "model_completed": 7967, "result_cache_hits": 481, "exact_text_reuse": 1552, "quarantined": 0, "still_pending_after_failures": 0, "attempts": 7967, "queue_at_start": 8448, "stop_reason": "queue_empty", "wall_seconds": 400.999, "ledger": {"cap_usd": 1.0, "spent_usd": 0.27419259, "reserved_usd": 0.0}, "status_counts": {"completed": 10000}}
+[verify] 126.179s {"verified": 426, "unverified": 0, "topic_agreement": 0.8826, "intent_agreement": 0.8826, "severity_exact": 0.885, "severity_mae": 0.1268, "sentiment_mae": 0.1562, "verifier_quote_substring_rate": 0.9953, "by_enricher_topic": {"access": {"n": 10, "topic_agreement": 0.8}, "billing": {"n": 43, "topic_agreement": 0.8605}, "catalog": {"n": 23, "topic_agreement": 0.7826}, "downloads": {"n": 8, "topic_agreement": 0.875}, "other": {"n": 234, "topic_agreement": 0.9145}, "playback": {"n": 29, "topic_agreement": 0.8621}, "support": {"n": 1, "topic_agreement": 1.0}, "usability": {"n": 78, "topic_agreemen
+[group] 65.363s {"issues": 33, "naming_calls_needed": 33, "naming_cache_hits": 0, "named_by_code": 0}
+[rank] 0.059s "ok"
+[memo] 7.123s "passed"
+exit=0
