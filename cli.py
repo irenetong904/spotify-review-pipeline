@@ -109,6 +109,15 @@ def cmd_eval_golden(args):
     print(json.dumps({k: v for k, v in results.items() if not k.endswith("confusion")}, indent=2))
 
 
+def cmd_export_grading(args):
+    from srp.export import export_grading
+
+    res = export_grading(ws=args.workspace, input_csv=args.input, cache_path=args.cache, out_dir=args.out,
+                         dev_workspaces=args.dev_workspaces or [], checkpoint_before=args.checkpoint_before,
+                         checkpoint_after=args.checkpoint_after)
+    print(json.dumps(res, indent=2))
+
+
 def cmd_run(args):
     from srp.pipeline import STAGES, run_pipeline
 
@@ -166,6 +175,15 @@ def main(argv=None):
     p.add_argument("--labels", type=Path, default=Path("evals/golden/golden_50_human_labels.csv"))
     p.add_argument("--out", type=Path, default=Path("evals/golden"))
     p.set_defaults(func=cmd_eval_golden)
+    p = sub.add_parser("export-grading", help="Offline: write the standardized grading/ folder from a workspace")
+    p.add_argument("--workspace", required=True, type=Path)
+    p.add_argument("--input", required=True, type=Path)
+    p.add_argument("--cache", type=Path, default=Path("data/processed/result_cache.db"))
+    p.add_argument("--out", type=Path, default=Path("grading"))
+    p.add_argument("--dev-workspaces", nargs="*", type=Path, help="earlier runs whose same-config enrich calls back cached results")
+    p.add_argument("--checkpoint-before", type=Path)
+    p.add_argument("--checkpoint-after", type=Path)
+    p.set_defaults(func=cmd_export_grading)
     p = sub.add_parser("replay", help="Offline: regenerate ranking from saved outputs and re-check the memo")
     p.add_argument("--workspace", required=True, type=Path)
     p.set_defaults(func=cmd_replay)
