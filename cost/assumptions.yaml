@@ -1,7 +1,7 @@
 # Editable calculator controls and projection assumptions. Measured pilot results never depend on this file.
 controls:
   budget_usd: 60.00              # declared spend limit for the full run (API only)
-  max_output_tokens: 400         # cap on Claude role outputs (memo uses its own 1500 cap in code)
+  max_output_tokens: 1024        # cap on verify/group outputs incl. thinking (memo: 6000 in code)
   max_workers: 4                 # maximum concurrency for the full run
   rps_limit: 20                  # shared requests/second limit across workers
   fallback_fraction: 0.0         # declared max share of records sent to a stronger model (none used)

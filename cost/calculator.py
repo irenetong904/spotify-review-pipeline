@@ -25,8 +25,8 @@ import yaml
 HERE = Path(__file__).resolve().parent
 ITEMS = ("input_tokens", "cache_write_input_tokens", "cache_read_input_tokens", "output_tokens")
 PROVIDER = {"enrich": "typesafe", "verify": "anthropic", "group": "anthropic", "memo": "anthropic"}
-EFFORT = {"enrich": "n/a (Jev classifier, no generation)", "verify": "no extended thinking",
-          "group": "no extended thinking", "memo": "no extended thinking"}
+EFFORT = {"enrich": "n/a (Jev classifier, no generation)", "verify": "adaptive thinking, effort=low",
+          "group": "adaptive thinking, effort=low", "memo": "adaptive thinking, effort=medium"}
 
 
 def load_rates(path):
@@ -86,7 +86,7 @@ def measured(calls, usage, runs, records):
             stage = info.get("stages", {}).get(role if role != "memo" else "memo", {})
             row = {
                 "run": run, "stage": role, "provider": PROVIDER[role],
-                "model": cs[0]["model"] if cs else ("jev-1.13.0" if role == "enrich" else "claude-haiku-4-5-20251001"),
+                "model": cs[0]["model"] if cs else ("jev-1.13.0" if role == "enrich" else "claude-haiku-5-5"),
                 "effort": EFFORT[role], "config": cs[0].get("label_config") if cs else info.get("label_config", ""),
                 "batch_size": "1 review/request" if role in ("enrich", "verify") else ("<=20 examples/request" if role == "group" else "aggregates only"),
                 "workers": info.get("workers"),

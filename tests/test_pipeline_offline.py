@@ -76,9 +76,9 @@ class FakeClaude:
     def __init__(self, log, memo_digit_first=False):
         self.log, self.calls, self.memo_digit_first, self.memo_calls = log, 0, memo_digit_first, 0
 
-    def json_call(self, *, system, user, schema, max_tokens, context, review_ids=()):
+    def json_call(self, *, system, user, schema, max_tokens, context, review_ids=(), effort="low"):
         self.calls += 1
-        ev = {**context, "request_id": f"fake-{uuid.uuid4().hex[:8]}", "model": "claude-haiku-4-5-20251001",
+        ev = {**context, "request_id": f"fake-{uuid.uuid4().hex[:8]}", "model": "claude-haiku-5-5",
               "review_ids": list(review_ids), "outcome": "succeeded", "input_tokens": 500, "output_tokens": 50,
               "cost_usd": 0.00075, "attempt": 1, "latency_ms": 900}
         self.log.append(ev)

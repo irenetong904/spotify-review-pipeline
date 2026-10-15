@@ -78,12 +78,12 @@ def cmd_smoke_claude(args):
     results = []
     for rid, text in picks[:2]:
         parsed, ev = client.json_call(system=system_prompt(), user=f"<review>\n{text}\n</review>", schema=VSCHEMA,
-                                      max_tokens=300, context={"run_id": out.name, "role": "verify",
+                                      max_tokens=1024, context={"run_id": out.name, "role": "verify",
                                                                "label_config": verify_config()}, review_ids=[rid])
         results.append({"role": "verify", "review_id": rid, "parsed": parsed, "usage": {k: ev.get(k) for k in ("input_tokens", "output_tokens")},
                         "latency_ms": ev.get("latency_ms"), "outcome": ev["outcome"], "error": ev.get("error")})
     user = "\n".join(f'<review id="{rid}">{text[:400]}</review>' for rid, text in picks[:5])
-    parsed, ev = client.json_call(system=GSYSTEM, user=f"Issue key: smoke/test\n{user}", schema=GSCHEMA, max_tokens=200,
+    parsed, ev = client.json_call(system=GSYSTEM, user=f"Issue key: smoke/test\n{user}", schema=GSCHEMA, max_tokens=1024,
                                   context={"run_id": out.name, "role": "group", "label_config": "smoke"},
                                   review_ids=[p[0] for p in picks[:5]])
     results.append({"role": "group", "parsed": parsed, "usage": {k: ev.get(k) for k in ("input_tokens", "output_tokens")},

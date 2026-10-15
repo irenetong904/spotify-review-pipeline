@@ -25,7 +25,7 @@ MEMO_PROMPT_VERSION = "memo-v1"
 TOP_ISSUES = 10
 EVIDENCE_ISSUES = 5
 EVIDENCE_PER_ISSUE = 3
-MAX_TOKENS = 1500
+MAX_TOKENS = 6000  # includes adaptive thinking at effort=medium
 AREAS = ["Access", "Usability", "Playback", "Billing/support"]
 ISSUE_METRICS = ("complaint_count", "severity_sum", "mean_severity", "priority_score")
 
@@ -178,7 +178,7 @@ def run_memo(con, cache, client, ws, ledger, ranking, agg, *, session_id="memo")
                          f'{p["quote"]}</evidence>' for p in pack)
     user = (f"CLAIMS (values are hidden; use placeholders; the list is ordered by baseline rank):\n{claim_lines}\n\n"
             f"TOPIC TO AREA MAPPING:\n{area_lines}\n\nEVIDENCE:\n{ev_lines}")
-    mcfg = f"{ROLE_MODEL}+{MEMO_PROMPT_VERSION}"
+    mcfg = f"{ROLE_MODEL}+effort-medium+{MEMO_PROMPT_VERSION}"
     key = hashlib.sha256((user + json.dumps(claims, sort_keys=True)).encode()).hexdigest()
     hit = cache_get(cache, "memo", key, mcfg)
     out, errors, attempts = None, [], 0
@@ -194,7 +194,7 @@ def run_memo(con, cache, client, ws, ledger, ranking, agg, *, session_id="memo")
                 errors = ["spend_cap"]
                 break
             attempts += 1
-            parsed, ev = client.json_call(system=SYSTEM, user=user + feedback, schema=SCHEMA, max_tokens=MAX_TOKENS,
+            parsed, ev = client.json_call(system=SYSTEM, user=user + feedback, schema=SCHEMA, max_tokens=MAX_TOKENS, effort="medium",
                                           context={"run_id": session_id, "role": "memo", "label_config": mcfg,
                                                    "purpose": purpose, "inputs": ["rank/ranking.csv", "rank/aggregates.json",
                                                                                   "memo/evidence_pack.json"]})

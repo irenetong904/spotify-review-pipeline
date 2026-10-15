@@ -9,7 +9,7 @@ import uuid
 
 from srp.rates import call_cost
 
-ROLE_MODEL = "claude-haiku-4-5-20251001"  # pinned snapshot; no extended thinking
+ROLE_MODEL = "claude-haiku-5-5"  # fixed model ID (no moving alias); adaptive thinking, effort set per role
 
 
 class FatalAPIError(RuntimeError):
@@ -28,19 +28,19 @@ class ClaudeClient:
         self.on_attempt, self.max_attempts = on_attempt, max_attempts
         self.backoff_base, self.backoff_cap = backoff_base, backoff_cap
 
-    def json_call(self, *, system, user, schema, max_tokens, context, review_ids=()):
+    def json_call(self, *, system, user, schema, max_tokens, context, review_ids=(), effort="low"):
         """One structured-output request. Returns (parsed_dict | None, last_event). Invalid JSON is returned as
         None with outcome 'failed' so the caller can apply its retry-once rule."""
         a = self._anthropic
         for attempt in range(1, self.max_attempts + 1):
             t0 = time.monotonic()
-            event = {**context, "model": ROLE_MODEL, "review_ids": list(review_ids), "attempt": attempt}
+            event = {**context, "model": ROLE_MODEL, "effort": effort, "review_ids": list(review_ids), "attempt": attempt}
             retryable, parsed = False, None
             try:
                 msg = self._client.messages.create(
                     model=ROLE_MODEL, max_tokens=max_tokens, system=system,
                     messages=[{"role": "user", "content": user}],
-                    output_config={"format": {"type": "json_schema", "schema": schema}},
+                    output_config={"effort": effort, "format": {"type": "json_schema", "schema": schema}},
                 )
                 u = msg.usage
                 usage = {"input_tokens": u.input_tokens, "output_tokens": u.output_tokens,

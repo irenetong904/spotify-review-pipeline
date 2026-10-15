@@ -20,7 +20,7 @@ from srp.workspace import cache_get, cache_put
 
 GROUP_PROMPT_VERSION = "group-v1"
 MAX_EXAMPLES = 20
-MAX_TOKENS = 200
+MAX_TOKENS = 1024  # includes any adaptive thinking at effort=low
 SCHEMA = {
     "type": "object",
     "properties": {"name": {"type": "string"}, "description": {"type": "string"},
@@ -71,7 +71,7 @@ def run_group(con, cache, client, ws, ledger, *, session_id="group", name_with_m
         w.writerow([issue_id, rid])
     write_text_atomic(ws / "group" / "membership.csv", buf.getvalue())
 
-    gcfg = f"{ROLE_MODEL}+{GROUP_PROMPT_VERSION}+{taxonomy_version()}"
+    gcfg = f"{ROLE_MODEL}+effort-low+{GROUP_PROMPT_VERSION}+{taxonomy_version()}"
     rates = load_rates()
     issues, stats = [], {"issues": len(by_issue), "naming_calls_needed": 0, "naming_cache_hits": 0, "named_by_code": 0}
     for issue_id in sorted(by_issue):

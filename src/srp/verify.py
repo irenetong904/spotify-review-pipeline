@@ -23,7 +23,7 @@ from srp.rubric import load_rubric, rubric_sha8
 from srp.workspace import cache_get, cache_put
 
 VERIFY_PROMPT_VERSION = "verify-v1"
-MAX_TOKENS = 300
+MAX_TOKENS = 1024  # includes any adaptive thinking at effort=low
 
 SCHEMA = {
     "type": "object",
@@ -40,7 +40,7 @@ SCHEMA = {
 
 
 def verify_config():
-    return f"{ROLE_MODEL}+{VERIFY_PROMPT_VERSION}+rubric.{rubric_sha8()}"
+    return f"{ROLE_MODEL}+effort-low+{VERIFY_PROMPT_VERSION}+rubric.{rubric_sha8()}"
 
 
 def system_prompt():
