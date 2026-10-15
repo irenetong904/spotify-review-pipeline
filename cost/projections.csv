@@ -1,0 +1,21 @@
+scenario,exact_text_reuse,stage,work_units,attempts_per_unit,cost_per_call_usd,cost_usd,latency_s,throughput_rps,seconds,note
+base,True,enrich,484189,1.0,4.622e-05,22.3769,0.097,20,24209.5,
+base,True,verify,24210,1.0,0.00018504,4.4799,1.401,2.854,8482.1,
+base,True,group,40,1.0,0.00013145,0.0053,1.799,2.223,18.0,
+base,True,memo,2,1.0,0.0030118,0.006,25.384,0.158,12.7,
+base,True,TOTAL,,,,26.868,,,32739.2,within budget (budget $60.0)
+base,False,enrich,660609,1.0,4.622e-05,30.5301,0.097,20,33030.4,
+base,False,verify,24210,1.0,0.00018504,4.4799,1.401,2.854,8482.1,
+base,False,group,40,1.0,0.00013145,0.0053,1.799,2.223,18.0,
+base,False,memo,2,1.0,0.0030118,0.006,25.384,0.158,12.7,
+base,False,TOTAL,,,,35.0213,,,41560.2,within budget (budget $60.0)
+conservative,True,enrich,484189,1.55,4.691e-05,35.2086,0.109,20,37524.6,
+conservative,True,verify,24210,1.55,0.0002608,9.7867,2.148,1.862,20151.2,
+conservative,True,group,40,1.55,0.0002138,0.0133,2.897,1.381,44.9,
+conservative,True,memo,2,1.55,0.0030118,0.0093,25.384,0.158,19.7,
+conservative,True,TOTAL,,,,45.0179,,,57757.4,within budget (budget $60.0)
+conservative,False,enrich,660609,1.55,4.691e-05,48.0373,0.109,20,51197.2,
+conservative,False,verify,24210,1.55,0.0002608,9.7867,2.148,1.862,20151.2,
+conservative,False,group,40,1.55,0.0002138,0.0133,2.897,1.381,44.9,
+conservative,False,memo,2,1.55,0.0030118,0.0093,25.384,0.158,19.7,
+conservative,False,TOTAL,,,,57.8465,,,71430.0,within budget (budget $60.0)

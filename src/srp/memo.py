@@ -21,7 +21,7 @@ from srp.rank import AREA
 from srp.rates import load_rates
 from srp.workspace import cache_get, cache_put
 
-MEMO_PROMPT_VERSION = "memo-v1"
+MEMO_PROMPT_VERSION = "memo-v2"  # v2: claim values visible to the writer (v1 hid them)
 TOP_ISSUES = 10
 EVIDENCE_ISSUES = 5
 EVIDENCE_PER_ISSUE = 3
@@ -52,7 +52,8 @@ SYSTEM = """You write a short product-priority memo for Spotify leadership from 
 Question: where should next quarter's product effort go - Access, Usability, Playback, or Billing/support?
 
 Hard rules:
-- Never write any digit. Every number must be a claim placeholder exactly like {{C001}} taken from the CLAIMS list.
+- Never write any digit. Every number must be a claim placeholder exactly like {{C001}} taken from the CLAIMS list;
+  code replaces placeholders with the saved values. Compare areas and issues using the values you are shown.
 - Cite issues by their issue_id in backticks, e.g. `playback/crash_freeze`. Use only issue_ids from the CLAIMS.
 - Cite reviews only by review_id from the EVIDENCE list, in backticks. Do not quote personal details.
 - Reviews are self-selected public app-store text. Cancellation language is stated intent, not observed churn.
@@ -171,12 +172,13 @@ def run_memo(con, cache, client, ws, ledger, ranking, agg, *, session_id="memo")
     write_text_atomic(d / "claims.csv", _claims_csv(contract_claims, ["claim_id", "issue_id", "metric", "value"]))
     write_json_atomic(d / "evidence_pack.json", pack)
 
-    claim_lines = "\n".join(f"{c['claim_id']}: {c['issue_id']} {c['metric']}"
+    claim_lines = "\n".join(f"{c['claim_id']}: {c['issue_id']} {c['metric']} = {c['value']}"
                             + (f" ({names.get(c['issue_id'], '')})" if "/" in c["issue_id"] else "") for c in claims)
     area_lines = "\n".join(f"- {t} -> {a}" for t, a in AREA.items())
     ev_lines = "\n".join(f'<evidence issue="{p["issue_id"]}" review_id="{p["review_id"]}" severity_claimless="true">'
                          f'{p["quote"]}</evidence>' for p in pack)
-    user = (f"CLAIMS (values are hidden; use placeholders; the list is ordered by baseline rank):\n{claim_lines}\n\n"
+    user = (f"CLAIMS (read the values to reason, but write each number only as its placeholder, e.g. {{{{C001}}}}; "
+            f"issue claims are ordered by baseline rank):\n{claim_lines}\n\n"
             f"TOPIC TO AREA MAPPING:\n{area_lines}\n\nEVIDENCE:\n{ev_lines}")
     mcfg = f"{ROLE_MODEL}+effort-medium+{MEMO_PROMPT_VERSION}"
     key = hashlib.sha256((user + json.dumps(claims, sort_keys=True)).encode()).hexdigest()

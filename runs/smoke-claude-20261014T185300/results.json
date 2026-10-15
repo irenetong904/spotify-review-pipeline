@@ -1,0 +1,57 @@
+[
+  {
+    "role": "verify",
+    "review_id": "00168741-ef81-4267-9cb9-b82ad5b43a8c",
+    "parsed": {
+      "topic": "usability",
+      "intent": "complaint",
+      "severity": 3,
+      "sentiment": -0.7,
+      "evidence_quote": "You took away the ability to watch video podcasts on my TV."
+    },
+    "usage": {
+      "input_tokens": 1414,
+      "output_tokens": 64
+    },
+    "latency_ms": 2178,
+    "outcome": "succeeded",
+    "error": null
+  },
+  {
+    "role": "verify",
+    "review_id": "0026e92b-3e23-46e6-8c45-99817c8cb888",
+    "parsed": {
+      "topic": "catalog",
+      "intent": "complaint",
+      "severity": 2,
+      "sentiment": -0.5,
+      "evidence_quote": "Limited songs collection only showing adds"
+    },
+    "usage": {
+      "input_tokens": 1391,
+      "output_tokens": 59
+    },
+    "latency_ms": 1483,
+    "outcome": "succeeded",
+    "error": null
+  },
+  {
+    "role": "group",
+    "parsed": {
+      "name": "Unclear smoke test feedback",
+      "description": "Reviews in this cluster are mostly unrelated or ambiguous, with no single shared problem beyond complaints about ads and paid feature removals.",
+      "cited_ids": [
+        "0026e92b-3e23-46e6-8c45-99817c8cb888",
+        "0195d699-61d1-4fbb-a51b-508fc00c04db",
+        "00168741-ef81-4267-9cb9-b82ad5b43a8c"
+      ]
+    },
+    "usage": {
+      "input_tokens": 888,
+      "output_tokens": 159
+    },
+    "latency_ms": 2847,
+    "outcome": "succeeded",
+    "error": null
+  }
+]

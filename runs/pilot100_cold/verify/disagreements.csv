@@ -1,0 +1,16 @@
+review_id,enricher_topic,verifier_topic,enricher_intent,verifier_intent,enricher_severity,verifier_severity,sentiment_diff
+084077ee-f9be-446a-9935-9e58550d5153,other,other,praise,unclear,1,1,0.08
+0a5ff524-27b1-4f3b-a761-17ca48ee731d,other,other,request,praise,1,1,0.775
+2ffdf599-a0d5-4c01-bf26-025215d44c06,downloads,downloads,cancellation,complaint,3,3,0.22
+33526c6f-7a49-4b3d-bd20-d1bc191c494c,other,support,complaint,complaint,2,2,0.165
+3e82cf28-6b0a-4980-902c-b6aa154d353a,billing,other,complaint,complaint,2,2,0.195
+45c561b9-cc47-4d80-95d3-f0d20bc84af3,other,other,cancellation,cancellation,4,2,0.135
+89a8e180-7846-4421-a2b6-fa7787e9d0d2,other,usability,complaint,complaint,2,2,0.065
+89ea2c30-db8b-459d-8ab7-bbcb7f92c774,billing,usability,complaint,complaint,3,3,0.1
+916d1cb1-3a9f-42c0-9c36-fee4b1983c68,other,other,praise,unclear,1,1,0.86
+a1a28752-3256-4f81-b888-3e943343529f,other,catalog,complaint,complaint,2,2,0.025
+a3605554-5c3a-441d-836e-e9fdea83eb2e,billing,usability,complaint,complaint,3,3,0.125
+e16a4550-43e7-4ae1-b538-a65cc652c31b,usability,playback,cancellation,cancellation,3,4,0.195
+e25cf0b6-0285-4cc9-9a4a-5a8a05be929e,catalog,other,praise,praise,1,1,0.165
+ed15bb17-865a-492b-ba1b-268f4cab78f6,other,usability,praise,complaint,1,2,0.8
+ff14ea84-fdec-4363-9b1b-a23dcab287c5,other,other,praise,complaint,1,2,1.01

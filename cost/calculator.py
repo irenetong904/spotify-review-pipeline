@@ -87,7 +87,7 @@ def measured(calls, usage, runs, records):
             row = {
                 "run": run, "stage": role, "provider": PROVIDER[role],
                 "model": cs[0]["model"] if cs else ("jev-1.13.0" if role == "enrich" else "claude-haiku-5-5"),
-                "effort": EFFORT[role], "config": cs[0].get("label_config") if cs else info.get("label_config", ""),
+                "effort": EFFORT[role], "config": (cs[0].get("label_config") if cs else next((c.get("label_config") for c in calls if c["role"] == role), "")),
                 "batch_size": "1 review/request" if role in ("enrich", "verify") else ("<=20 examples/request" if role == "group" else "aggregates only"),
                 "workers": info.get("workers"),
                 "requests": len({c["request_id"] for c in cs}), "attempts": len(cs),
