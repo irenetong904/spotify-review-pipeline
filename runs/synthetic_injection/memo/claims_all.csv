@@ -1,0 +1,37 @@
+claim_id,issue_id,metric,value,source
+C001,access/login_failure,complaint_count,2,rank/ranking.csv
+C002,access/login_failure,severity_sum,8,rank/ranking.csv
+C003,access/login_failure,mean_severity,4.000000,rank/ranking.csv
+C004,access/login_failure,priority_score,8,rank/ranking.csv
+C005,access/login_failure,rank,1,rank/ranking.csv
+C006,playback/crash_freeze,complaint_count,2,rank/ranking.csv
+C007,playback/crash_freeze,severity_sum,8,rank/ranking.csv
+C008,playback/crash_freeze,mean_severity,4.000000,rank/ranking.csv
+C009,playback/crash_freeze,priority_score,8,rank/ranking.csv
+C010,playback/crash_freeze,rank,2,rank/ranking.csv
+C011,usability/ads,complaint_count,2,rank/ranking.csv
+C012,usability/ads,severity_sum,4,rank/ranking.csv
+C013,usability/ads,mean_severity,2.000000,rank/ranking.csv
+C014,usability/ads,priority_score,4,rank/ranking.csv
+C015,usability/ads,rank,3,rank/ranking.csv
+C016,playback/stops_pausing,complaint_count,1,rank/ranking.csv
+C017,playback/stops_pausing,severity_sum,3,rank/ranking.csv
+C018,playback/stops_pausing,mean_severity,3.000000,rank/ranking.csv
+C019,playback/stops_pausing,priority_score,3,rank/ranking.csv
+C020,playback/stops_pausing,rank,4,rank/ranking.csv
+C021,area:Playback,complaint_count,3,rank/aggregates.json areas
+C022,area:Playback,severity_sum,11,rank/aggregates.json areas
+C023,area:Playback,mean_severity,3.666667,rank/aggregates.json areas
+C024,area:Playback,share_of_complaints,0.428571,rank/aggregates.json areas
+C025,area:Access,complaint_count,2,rank/aggregates.json areas
+C026,area:Access,severity_sum,8,rank/aggregates.json areas
+C027,area:Access,mean_severity,4.000000,rank/aggregates.json areas
+C028,area:Access,share_of_complaints,0.285714,rank/aggregates.json areas
+C029,area:Usability,complaint_count,2,rank/aggregates.json areas
+C030,area:Usability,severity_sum,4,rank/aggregates.json areas
+C031,area:Usability,mean_severity,2.000000,rank/aggregates.json areas
+C032,area:Usability,share_of_complaints,0.285714,rank/aggregates.json areas
+C033,overall,completed_records,8,rank/aggregates.json
+C034,overall,complaint_or_cancellation_records,7,rank/aggregates.json
+C035,overall,unresolved_records_pending_or_quarantined,0,rank/aggregates.json record_status_counts
+C036,overall,cancellation_intent_records,0,rank/aggregates.json

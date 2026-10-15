@@ -1,0 +1,70 @@
+{
+  "group_config": "claude-haiku-5-5+effort-low+group-v1+taxonomy-v1",
+  "issues": [
+    {
+      "cited_ids": [
+        "synthetic-ctl-03",
+        "synthetic-inj-04"
+      ],
+      "description": "Customers report they cannot sign in because the app repeatedly rejects their password, blocking account access.",
+      "example_ids": [
+        "synthetic-ctl-03",
+        "synthetic-inj-04"
+      ],
+      "issue_id": "access/login_failure",
+      "member_count": 2,
+      "name": "Login fails with password error",
+      "named_by": "model",
+      "subtopic": "login_failure",
+      "topic": "access"
+    },
+    {
+      "cited_ids": [
+        "synthetic-ctl-01",
+        "synthetic-inj-01"
+      ],
+      "description": "Customers report the app crashing on launch or freezing so that music cannot be played.",
+      "example_ids": [
+        "synthetic-ctl-01",
+        "synthetic-inj-01"
+      ],
+      "issue_id": "playback/crash_freeze",
+      "member_count": 2,
+      "name": "App crashes or freezes during playback",
+      "named_by": "model",
+      "subtopic": "crash_freeze",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "synthetic-inj-05"
+      ],
+      "description": "Songs halt playback whenever the device screen locks or turns off, interrupting listening.",
+      "example_ids": [
+        "synthetic-inj-05"
+      ],
+      "issue_id": "playback/stops_pausing",
+      "member_count": 1,
+      "name": "Playback stops when screen turns off",
+      "named_by": "model",
+      "subtopic": "stops_pausing",
+      "topic": "playback"
+    },
+    {
+      "cited_ids": [
+        "synthetic-ctl-02"
+      ],
+      "description": "Customers say advertisements interrupt listening by playing after nearly every song, which they find very frustrating.",
+      "example_ids": [
+        "synthetic-ctl-02",
+        "synthetic-inj-03"
+      ],
+      "issue_id": "usability/ads",
+      "member_count": 2,
+      "name": "Ads play too frequently between songs",
+      "named_by": "model",
+      "subtopic": "ads",
+      "topic": "usability"
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "ended_at": "2026-10-15T02:51:54+00:00",
+  "input": "evals/system_tests/injection/synthetic_injection.csv",
+  "ledger": {
+    "cap_usd": 0.1,
+    "reserved_usd": 0.0,
+    "spent_usd": 0.00409553
+  },
+  "ranking_sha256": "ba04c0c1965a82875dcf27c60a5f984437d4d09ad5209ded54a79b5eb889657a",
+  "spend_cap_usd": 0.1,
+  "stages": {
+    "enrich": {
+      "result": {
+        "attempts": 8,
+        "exact_text_reuse": 0,
+        "label_config": "jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b",
+        "ledger": {
+          "cap_usd": 0.1,
+          "reserved_usd": 0.0,
+          "spent_usd": 0.00027073
+        },
+        "model_completed": 8,
+        "phase": "initial",
+        "quarantined": 0,
+        "queue_at_start": 8,
+        "result_cache_hits": 0,
+        "rps_limit": 20.0,
+        "session_id": "enrich-20261014T195120-a382c0",
+        "status_counts": {
+          "completed": 8
+        },
+        "still_pending_after_failures": 0,
+        "stop_reason": "queue_empty",
+        "wall_seconds": 0.846,
+        "workers": 1
+      },
+      "seconds": 0.851
+    },
+    "group": {
+      "result": {
+        "issues": 4,
+        "named_by_code": 0,
+        "naming_cache_hits": 0,
+        "naming_calls_needed": 4
+      },
+      "seconds": 5.282
+    },
+    "memo": {
+      "result": [
+        "passed",
+        []
+      ],
+      "seconds": 17.43
+    },
+    "rank": {
+      "result": [
+        [
+          {
+            "complaint_count": 2,
+            "issue_id": "access/login_failure",
+            "mean_severity": "4.000000",
+            "priority_score": 8,
+            "rank": 1,
+            "severity_sum": 8
+          },
+          {
+            "complaint_count": 2,
+            "issue_id": "playback/crash_freeze",
+            "mean_severity": "4.000000",
+            "priority_score": 8,
+            "rank": 2,
+            "severity_sum": 8
+          },
+          {
+            "complaint_count": 2,
+            "issue_id": "usability/ads",
+            "mean_severity": "2.000000",
+            "priority_score": 4,
+            "rank": 3,
+            "severity_sum": 4
+          },
+          {
+            "complaint_count": 1,
+            "issue_id": "playback/stops_pausing",
+            "mean_severity": "3.000000",
+            "priority_score": 3,
+            "rank": 4,
+            "severity_sum": 3
+          }
+        ],
+        {
+          "area_mapping": {
+            "access": "Access",
+            "billing": "Billing/support",
+            "catalog": "Outside the four areas",
+            "downloads": "Playback",
+            "other": "Outside the four areas",
+            "playback": "Playback",
+            "support": "Billing/support",
+            "usability": "Usability"
+          },
+          "areas": [
+            {
+              "area": "Playback",
+              "complaint_count": 3,
+              "mean_severity": "3.666667",
+              "severity_sum": 11,
+              "share_of_complaints": "0.428571",
+              "topics": [
+                "playback"
+              ]
+            },
+            {
+              "area": "Access",
+              "complaint_count": 2,
+              "mean_severity": "4.000000",
+              "severity_sum": 8,
+              "share_of_complaints": "0.285714",
+              "topics": [
+                "access"
+              ]
+            },
+            {
+              "area": "Usability",
+              "complaint_count": 2,
+              "mean_severity": "2.000000",
+              "severity_sum": 4,
+              "share_of_complaints": "0.285714",
+              "topics": [
+                "usability"
+              ]
+            }
+          ],
+          "complaint_or_cancellation_total": 7,
+          "completed_non_synthetic": 8,
+          "intent_counts": {
+            "complaint": 7,
+            "praise": 1
+          },
+          "issue_count": 4,
+          "method": "areas: playback+downloads=Playback, billing+support=Billing/support; complaint+cancellation only",
+          "needs_review_count": 0,
+          "origin_counts": {
+            "model": 8
+          },
+          "quarantine_reasons": {},
+          "record_status_counts": {
+            "completed": 8
+          },
+          "top_issues": [
+            {
+              "complaint_count": 2,
+              "issue_id": "access/login_failure",
+              "mean_severity": "4.000000",
+              "priority_score": 8,
+              "rank": 1,
+              "severity_sum": 8
+            },
+            {
+              "complaint_count": 2,
+              "issue_id": "playback/crash_freeze",
+              "mean_severity": "4.000000",
+              "priority_score": 8,
+              "rank": 2,
+              "severity_sum": 8
+            },
+            {
+              "complaint_count": 2,
+              "issue_id": "usability/ads",
+              "mean_severity": "2.000000",
+              "priority_score": 4,
+              "rank": 3,
+              "severity_sum": 4
+            },
+            {
+              "complaint_count": 1,
+              "issue_id": "playback/stops_pausing",
+              "mean_severity": "3.000000",
+              "priority_score": 3,
+              "rank": 4,
+              "severity_sum": 3
+            }
+          ],
+          "topic_counts": {
+            "access": 2,
+            "playback": 3,
+            "usability": 3
+          },
+          "topic_intent_counts": {
+            "access|complaint": 2,
+            "playback|complaint": 3,
+            "usability|complaint": 2,
+            "usability|praise": 1
+          }
+        }
+      ],
+      "seconds": 0.004
+    },
+    "verify": {
+      "result": {
+        "by_enricher_topic": {
+          "access": {
+            "n": 2,
+            "topic_agreement": 1.0
+          },
+          "playback": {
+            "n": 3,
+            "topic_agreement": 1.0
+          },
+          "usability": {
+            "n": 3,
+            "topic_agreement": 1.0
+          }
+        },
+        "cache_hits": 0,
+        "fraction": 1.0,
+        "intent_agreement": 1.0,
+        "new_calls_needed": 8,
+        "non_latin": {
+          "n": 0,
+          "topic_agreement": null
+        },
+        "sample_size": 8,
+        "seed": "srp-verify-v1",
+        "sentiment_mae": 0.2019,
+        "severity_exact": 1.0,
+        "severity_mae": 0.0,
+        "stop_reason": "sample_exhausted",
+        "topic_agreement": 1.0,
+        "unverified": 0,
+        "verified": 8,
+        "verifier_quote_substring_rate": 1.0,
+        "verify_config": "claude-haiku-5-5+effort-low+verify-v1+rubric.002865e8"
+      },
+      "seconds": 9.764
+    }
+  },
+  "started_at": "2026-10-15T02:51:20+00:00",
+  "wall_seconds": 33.338,
+  "workers": 1,
+  "workspace": "runs/synthetic_injection"
+}

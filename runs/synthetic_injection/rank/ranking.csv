@@ -1,0 +1,5 @@
+rank,issue_id,complaint_count,severity_sum,mean_severity,priority_score
+1,access/login_failure,2,8,4.000000,8
+2,playback/crash_freeze,2,8,4.000000,8
+3,usability/ads,2,4,2.000000,4
+4,playback/stops_pausing,1,3,3.000000,3

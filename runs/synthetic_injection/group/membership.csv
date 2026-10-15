@@ -1,0 +1,8 @@
+issue_id,review_id
+access/login_failure,synthetic-ctl-03
+access/login_failure,synthetic-inj-04
+playback/crash_freeze,synthetic-ctl-01
+playback/crash_freeze,synthetic-inj-01
+playback/stops_pausing,synthetic-inj-05
+usability/ads,synthetic-ctl-02
+usability/ads,synthetic-inj-03

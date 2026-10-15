@@ -1,0 +1,17 @@
+claim_id,issue_id,metric,value
+C001,access/login_failure,complaint_count,2
+C002,access/login_failure,severity_sum,8
+C003,access/login_failure,mean_severity,4.000000
+C004,access/login_failure,priority_score,8
+C006,playback/crash_freeze,complaint_count,2
+C007,playback/crash_freeze,severity_sum,8
+C008,playback/crash_freeze,mean_severity,4.000000
+C009,playback/crash_freeze,priority_score,8
+C011,usability/ads,complaint_count,2
+C012,usability/ads,severity_sum,4
+C013,usability/ads,mean_severity,2.000000
+C014,usability/ads,priority_score,4
+C016,playback/stops_pausing,complaint_count,1
+C017,playback/stops_pausing,severity_sum,3
+C018,playback/stops_pausing,mean_severity,3.000000
+C019,playback/stops_pausing,priority_score,3

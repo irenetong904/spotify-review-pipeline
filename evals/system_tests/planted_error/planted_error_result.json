@@ -1,0 +1,894 @@
+{
+  "cases": [
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.65,
+        "severity": 3,
+        "topic": "billing"
+      },
+      "planted": "topic",
+      "review_id": "ad730d1a-829a-4dc4-9561-7e1cd07e2c30",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.65,
+        "severity": 3,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 3,
+        "topic": "billing"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.645,
+        "severity": 2,
+        "topic": "other"
+      },
+      "planted": "intent",
+      "review_id": "8216dafb-b5e2-47e2-b342-9f73c203b56e",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": -0.645,
+        "severity": 2,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -1.0,
+        "severity": 4,
+        "topic": "playback"
+      },
+      "planted": "severity",
+      "review_id": "98d936e1-fd1d-475a-89ee-0e1517cb60d3",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -1.0,
+        "severity": 1,
+        "topic": "playback"
+      },
+      "verifier_labels": {
+        "intent": "cancellation",
+        "severity": 4,
+        "topic": "playback"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.525,
+        "severity": 3,
+        "topic": "catalog"
+      },
+      "planted": "topic",
+      "review_id": "59f31721-b2c8-40c5-ba3c-b9fe64a58d68",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.525,
+        "severity": 3,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 3,
+        "topic": "catalog"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "unclear",
+        "sentiment": 0.05,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": "intent",
+      "review_id": "94fd7069-c8e1-4f09-9651-dd9f5cfefff4",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.05,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "unclear",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.48,
+        "severity": 2,
+        "topic": "other"
+      },
+      "planted": "severity",
+      "review_id": "55bc2f5d-0157-467b-8f5c-2f9c7d1b0c04",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.48,
+        "severity": 5,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.955,
+        "severity": 3,
+        "topic": "usability"
+      },
+      "planted": "topic",
+      "review_id": "e5e6c55f-3069-4b7c-9807-f8b5d5bf2726",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.955,
+        "severity": 3,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 3,
+        "topic": "usability"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "unclear",
+        "sentiment": 0.205,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": "intent",
+      "review_id": "0d361ea6-3089-41c2-9e0f-4cd6a04f0dd8",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.205,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "unclear",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": 0.31,
+        "severity": 3,
+        "topic": "playback"
+      },
+      "planted": "severity",
+      "review_id": "232c669e-8bfe-4642-b0c9-229c2911cc6c",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": 0.31,
+        "severity": 5,
+        "topic": "playback"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 2,
+        "topic": "usability"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.98,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": "topic",
+      "review_id": "53e95a47-d326-4579-945d-a7aabd780b12",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.98,
+        "severity": 1,
+        "topic": "support"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "catalog"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.035,
+        "severity": 2,
+        "topic": "usability"
+      },
+      "planted": "intent",
+      "review_id": "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": -0.035,
+        "severity": 2,
+        "topic": "usability"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "usability"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "unclear",
+        "sentiment": -0.1,
+        "severity": 1,
+        "topic": "usability"
+      },
+      "planted": "severity",
+      "review_id": "6a2cd434-9ad2-4e66-8968-ad066659d4df",
+      "test_copy_labels": {
+        "intent": "unclear",
+        "sentiment": -0.1,
+        "severity": 5,
+        "topic": "usability"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "usability"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "unclear",
+        "sentiment": 0.33,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "0b52ac4e-1982-46ed-aeaa-74eedaefb5c9",
+      "test_copy_labels": {
+        "intent": "unclear",
+        "sentiment": 0.33,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.84,
+        "severity": 3,
+        "topic": "usability"
+      },
+      "planted": null,
+      "review_id": "5d50e8f0-18d7-4510-8b1d-eb6b2323f3c9",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.84,
+        "severity": 3,
+        "topic": "usability"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 3,
+        "topic": "usability"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 1.0,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "407ef483-36a5-4d94-8c69-2bcb83ad3329",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 1.0,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "cancellation",
+        "sentiment": -0.97,
+        "severity": 4,
+        "topic": "playback"
+      },
+      "planted": null,
+      "review_id": "1cdc5bb2-8e8d-4267-8853-6c1dd4c7ef13",
+      "test_copy_labels": {
+        "intent": "cancellation",
+        "sentiment": -0.97,
+        "severity": 4,
+        "topic": "playback"
+      },
+      "verifier_labels": {
+        "intent": "cancellation",
+        "severity": 4,
+        "topic": "playback"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.53,
+        "severity": 2,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "ca16e65d-d2ff-4453-a495-b8c422809330",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.53,
+        "severity": 2,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.99,
+        "severity": 2,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "f1532a7d-a47c-40eb-b41f-da17a379f9fb",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.99,
+        "severity": 2,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 1.0,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "e3238297-f942-4c8e-96f7-b951b461e707",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 1.0,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.81,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "7e506051-c39b-475f-bf7a-d1644de5faa0",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.81,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.955,
+        "severity": 2,
+        "topic": "billing"
+      },
+      "planted": null,
+      "review_id": "3e82cf28-6b0a-4980-902c-b6aa154d353a",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.955,
+        "severity": 2,
+        "topic": "billing"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.955,
+        "severity": 2,
+        "topic": "playback"
+      },
+      "planted": null,
+      "review_id": "d767f1af-e8eb-41af-9cc4-8bfa35253870",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.955,
+        "severity": 2,
+        "topic": "playback"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.89,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "8454aa1e-ceb7-4676-adf7-e20f6989f5c9",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.89,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.735,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "84353026-5e56-4ca4-bfa4-e006d021ef44",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.735,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "unclear",
+        "sentiment": -0.16,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "def34476-7bdc-443a-ab3d-475cdd5ca2f6",
+      "test_copy_labels": {
+        "intent": "unclear",
+        "sentiment": -0.16,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "unclear",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.99,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "824cc977-421c-4445-898f-663acfd131f1",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.99,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.985,
+        "severity": 2,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "00363dc8-2117-4565-9af9-efadf8fa90cf",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.985,
+        "severity": 2,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.96,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "df239418-e786-4b6f-9545-6946e1960b89",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.96,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "catalog"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "request",
+        "sentiment": -0.245,
+        "severity": 1,
+        "topic": "usability"
+      },
+      "planted": null,
+      "review_id": "3e8bdc92-4934-457e-85cc-8b9d14bf51c0",
+      "test_copy_labels": {
+        "intent": "request",
+        "sentiment": -0.245,
+        "severity": 1,
+        "topic": "usability"
+      },
+      "verifier_labels": {
+        "intent": "request",
+        "severity": 2,
+        "topic": "usability"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "unclear",
+        "sentiment": 0.175,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "ec8d58bf-f9e2-42c6-870b-b87c78fe569f",
+      "test_copy_labels": {
+        "intent": "unclear",
+        "sentiment": 0.175,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "unclear",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.53,
+        "severity": 2,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "a862b037-7542-4a3e-94ef-836b7092f4ef",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.53,
+        "severity": 2,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "downloads"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.955,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "5db4a676-1f15-48cf-b989-a0a0fdb1c7a3",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.955,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.49,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "db93c5bf-998e-4ff2-aa22-a105ce21a40e",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.49,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.825,
+        "severity": 2,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "36f1617b-e4f7-44fb-a7a9-a8236e4c3531",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.825,
+        "severity": 2,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -1.0,
+        "severity": 3,
+        "topic": "catalog"
+      },
+      "planted": null,
+      "review_id": "4b3ace8e-b199-40b3-8ad4-5c0580e38203",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -1.0,
+        "severity": 3,
+        "topic": "catalog"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 3,
+        "topic": "catalog"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.5,
+        "severity": 4,
+        "topic": "access"
+      },
+      "planted": null,
+      "review_id": "0a7f2420-1b49-41fa-8cfc-0b2e178bea6b",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.5,
+        "severity": 4,
+        "topic": "access"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 4,
+        "topic": "access"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "complaint",
+        "sentiment": -0.51,
+        "severity": 2,
+        "topic": "usability"
+      },
+      "planted": null,
+      "review_id": "10775595-01b9-4623-9163-51619e2a0fa9",
+      "test_copy_labels": {
+        "intent": "complaint",
+        "sentiment": -0.51,
+        "severity": 2,
+        "topic": "usability"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "usability"
+      }
+    },
+    {
+      "flagged": true,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.26,
+        "severity": 1,
+        "topic": "billing"
+      },
+      "planted": null,
+      "review_id": "4001e2ec-2621-4256-b42d-c4988458a293",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.26,
+        "severity": 1,
+        "topic": "billing"
+      },
+      "verifier_labels": {
+        "intent": "complaint",
+        "severity": 2,
+        "topic": "billing"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "praise",
+        "sentiment": 0.885,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "9d851b7f-a738-449b-a841-de8076f13276",
+      "test_copy_labels": {
+        "intent": "praise",
+        "sentiment": 0.885,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "praise",
+        "severity": 1,
+        "topic": "other"
+      }
+    },
+    {
+      "flagged": false,
+      "original_labels": {
+        "intent": "unclear",
+        "sentiment": 0.095,
+        "severity": 1,
+        "topic": "other"
+      },
+      "planted": null,
+      "review_id": "fba7981d-9ca6-44bd-97d7-5d16053b016d",
+      "test_copy_labels": {
+        "intent": "unclear",
+        "sentiment": 0.095,
+        "severity": 1,
+        "topic": "other"
+      },
+      "verifier_labels": {
+        "intent": "unclear",
+        "severity": 1,
+        "topic": "other"
+      }
+    }
+  ],
+  "summary": {
+    "planted": 12,
+    "planted_detected": 12,
+    "planted_detection_rate": 1.0,
+    "rule": "flag if topic differs, intent differs, or |severity diff| >= 2 (same rule as verify/disagreements.csv)",
+    "sample": 40,
+    "source": "runs/checkpoint500/verify/verifier_labels.jsonl",
+    "synthetic_test_copy": true,
+    "unplanted_flagged_baseline": 6
+  }
+}

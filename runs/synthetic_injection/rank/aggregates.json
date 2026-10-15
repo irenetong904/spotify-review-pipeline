@@ -1,0 +1,105 @@
+{
+  "area_mapping": {
+    "access": "Access",
+    "billing": "Billing/support",
+    "catalog": "Outside the four areas",
+    "downloads": "Playback",
+    "other": "Outside the four areas",
+    "playback": "Playback",
+    "support": "Billing/support",
+    "usability": "Usability"
+  },
+  "areas": [
+    {
+      "area": "Playback",
+      "complaint_count": 3,
+      "mean_severity": "3.666667",
+      "severity_sum": 11,
+      "share_of_complaints": "0.428571",
+      "topics": [
+        "playback"
+      ]
+    },
+    {
+      "area": "Access",
+      "complaint_count": 2,
+      "mean_severity": "4.000000",
+      "severity_sum": 8,
+      "share_of_complaints": "0.285714",
+      "topics": [
+        "access"
+      ]
+    },
+    {
+      "area": "Usability",
+      "complaint_count": 2,
+      "mean_severity": "2.000000",
+      "severity_sum": 4,
+      "share_of_complaints": "0.285714",
+      "topics": [
+        "usability"
+      ]
+    }
+  ],
+  "complaint_or_cancellation_total": 7,
+  "completed_non_synthetic": 8,
+  "intent_counts": {
+    "complaint": 7,
+    "praise": 1
+  },
+  "issue_count": 4,
+  "method": "areas: playback+downloads=Playback, billing+support=Billing/support; complaint+cancellation only",
+  "needs_review_count": 0,
+  "origin_counts": {
+    "model": 8
+  },
+  "quarantine_reasons": {},
+  "record_status_counts": {
+    "completed": 8
+  },
+  "top_issues": [
+    {
+      "complaint_count": 2,
+      "issue_id": "access/login_failure",
+      "mean_severity": "4.000000",
+      "priority_score": 8,
+      "rank": 1,
+      "severity_sum": 8
+    },
+    {
+      "complaint_count": 2,
+      "issue_id": "playback/crash_freeze",
+      "mean_severity": "4.000000",
+      "priority_score": 8,
+      "rank": 2,
+      "severity_sum": 8
+    },
+    {
+      "complaint_count": 2,
+      "issue_id": "usability/ads",
+      "mean_severity": "2.000000",
+      "priority_score": 4,
+      "rank": 3,
+      "severity_sum": 4
+    },
+    {
+      "complaint_count": 1,
+      "issue_id": "playback/stops_pausing",
+      "mean_severity": "3.000000",
+      "priority_score": 3,
+      "rank": 4,
+      "severity_sum": 3
+    }
+  ],
+  "topic_counts": {
+    "access": 2,
+    "playback": 3,
+    "usability": 3
+  },
+  "topic_intent_counts": {
+    "access|complaint": 2,
+    "playback|complaint": 3,
+    "usability|complaint": 2,
+    "usability|praise": 1
+  }
+}
