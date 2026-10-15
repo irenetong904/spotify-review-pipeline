@@ -209,7 +209,7 @@ class FatalAPIError(RuntimeError):
     """401 or other non-retryable condition that should stop the whole run."""
 
 
-RETRYABLE = {429, 500, 502, 503, 504, 529}
+RETRYABLE = {429, 499, 500, 502, 503, 504, 529}  # 499: TypeSafe transient internal_error seen in the full run
 
 
 class JevClient:

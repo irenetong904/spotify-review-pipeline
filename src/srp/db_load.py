@@ -41,7 +41,7 @@ def monthly_trend(con, issue_of):
     return [{"month": k, **dict(v)} for k, v in sorted(m.items())]
 
 
-def load(ws, db_url=None):
+def load(ws, db_url=None, analysis_only=False):
     import psycopg
 
     ws = Path(ws)
@@ -75,14 +75,17 @@ def load(ws, db_url=None):
         "golden_eval": json.loads(golden.read_text()) if golden.exists() else None,
     }
     with psycopg.connect(db_url, connect_timeout=20) as pg:
+        pg.execute("set statement_timeout = 0")  # Supabase's default timeout cancels a 660k-row COPY (seen 2026-10-15)
         pg.execute((ROOT / "db" / "schema.sql").read_text())
         with pg.transaction():
-            for t in ("issues", "claims", "recommendations", "reviews_enriched", "run_info"):
+            tables = ("issues", "claims", "recommendations", "run_info") + (() if analysis_only else ("reviews_enriched",))
+            for t in tables:
                 pg.execute(f"truncate {t} restart identity")  # reclaims space immediately (delete leaves dead rows)
-            with pg.cursor() as cur:
-                with cur.copy("COPY reviews_enriched FROM STDIN") as cp:
-                    for row in _rows(con, issue_of):
-                        cp.write_row(row)
+            if not analysis_only:  # analysis_only: refresh issues/claims/recommendation/run_info; keep the 660k review rows
+                with pg.cursor() as cur:
+                    with cur.copy("COPY reviews_enriched FROM STDIN") as cp:
+                        for row in _rows(con, issue_of):
+                            cp.write_row(row)
             pg.cursor().executemany(
                 "insert into issues values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 [(r["issue_id"], int(r["rank"]), r["issue_id"].split("/")[0], r["issue_id"].split("/", 1)[1],

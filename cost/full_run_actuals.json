@@ -1,0 +1,83 @@
+{
+  "stages": [
+    {
+      "role": "enrich",
+      "model": "jev-1.13.0",
+      "attempts": 475727,
+      "failed": 30,
+      "input_tokens": 391887240,
+      "output_tokens": 104031321,
+      "cost_usd": 16.459264,
+      "usage_missing": 30
+    },
+    {
+      "role": "group",
+      "model": "claude-haiku-5-5",
+      "attempts": 33,
+      "failed": 0,
+      "input_tokens": 74848,
+      "output_tokens": 6576,
+      "cost_usd": 0.010773,
+      "usage_missing": 0
+    },
+    {
+      "role": "memo",
+      "model": "claude-haiku-5-5",
+      "attempts": 7,
+      "failed": 0,
+      "input_tokens": 37181,
+      "output_tokens": 23566,
+      "cost_usd": 0.015501,
+      "usage_missing": 0
+    },
+    {
+      "role": "verify",
+      "model": "claude-haiku-5-5",
+      "attempts": 2179,
+      "failed": 0,
+      "input_tokens": 3076005,
+      "output_tokens": 168307,
+      "cost_usd": 0.391754,
+      "usage_missing": 0
+    }
+  ],
+  "full_run_api_cost_usd": 16.8773,
+  "enrich_sessions": [
+    {
+      "session_id": "enrich-20261014T200223-6e591a",
+      "phase": "initial",
+      "stop_reason": "interrupted",
+      "model_completed": 4065,
+      "result_cache_hits": 8492,
+      "exact_text_reuse": 128239,
+      "wall_seconds": 217.55
+    },
+    {
+      "session_id": "enrich-20261014T200706-43e659",
+      "phase": "resume",
+      "stop_reason": "queue_empty",
+      "model_completed": 471607,
+      "result_cache_hits": 0,
+      "exact_text_reuse": 48177,
+      "wall_seconds": 23636.634
+    },
+    {
+      "session_id": "enrich-20261015T073933-0fb6c6",
+      "phase": "resume",
+      "stop_reason": "queue_empty",
+      "model_completed": 25,
+      "result_cache_hits": 0,
+      "exact_text_reuse": 4,
+      "wall_seconds": 1.998
+    }
+  ],
+  "enrich_wall_seconds_total": 23856.2,
+  "development_and_test_spend_usd": 0.5708,
+  "project_total_api_spend_usd": 17.4481,
+  "notes": [
+    "Recomputed offline from runs/full/calls.jsonl x cost/rates.csv.",
+    "30 failed enrich attempts (HTTP 499/502, connection resets) have no provider usage: left unknown, not zero.",
+    "verify includes 189 calls made by mistake on the partial corpus right after the recorded interruption (results discarded).",
+    "memo includes failed code checks: memo-v3 x2, memo-v4 first attempt x2; final memo-v5 passed on the first attempt."
+  ]
+}

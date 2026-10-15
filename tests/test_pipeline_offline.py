@@ -91,13 +91,13 @@ class FakeClaude:
             ids = re.findall(r'id="([^"]+)"', user)
             return {"name": "Fake issue name", "description": "Shared problem.", "cited_ids": ids[:2]}, ev
         self.memo_calls += 1
-        claim = re.search(r"^(C\d{3}):", user, re.M).group(1)
-        issue = re.search(r"C\d{3}: ([a-z]+/[a-z_]+) ", user).group(1)
+        claim = re.search(r"^\{\{(C\d{3})\}\}:", user, re.M).group(1)
+        issue = re.search(r"\{\{C\d{3}\}\}: ([a-z]+/[a-z_]+) ", user).group(1)
         rid = re.search(r'review_id="([^"]+)"', user).group(1)
         digit = " in 3 weeks" if self.memo_digit_first and self.memo_calls == 1 else ""
         return {"recommended_area": "Playback", "headline": "Fix playback first",
                 "memo_markdown": f"## Recommendation\nPrioritise `{issue}` ({{{{{claim}}}}} complaints){digit}. See `{rid}`.",
-                "recommendations": [{"title": "Fix crashes", "issue_ids": [issue], "claim_ids": [claim],
+                "recommendations": [{"title": "Fix crashes", "issue_ids": [issue], "claim_ids": ["{{" + claim + "}}"],
                                      "review_ids": [rid], "rationale": "Highest baseline score."}]}, ev
 
 
@@ -197,3 +197,25 @@ def test_spend_cap_counts_prior_invocations(setup):
     s2, jev2, _ = run(inp, ws, tmp / "c.db", ws / "calls.jsonl", stages=("enrich",), spend_cap=0.000126)
     assert s2["prior_workspace_spend_usd"] > 0 and s2["stages"]["enrich"]["result"]["stop_reason"] == "spend_cap"
     assert s2["ledger"]["spent_usd"] <= 0.000126 + 1e-12
+
+
+def test_superlative_check_catches_wrong_area():
+    from srp.memo import check_superlatives
+    claims = [{"claim_id": "C001", "issue_id": "area:Playback", "metric": "mean_severity", "value": "3.375797"},
+              {"claim_id": "C002", "issue_id": "area:Access", "metric": "mean_severity", "value": "3.890877"},
+              {"claim_id": "C003", "issue_id": "area:Access", "metric": "complaint_count", "value": "11455"},
+              {"claim_id": "C004", "issue_id": "area:Usability", "metric": "complaint_count", "value": "82988"}]
+    bad = "It has the highest mean severity of the four areas at {{C001}}."
+    assert check_superlatives(bad, claims)
+    ok = "Its mean severity of {{C002}} is the highest of any area, but its complaint volume is small ({{C003}})."
+    assert check_superlatives(ok, claims) == []
+    assert check_superlatives("Usability has the largest complaint volume ({{C004}}).", claims) == []
+    assert check_superlatives("Access has the fewest complaints ({{C003}}).", claims) == []
+
+
+def test_issue_attribution_check():
+    from srp.memo import check_issue_attribution
+    claims = [{"claim_id": "C001", "issue_id": "usability/ads", "metric": "rank", "value": "3"},
+              {"claim_id": "C002", "issue_id": "usability/general", "metric": "rank", "value": "5"}]
+    assert check_issue_attribution("`usability/ads` ranks third ({{C001}}), `usability/general` fifth ({{C002}}).", claims) == []
+    assert check_issue_attribution("`usability/general` ranks third ({{C001}}).", claims)

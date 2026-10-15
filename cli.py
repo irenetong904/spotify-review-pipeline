@@ -124,7 +124,13 @@ def cmd_load_db(args):
     from srp.db_load import load
 
     load_dotenv(Path(__file__).resolve().parent / ".env")
-    print(json.dumps(load(args.workspace), indent=2))
+    print(json.dumps(load(args.workspace, analysis_only=args.analysis_only), indent=2))
+
+
+def cmd_publish_results(args):
+    from srp.publish import publish
+
+    print("\n".join(publish(args.workspace, args.out, args.input)))
 
 
 def cmd_run(args):
@@ -195,7 +201,13 @@ def main(argv=None):
     p.set_defaults(func=cmd_export_grading)
     p = sub.add_parser("load-db", help="Load a workspace's saved outputs into Supabase Postgres (no model calls)")
     p.add_argument("--workspace", required=True, type=Path)
+    p.add_argument("--analysis-only", action="store_true", help="refresh issues/claims/recommendation/run_info only")
     p.set_defaults(func=cmd_load_db)
+    p = sub.add_parser("publish-results", help="Offline: copy the final run's handoffs into results/ (committed)")
+    p.add_argument("--workspace", required=True, type=Path)
+    p.add_argument("--input", required=True, type=Path)
+    p.add_argument("--out", type=Path, default=Path("results"))
+    p.set_defaults(func=cmd_publish_results)
     p = sub.add_parser("replay", help="Offline: regenerate ranking from saved outputs and re-check the memo")
     p.add_argument("--workspace", required=True, type=Path)
     p.set_defaults(func=cmd_replay)

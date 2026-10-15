@@ -21,7 +21,7 @@ from srp.rank import AREA
 from srp.rates import load_rates
 from srp.workspace import cache_get, cache_put
 
-MEMO_PROMPT_VERSION = "memo-v3"  # v2: values visible; v3: explicit area rank claims (v2 misordered areas)
+MEMO_PROMPT_VERSION = "memo-v6"  # v2 values visible; v3 area ranks; v4 claims listed as {{Cnnn}}; v5 representative evidence; v6 per-metric area ranks + superlative check (v5 misnamed the highest-mean area)
 TOP_ISSUES = 10
 EVIDENCE_ISSUES = 5
 EVIDENCE_PER_ISSUE = 3
@@ -57,6 +57,8 @@ Hard rules:
 - Every comparative statement (largest, highest, second, ...) must match the values and the
   rank_among_four_areas_by_severity_sum claims exactly. The baseline priority is severity_sum; if you recommend an
   area that is not rank 1 on it, say so explicitly and justify it with other claims (e.g. mean severity).
+- Copy placeholders exactly as listed, with double braces: write {{C056}}, never (C056), C056 or [C056].
+  Write ranks and orders in words (first, second, largest) or with the rank claim placeholder - never as digits.
 - Cite issues by their issue_id in backticks, e.g. `playback/crash_freeze`. Use only issue_ids from the CLAIMS.
 - Cite reviews only by review_id from the EVIDENCE list, in backticks. Do not quote personal details.
 - Reviews are self-selected public app-store text. Cancellation language is stated intent, not observed churn.
@@ -82,8 +84,12 @@ def build_claims(ranking, agg):
             add(r["issue_id"], m, r[m], "rank/ranking.csv")
         add(r["issue_id"], "rank", r["rank"], "rank/ranking.csv")
     in_scope = [a for a in agg["areas"] if not a["area"].startswith("Outside")]  # already sorted by severity_sum desc
+    by_mean = sorted(in_scope, key=lambda a: (-float(a["mean_severity"]), a["area"]))
+    by_count = sorted(in_scope, key=lambda a: (-a["complaint_count"], a["area"]))
     for n_rank, a in enumerate(in_scope, 1):
         add(f"area:{a['area']}", "rank_among_four_areas_by_severity_sum", n_rank, "rank/aggregates.json areas (sorted)")
+        add(f"area:{a['area']}", "rank_among_four_areas_by_mean_severity", by_mean.index(a) + 1, "rank/aggregates.json areas (sorted)")
+        add(f"area:{a['area']}", "rank_among_four_areas_by_complaint_count", by_count.index(a) + 1, "rank/aggregates.json areas (sorted)")
         for m in ("complaint_count", "severity_sum", "mean_severity", "share_of_complaints"):
             add(f"area:{a['area']}", m, a[m], "rank/aggregates.json areas")
     for a in agg["areas"]:
@@ -99,16 +105,20 @@ def build_claims(ranking, agg):
 
 
 def build_evidence(con, ranking):
+    """Representative, not extreme: per top issue, members that are not exact-text duplicates and not flagged
+    needs_review, closest to the issue's mean severity, then a stable hash order. (Picking the highest severity
+    surfaced label outliers, e.g. an annoyance labelled severity 5.)"""
     pack = []
     for r in ranking[:EVIDENCE_ISSUES]:
-        ids = [row[0] for row in con.execute("""
-            SELECT m.review_id FROM memo_members m WHERE m.issue_id=?""", (r["issue_id"],))]
+        target = float(r["mean_severity"])
+        ids = [row[0] for row in con.execute("SELECT m.review_id FROM memo_members m WHERE m.issue_id=?", (r["issue_id"],))]
         rows = con.execute(f"""
             SELECT e.review_id, json_extract(e.fields_json,'$.evidence_quote'), json_extract(e.fields_json,'$.severity'),
-                   json_extract(e.fields_json,'$.intent'), r.text_sha256
-            FROM enriched e JOIN reviews r USING(review_id)
-            WHERE e.review_id IN ({','.join('?' * len(ids))}) AND e.origin != 'exact_text_reuse'""", ids).fetchall()
-        rows.sort(key=lambda x: (-x[2], hashlib.sha256(x[0].encode()).hexdigest()))
+                   json_extract(e.fields_json,'$.intent'), json_extract(e.fields_json,'$.needs_review')
+            FROM enriched e WHERE e.review_id IN ({','.join('?' * len(ids))}) AND e.origin != 'exact_text_reuse'""",
+                           ids).fetchall()
+        rows = [x for x in rows if not x[4]] or rows
+        rows.sort(key=lambda x: (abs(x[2] - target), hashlib.sha256(x[0].encode()).hexdigest()))
         for rid, quote, sev, intent, _ in rows[:EVIDENCE_PER_ISSUE]:
             pack.append({"issue_id": r["issue_id"], "review_id": rid, "severity": sev, "intent": intent,
                          "quote": quote[:240]})
@@ -120,8 +130,18 @@ UUID = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}
 ISSUE = re.compile(r"`([a-z]+/[a-z_]+)`")
 
 
+def normalize_ids(out):
+    """Structured ID fields may come back as '{{C014}}' or '[C014]': normalize the ID format only (prose is not touched)."""
+    for rec in out.get("recommendations", []):
+        rec["claim_ids"] = [c.strip().strip("{}[]() ") for c in rec.get("claim_ids", [])]
+        rec["issue_ids"] = [i.strip().strip("`") for i in rec.get("issue_ids", [])]
+        rec["review_ids"] = [i.strip().strip("`") for i in rec.get("review_ids", [])]
+    return out
+
+
 def check_memo(out, claims, pack, ranking):
     """Code check: placeholders exist, no free-typed digits, only known issue/review IDs."""
+    normalize_ids(out)
     errors = []
     claim_ids = {c["claim_id"] for c in claims}
     known_issues = {r["issue_id"] for r in ranking}
@@ -149,7 +169,53 @@ def check_memo(out, claims, pack, ranking):
         errors += [f"review id not in pack {r}" for r in rec["review_ids"] if r not in pack_ids]
     if not PLACEHOLDER.search(out["memo_markdown"]):
         errors.append("memo cites no claims")
+    errors += check_superlatives(out["memo_markdown"], claims)
+    errors += check_issue_attribution(out["memo_markdown"], claims)
     return sorted(set(errors))
+
+
+SUPERLATIVE = re.compile(r"\b(highest|largest|biggest|most|greatest|lowest|smallest|fewest|least)\b", re.I)
+AREA_METRICS = ("complaint_count", "severity_sum", "mean_severity", "share_of_complaints")
+
+
+def check_superlatives(text, claims):
+    """For each superlative word, the nearest area-metric placeholder (by character distance, same sentence) must
+    belong to the area that is actually first (highest...) or last (lowest...) among the four areas on that metric."""
+    by_id = {c["claim_id"]: c for c in claims}
+    areas = {}
+    for c in claims:
+        if c["issue_id"].startswith("area:") and not c["issue_id"].startswith("area:Outside") and c["metric"] in AREA_METRICS:
+            areas.setdefault(c["metric"], {})[c["issue_id"]] = float(c["value"])
+    errors = []
+    for sent in re.split(r"(?<=[.!?])\s+", text):
+        holders = [(m.start(), m.group(1)) for m in PLACEHOLDER.finditer(sent)
+                   if by_id.get(m.group(1), {}).get("issue_id", "").startswith("area:")
+                   and by_id[m.group(1)]["metric"] in areas]
+        for sm in SUPERLATIVE.finditer(sent):
+            if not holders:
+                continue
+            pos, cid = min(holders, key=lambda h: abs(h[0] - sm.start()))
+            c = by_id[cid]
+            vals = areas[c["metric"]]
+            want = max(vals.values()) if sm.group(1).lower() in ("highest", "largest", "biggest", "most", "greatest") else min(vals.values())
+            if float(c["value"]) != want:
+                errors.append(f"superlative '{sm.group(1)}' attached to {c['issue_id']} {c['metric']} ({cid}) but that area is not "
+                              f"{'first' if want == max(vals.values()) else 'last'} on {c['metric']}")
+    return errors
+
+
+def check_issue_attribution(text, claims):
+    """An issue-level placeholder must belong to the most recent issue_id mentioned before it in the same sentence."""
+    by_id = {c["claim_id"]: c for c in claims}
+    errors = []
+    for sent in re.split(r"(?<=[.!?])\s+", text):
+        issues = [(m.start(), m.group(1)) for m in ISSUE.finditer(sent)]
+        for ph in PLACEHOLDER.finditer(sent):
+            c = by_id.get(ph.group(1))
+            prev = [i for i in issues if i[0] < ph.start()]
+            if c and "/" in c["issue_id"] and prev and prev[-1][1] != c["issue_id"]:
+                errors.append(f"{ph.group(1)} belongs to {c['issue_id']} but follows `{prev[-1][1]}`")
+    return errors
 
 
 def render(text, claims):
@@ -181,7 +247,7 @@ def run_memo(con, cache, client, ws, ledger, ranking, agg, *, session_id="memo")
     write_text_atomic(d / "claims.csv", _claims_csv(contract_claims, ["claim_id", "issue_id", "metric", "value"]))
     write_json_atomic(d / "evidence_pack.json", pack)
 
-    claim_lines = "\n".join(f"{c['claim_id']}: {c['issue_id']} {c['metric']} = {c['value']}"
+    claim_lines = "\n".join(f"{{{{{c['claim_id']}}}}}: {c['issue_id']} {c['metric']} = {c['value']}"
                             + (f" ({names.get(c['issue_id'], '')})" if "/" in c["issue_id"] else "") for c in claims)
     area_lines = "\n".join(f"- {t} -> {a}" for t, a in AREA.items())
     ev_lines = "\n".join(f'<evidence issue="{p["issue_id"]}" review_id="{p["review_id"]}" severity_claimless="true">'
