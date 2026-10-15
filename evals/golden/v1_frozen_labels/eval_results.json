@@ -1,0 +1,194 @@
+{
+  "ambiguous_cases": 2,
+  "completed_predictions": 50,
+  "entities_missed_total": 5,
+  "entities_unsupported_total": 0,
+  "intent_agreement": 0.88,
+  "intent_confusion": {
+    "cancellation": {
+      "cancellation": 2,
+      "complaint": 0,
+      "praise": 0,
+      "request": 0,
+      "unclear": 0
+    },
+    "complaint": {
+      "cancellation": 0,
+      "complaint": 18,
+      "praise": 0,
+      "request": 0,
+      "unclear": 0
+    },
+    "praise": {
+      "cancellation": 0,
+      "complaint": 1,
+      "praise": 20,
+      "request": 1,
+      "unclear": 1
+    },
+    "request": {
+      "cancellation": 0,
+      "complaint": 2,
+      "praise": 0,
+      "request": 2,
+      "unclear": 0
+    },
+    "unclear": {
+      "cancellation": 0,
+      "complaint": 0,
+      "praise": 0,
+      "request": 1,
+      "unclear": 2
+    }
+  },
+  "label_config": [
+    "jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b"
+  ],
+  "missing_or_quarantined": 0,
+  "n": 50,
+  "needs_review_confusion": {
+    "human=False,pred=False": 40,
+    "human=False,pred=True": 2,
+    "human=True,pred=False": 5,
+    "human=True,pred=True": 3
+  },
+  "note": "Fifty cases are a small diagnostic sample, not a population accuracy estimate.",
+  "per_topic_human_counts": {
+    "access": 1,
+    "billing": 3,
+    "catalog": 6,
+    "downloads": 1,
+    "other": 25,
+    "playback": 5,
+    "support": 1,
+    "usability": 8
+  },
+  "prediction_workspace": "runs/golden50",
+  "quote_exact_substring_rate": 1.0,
+  "sentiment_mae": 0.1762,
+  "sentiment_tolerance": 0.5,
+  "sentiment_within_0_5": 0.92,
+  "severity_confusion": {
+    "1": {
+      "1": 26,
+      "2": 1,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    },
+    "2": {
+      "1": 1,
+      "2": 8,
+      "3": 1,
+      "4": 0,
+      "5": 0
+    },
+    "3": {
+      "1": 0,
+      "2": 2,
+      "3": 7,
+      "4": 1,
+      "5": 0
+    },
+    "4": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 3,
+      "5": 0
+    },
+    "5": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    }
+  },
+  "severity_exact": 0.88,
+  "severity_mae": 0.12,
+  "topic_agreement": 0.78,
+  "topic_agreement_lenient_alt_topic": 0.78,
+  "topic_confusion": {
+    "access": {
+      "access": 0,
+      "billing": 0,
+      "catalog": 0,
+      "downloads": 0,
+      "other": 0,
+      "playback": 1,
+      "support": 0,
+      "usability": 0
+    },
+    "billing": {
+      "access": 0,
+      "billing": 1,
+      "catalog": 0,
+      "downloads": 0,
+      "other": 0,
+      "playback": 0,
+      "support": 0,
+      "usability": 2
+    },
+    "catalog": {
+      "access": 0,
+      "billing": 0,
+      "catalog": 4,
+      "downloads": 0,
+      "other": 2,
+      "playback": 0,
+      "support": 0,
+      "usability": 0
+    },
+    "downloads": {
+      "access": 0,
+      "billing": 0,
+      "catalog": 0,
+      "downloads": 1,
+      "other": 0,
+      "playback": 0,
+      "support": 0,
+      "usability": 0
+    },
+    "other": {
+      "access": 0,
+      "billing": 1,
+      "catalog": 0,
+      "downloads": 0,
+      "other": 24,
+      "playback": 0,
+      "support": 0,
+      "usability": 0
+    },
+    "playback": {
+      "access": 0,
+      "billing": 0,
+      "catalog": 1,
+      "downloads": 0,
+      "other": 0,
+      "playback": 3,
+      "support": 0,
+      "usability": 1
+    },
+    "support": {
+      "access": 0,
+      "billing": 0,
+      "catalog": 0,
+      "downloads": 0,
+      "other": 0,
+      "playback": 1,
+      "support": 0,
+      "usability": 0
+    },
+    "usability": {
+      "access": 0,
+      "billing": 0,
+      "catalog": 0,
+      "downloads": 0,
+      "other": 2,
+      "playback": 0,
+      "support": 0,
+      "usability": 6
+    }
+  }
+}

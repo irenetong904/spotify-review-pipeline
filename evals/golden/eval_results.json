@@ -3,7 +3,7 @@
   "completed_predictions": 50,
   "entities_missed_total": 5,
   "entities_unsupported_total": 0,
-  "intent_agreement": 0.88,
+  "intent_agreement": 0.92,
   "intent_confusion": {
     "cancellation": {
       "cancellation": 2,
@@ -14,7 +14,7 @@
     },
     "complaint": {
       "cancellation": 0,
-      "complaint": 18,
+      "complaint": 20,
       "praise": 0,
       "request": 0,
       "unclear": 0
@@ -28,7 +28,7 @@
     },
     "request": {
       "cancellation": 0,
-      "complaint": 2,
+      "complaint": 0,
       "praise": 0,
       "request": 2,
       "unclear": 0
@@ -54,12 +54,11 @@
   },
   "note": "Fifty cases are a small diagnostic sample, not a population accuracy estimate.",
   "per_topic_human_counts": {
-    "access": 1,
     "billing": 3,
     "catalog": 6,
     "downloads": 1,
     "other": 25,
-    "playback": 5,
+    "playback": 6,
     "support": 1,
     "usability": 8
   },
@@ -107,8 +106,8 @@
   },
   "severity_exact": 0.88,
   "severity_mae": 0.12,
-  "topic_agreement": 0.78,
-  "topic_agreement_lenient_alt_topic": 0.78,
+  "topic_agreement": 0.8,
+  "topic_agreement_lenient_alt_topic": 0.8,
   "topic_confusion": {
     "access": {
       "access": 0,
@@ -116,7 +115,7 @@
       "catalog": 0,
       "downloads": 0,
       "other": 0,
-      "playback": 1,
+      "playback": 0,
       "support": 0,
       "usability": 0
     },
@@ -166,7 +165,7 @@
       "catalog": 1,
       "downloads": 0,
       "other": 0,
-      "playback": 3,
+      "playback": 4,
       "support": 0,
       "usability": 1
     },
