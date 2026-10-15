@@ -188,3 +188,12 @@ def test_memo_checker_rules():
     assert check_memo({**base, "memo_markdown": "Fix `playback/crash_freeze` {{C001}}"}, claims, [], ranking) == []
     errs = check_memo({**base, "memo_markdown": "Fix `playback/x` {{C002}} with 40% gain"}, claims, [], ranking)
     assert any("digit" in e for e in errs) and any("C002" in e for e in errs) and any("playback/x" in e for e in errs)
+
+
+def test_spend_cap_counts_prior_invocations(setup):
+    inp, tmp = setup
+    ws = tmp / "ws"
+    run(inp, ws, tmp / "c.db", ws / "calls.jsonl", stages=("enrich",), limit=3)
+    s2, jev2, _ = run(inp, ws, tmp / "c.db", ws / "calls.jsonl", stages=("enrich",), spend_cap=0.000126)
+    assert s2["prior_workspace_spend_usd"] > 0 and s2["stages"]["enrich"]["result"]["stop_reason"] == "spend_cap"
+    assert s2["ledger"]["spent_usd"] <= 0.000126 + 1e-12

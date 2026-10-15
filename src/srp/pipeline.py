@@ -26,7 +26,9 @@ def run_pipeline(*, input_csv, ws_dir, cache_path, cfg, stages=STAGES, paid=Fals
     cache = open_cache(cache_path)
     calllog = CallLog(ws / "calls.jsonl")
     cap = cfg["controls"]["spend_cap_usd"] if spend_cap is None else spend_cap
-    ledger = SpendLedger(cap)
+    # the cap covers the whole workspace: spend from earlier (interrupted) invocations counts against it
+    prior_spend = sum(c.get("cost_usd") or 0.0 for c in calllog.read())
+    ledger = SpendLedger(cap, spent_usd=prior_spend)
     needs_models = {"enrich", "verify", "group", "memo"} & set(stages)
     if needs_models and not paid and (jev_client is None or claude_client is None):
         raise SystemExit("Stages " + ",".join(sorted(needs_models)) + " may call paid APIs; re-run with --paid "
@@ -38,6 +40,7 @@ def run_pipeline(*, input_csv, ws_dir, cache_path, cfg, stages=STAGES, paid=Fals
 
     t0 = time.monotonic()
     summary = {"workspace": str(ws), "input": str(input_csv), "started_at": now(), "stages": {}, "spend_cap_usd": cap,
+               "prior_workspace_spend_usd": round(prior_spend, 6),
                "workers": workers}
     timings = summary["stages"]
 

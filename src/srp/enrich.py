@@ -92,6 +92,26 @@ def fan_out(con, lc, session_id):
     return n
 
 
+def fan_out_texts(con, lc, session_id, done):
+    """Incremental fan-out for canonicals finished in this batch: [(canonical_id, text_sha256, status)]."""
+    n = 0
+    for cid, tsha, status in done:
+        dups = [r[0] for r in con.execute("""
+            SELECT r.review_id FROM reviews r JOIN records rec USING(review_id)
+            WHERE r.text_sha256=? AND r.review_id != ? AND rec.status='pending'""", (tsha, cid))]
+        if not dups:
+            continue
+        if status == "completed":
+            fj, rj = con.execute("SELECT fields_json, reasons_json FROM enriched WHERE review_id=?", (cid,)).fetchone()
+            for rid in dups:
+                _complete(con, rid, lc, json.loads(fj), json.loads(rj), "exact_text_reuse", session_id, cache_source_id=cid)
+        else:
+            con.executemany("UPDATE records SET status='quarantined', reason=? WHERE review_id=?",
+                            [(f"invalid_model_output_exact_text_of_{cid}", rid) for rid in dups])
+        n += len(dups)
+    return n
+
+
 def run_enrich(con, cache, calllog, client, cfg, *, ledger, workers=1, rps=20, limit=None, stop_event=None,
                retry_quarantined=False):
     lc = label_config()
@@ -115,6 +135,9 @@ def run_enrich(con, cache, calllog, client, cfg, *, ledger, workers=1, rps=20, l
         JOIN texts t ON t.text_sha256 = r.text_sha256
         WHERE rec.status='pending' AND r.review_id = t.canonical_review_id ORDER BY r.row_order""").fetchall()
     stats["queue_at_start"] = len(queue)
+    already = con.execute("SELECT COUNT(*) FROM records WHERE status='completed'").fetchone()[0]
+    print(f"[enrich {phase}] session {session_id}: {len(queue)} distinct pending texts; already completed: {already}",
+          flush=True)
 
     to_call = []
     for rid, text, tsha in queue:  # result-cache lookup happens in code before any dispatch
@@ -138,6 +161,9 @@ def run_enrich(con, cache, calllog, client, cfg, *, ledger, workers=1, rps=20, l
     items = iter(to_call)
     inflight = {}
 
+    batch_done = []
+    progress_every = cfg["controls"].get("progress_every", 2000)
+
     def handle(item, res):
         nonlocal consecutive_failures, stop_reason
         rid, text, tsha = item
@@ -149,9 +175,16 @@ def run_enrich(con, cache, calllog, client, cfg, *, ledger, workers=1, rps=20, l
             _complete(con, rid, lc, fields, reasons, "model", session_id, request_id=res["request_id"])
             cache_put(cache, "enrich", tsha, lc, {"fields": fields, "reasons": reasons}, rid, res["request_id"], session_id)
             stats["model_completed"] += 1
+            batch_done.append((rid, tsha, "completed"))
             consecutive_failures = 0
+            if stats["model_completed"] % progress_every == 0:
+                el = time.monotonic() - t0
+                print(f"[enrich {phase}] model-completed {stats['model_completed']}/{len(to_call)} "
+                      f"({stats['model_completed'] / el:.1f}/s) spent ${ledger.snapshot()['spent_usd']:.4f} "
+                      f"elapsed {el / 60:.1f} min", flush=True)
         elif kind == "invalid":
             con.execute("UPDATE records SET status='quarantined', reason='invalid_model_output' WHERE review_id=?", (rid,))
+            batch_done.append((rid, tsha, "quarantined"))
             cache_put(cache, "enrich_invalid", tsha, lc, {"reason": "invalid_model_output", "error": res.get("error")},
                       rid, None, session_id)
             stats["quarantined"] += 1
@@ -172,9 +205,10 @@ def run_enrich(con, cache, calllog, client, cfg, *, ledger, workers=1, rps=20, l
             stop_reason = "spend_cap"
             stop_event.set()
 
-    def commit_batch():
-        stats["exact_text_reuse"] += fan_out(con, lc, session_id)
-        con.commit()
+    def commit_batch(final=False):
+        stats["exact_text_reuse"] += fan_out(con, lc, session_id) if final else fan_out_texts(con, lc, session_id, batch_done)
+        batch_done.clear()
+        con.commit()  # one transaction per batch: results + statuses + fan-out are saved atomically
         cache.commit()
 
     ex = ThreadPoolExecutor(max_workers=workers)
@@ -213,7 +247,7 @@ def run_enrich(con, cache, calllog, client, cfg, *, ledger, workers=1, rps=20, l
         raise
     finally:
         ex.shutdown(wait=True)
-        commit_batch()
+        commit_batch(final=True)
         stats.update(stop_reason=stop_reason, wall_seconds=round(time.monotonic() - t0, 3), ledger=ledger.snapshot(),
                      status_counts=dict(con.execute("SELECT status, COUNT(*) FROM records GROUP BY status").fetchall()))
         con.execute("UPDATE sessions SET ended_at=?, stop_reason=?, stats_json=? WHERE session_id=?",
