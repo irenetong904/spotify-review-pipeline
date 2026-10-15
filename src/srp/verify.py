@@ -65,21 +65,24 @@ def _key(seed, rid):
     return hashlib.sha256(f"{seed}:{rid}".encode()).hexdigest()
 
 
-def select_sample(con, fraction, seed, max_sample=None):
-    """Stratified by Jev topic; within each topic, lowest sha256(seed:review_id) first. Deterministic."""
+def select_sample(con, fraction, seed, max_sample=None, min_per_topic=30):
+    """Stratified by Jev topic; within each topic, lowest sha256(seed:review_id) first. Deterministic.
+    k_topic = ceil(fraction * n_topic); if the total exceeds max_sample, re-allocate max_sample proportionally
+    with a floor of min_per_topic (or all of a smaller topic) so rare topics still get a usable sample."""
     rows = con.execute("""
         SELECT e.review_id, json_extract(e.fields_json, '$.topic') FROM enriched e
         WHERE e.origin != 'exact_text_reuse' AND e.synthetic = 0""").fetchall()
     by_topic = {}
     for rid, topic in rows:
         by_topic.setdefault(topic, []).append(rid)
+    k = {t: (len(ids) if fraction >= 1 else max(1, math.ceil(fraction * len(ids)))) for t, ids in by_topic.items()}
+    if max_sample and sum(k.values()) > max_sample:
+        total = sum(len(ids) for ids in by_topic.values())
+        k = {t: min(len(ids), max(min_per_topic, round(max_sample * len(ids) / total))) for t, ids in by_topic.items()}
     sample = []
     for topic in sorted(by_topic):
-        ids = sorted(by_topic[topic], key=lambda r: _key(seed, r))
-        k = len(ids) if fraction >= 1 else max(1, math.ceil(fraction * len(ids)))
-        sample += ids[:k]
-    sample.sort(key=lambda r: _key(seed, r))
-    return sample[:max_sample] if max_sample else sample
+        sample += sorted(by_topic[topic], key=lambda r: _key(seed, r))[:k[topic]]
+    return sorted(sample, key=lambda r: _key(seed, r))
 
 
 def _verify_one(client, ledger, rid, text, ctx):

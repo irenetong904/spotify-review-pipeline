@@ -16,8 +16,55 @@ JEV_INPUT_USD_PER_TOKEN = 0.042 / 1_000_000  # docs.typesafe.ai/models, checked 
 
 
 # ---------- questions ----------
+# q2 (current): concise wording of the same shared definitions. Measured on the pilot, ~95% of Jev input tokens
+# were question text repeated on every request, so wording length is the main cost driver.
+# q1 (pilot 2026-10-14) is kept below for reproducibility of the first pilot.
+
+def _q2_questions():
+    r = load_rubric()
+    return {
+        "topic": {
+            "type": "choice",
+            "instructions": ("Primary topic of this app review, judged from the text only. Several problems: pick the "
+                             "most severe, ties go to the first mentioned. Praise: first praised feature; general "
+                             "praise is other. A paid-plan mention alone is not billing."),
+            "criteria": dict(r["topic"]["labels"]),  # contract definitions, already short
+        },
+        "intent": {
+            "type": "choice",
+            "instructions": "Reviewer's primary intent (cancellation > complaint > request > praise > unclear).",
+            "criteria": {
+                "cancellation": "Explicitly leaving, uninstalling, cancelling, or threatening to",
+                "complaint": "Negative experience, incl. mixed or generic 'bad app'",
+                "request": "Wants a change; no failure reported",
+                "praise": "Positive only",
+                "unclear": "Meaningless, unrelated, or a bare boycott slogan",
+            },
+        },
+        "cancel": {"type": "noul", "instructions": "Does the reviewer explicitly leave, uninstall or cancel Spotify, or threaten to?"},
+        "severity": {
+            "type": "choice",
+            "instructions": "Severity supported by the text; anger or cancellation alone do not raise it.",
+            "criteria": {
+                "1": "No problem: praise, unclear, or pure request",
+                "2": "Dislike, annoyance, generic or cosmetic issue",
+                "3": "A function degraded or restricted; still usable",
+                "4": "A core task blocked (cannot log in or play)",
+                "5": "Explicit serious financial, privacy or data harm",
+            },
+        },
+        "sentiment": {"type": "score", "instructions": "Overall sentiment toward Spotify.",
+                      "criteria": ["Very negative", "Negative", "Neutral or mixed", "Positive", "Very positive"]},
+    }
+
 
 def _static_questions():
+    from srp.rubric import QUESTION_SCHEMA_VERSION
+
+    return _q2_questions() if QUESTION_SCHEMA_VERSION == "q2" else _q1_questions()
+
+
+def _q1_questions():
     r = load_rubric()
     topic_rules = " ".join(r["topic"]["rules"])
     return {
@@ -63,8 +110,7 @@ def build_request(review_text):
     if sents:
         questions["quote"] = {
             "type": "choice",
-            "instructions": ("Which sentence of the review is the best direct evidence for its main topic and the "
-                             "severity of the problem (or the praised feature)?"),
+            "instructions": "Best evidence sentence for the main topic and severity (or praised feature).",
             "criteria": {f"s{i}": s for i, s in enumerate(sents)},
         }
     return {"model": ENRICH_MODEL, "state": review_text, "questions": questions}, sents

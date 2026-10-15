@@ -1,6 +1,6 @@
 # Editable calculator controls and projection assumptions. Measured pilot results never depend on this file.
 controls:
-  budget_usd: 60.00              # declared spend limit for the full run (API only)
+  budget_usd: 20.00              # course limit for the whole project (API only); full run hard cap: 16
   max_output_tokens: 1024        # cap on verify/group outputs incl. thinking (memo: 6000 in code)
   max_workers: 4                 # maximum concurrency for the full run
   rps_limit: 20                  # shared requests/second limit across workers
@@ -11,6 +11,7 @@ full_run:
   nonempty_classifications: 660609
   empty_text_quarantines: 13
   distinct_nonempty_texts: 484189
+  verify_max_sample: 2000        # stratified verification cap
   issues_named: 40               # group naming calls (one per issue)
   memo_calls: 2                  # one memo + at most one regeneration
   fixed_overhead_seconds: 17     # measured full-file ingest (reports/ingestion_report run)

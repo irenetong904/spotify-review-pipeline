@@ -17,4 +17,5 @@ thresholds:
 
 verification:
   sample_fraction: 0.05          # stratified by topic; dev pilots verify 100%
+  max_sample: 2000               # cap (budget): re-allocated proportionally, >=30 per topic
   seed: srp-verify-v1

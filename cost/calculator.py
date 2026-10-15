@@ -109,7 +109,9 @@ def projections(calls, assumptions, rates):
     for name, s in sc.items():
         for reuse in (True, False):
             units_enrich = fr["distinct_nonempty_texts"] if reuse else fr["nonempty_classifications"]
-            units = {"enrich": units_enrich, "verify": math.ceil(s["verify_fraction"] * fr["distinct_nonempty_texts"]),
+            units = {"enrich": units_enrich,
+                     "verify": min(math.ceil(s["verify_fraction"] * fr["distinct_nonempty_texts"]),
+                                   fr.get("verify_max_sample") or 10**12),
                      "group": fr["issues_named"], "memo": fr["memo_calls"]}
             total_cost, total_seconds = 0.0, float(fr["fixed_overhead_seconds"])
             for role, n in units.items():

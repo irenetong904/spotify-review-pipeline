@@ -92,6 +92,23 @@ def cmd_smoke_claude(args):
     print(json.dumps(results, indent=2, ensure_ascii=False))
 
 
+def cmd_eval_golden(args):
+    from srp.enrich import export_records
+    from srp.evaluate import evaluate, write_outputs
+    from srp.workspace import open_workspace
+
+    con = open_workspace(args.workspace)
+    records, _ = export_records(con)
+    texts = dict(con.execute("SELECT review_id, review_text FROM reviews"))
+    results, cases = evaluate(args.labels, records, args.out)
+    done = [r for r in records if r["status"] == "completed"]
+    results["quote_exact_substring_rate"] = round(sum(r["evidence_quote"] in texts[r["review_id"]] for r in done) / len(done), 4)
+    results["prediction_workspace"] = str(args.workspace)
+    results["label_config"] = sorted({r["label_config"] for r in done})
+    write_outputs(args.out, results, cases)
+    print(json.dumps({k: v for k, v in results.items() if not k.endswith("confusion")}, indent=2))
+
+
 def cmd_run(args):
     from srp.pipeline import STAGES, run_pipeline
 
@@ -144,6 +161,11 @@ def main(argv=None):
     p.add_argument("--limit", type=int, help="max new enrichment dispatches (interruption demo)")
     p.add_argument("--require-empty-cache", action="store_true")
     p.set_defaults(func=cmd_run)
+    p = sub.add_parser("eval-golden", help="Offline: compare a workspace's predictions with human golden labels")
+    p.add_argument("--workspace", required=True, type=Path)
+    p.add_argument("--labels", type=Path, default=Path("evals/golden/golden_50_human_labels.csv"))
+    p.add_argument("--out", type=Path, default=Path("evals/golden"))
+    p.set_defaults(func=cmd_eval_golden)
     p = sub.add_parser("replay", help="Offline: regenerate ranking from saved outputs and re-check the memo")
     p.add_argument("--workspace", required=True, type=Path)
     p.set_defaults(func=cmd_replay)
