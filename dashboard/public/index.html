@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spotify Review Priorities</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #e3e1dc; --grid: #ecebe7;
+  --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #7a7974;
+  --series-1: #2a78d6; --series-1-soft: #d6e6f8; --context: #b9b7b0;
+  --good: #1a7f37; --warn: #9a6700;
+  --chip: #eef3fb; --code: #f0efeb;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --surface-0: #121211; --surface-1: #1a1a19; --border: #2e2e2c; --grid: #262624;
+    --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #8f8e86;
+    --series-1: #3987e5; --series-1-soft: #1f3550; --context: #5b5a55;
+    --good: #4cc26a; --warn: #d9a43a; --chip: #1f2a3a; --code: #262624;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-0: #121211; --surface-1: #1a1a19; --border: #2e2e2c; --grid: #262624;
+  --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #8f8e86;
+  --series-1: #3987e5; --series-1-soft: #1f3550; --context: #5b5a55;
+  --good: #4cc26a; --warn: #d9a43a; --chip: #1f2a3a; --code: #262624;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 1180px; margin: 0 auto; padding: 24px 16px 64px; }
+header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: end; margin-bottom: 20px; }
+h1 { font-size: 26px; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 17px; margin: 0 0 4px; }
+.sub { color: var(--text-secondary); margin: 2px 0 0; }
+.muted { color: var(--text-muted); font-size: 13px; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 860px) { .grid2 { grid-template-columns: 1fr; } }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.tile .v { font-size: 26px; font-weight: 650; margin-top: 2px; }
+.tile .l { color: var(--text-secondary); font-size: 13px; }
+.hero .area { font-size: 40px; font-weight: 700; color: var(--series-1); line-height: 1.1; margin: 6px 0 4px; }
+.badge { display: inline-flex; gap: 6px; align-items: center; font-size: 12px; padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--text-secondary); }
+.badge.ok::before { content: "✓"; color: var(--good); font-weight: 700; }
+.badge.bad::before { content: "!"; color: var(--warn); font-weight: 700; }
+.memo h3 { font-size: 15px; margin: 18px 0 6px; }
+.memo p { margin: 6px 0; color: var(--text-primary); }
+code, .rid { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; background: var(--code);
+  padding: 1px 5px; border-radius: 5px; }
+button.rid { border: 0; cursor: pointer; color: var(--series-1); }
+.claim { font-family: ui-monospace, Menlo, monospace; font-size: 11px; background: var(--chip); color: var(--series-1);
+  padding: 0 5px; border-radius: 4px; cursor: help; white-space: nowrap; }
+.recs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 12px; }
+.rec { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.rec b { display: block; margin-bottom: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; color: var(--text-secondary); font-weight: 600; font-size: 12.5px; border-bottom: 1px solid var(--border); padding: 6px 8px; }
+td { border-bottom: 1px solid var(--grid); padding: 7px 8px; vertical-align: middle; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.click { cursor: pointer; } tr.click:hover td { background: var(--chip); }
+tr.sel td { background: var(--chip); }
+.bar { height: 10px; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
+.barcell { width: 32%; }
+.scroll { overflow-x: auto; }
+svg text { fill: var(--text-secondary); font-size: 12px; }
+.tip { position: fixed; pointer-events: none; background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 10px; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,.12); display: none; z-index: 10; max-width: 280px; }
+.quote { border-left: 3px solid var(--series-1-soft); padding: 2px 10px; margin: 6px 0; color: var(--text-primary); }
+.drawer { position: fixed; right: 16px; bottom: 16px; width: min(440px, calc(100vw - 32px)); max-height: 70vh; overflow: auto;
+  background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2); z-index: 20; }
+.drawer .x { float: right; border: 0; background: none; font-size: 20px; cursor: pointer; color: var(--text-secondary); }
+dl { display: grid; grid-template-columns: 130px 1fr; gap: 4px 10px; margin: 8px 0 0; font-size: 13.5px; }
+dt { color: var(--text-secondary); }
+dd { margin: 0; word-break: break-word; }
+.err { color: var(--warn); }
+footer { color: var(--text-muted); font-size: 13px; margin-top: 24px; }
+footer li { margin: 3px 0; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Where should Spotify's next quarter of product effort go?</h1>
+      <p class="sub">Evidence from 660,622 Google Play reviews (May 2022 – Nov 2023), processed by a staged multi-agent pipeline.</p>
+    </div>
+    <div class="muted" id="runmeta">Loading…</div>
+  </header>
+
+  <section class="card hero" id="hero"><p class="muted">Loading the stored recommendation…</p></section>
+  <section class="tiles" id="tiles"></section>
+
+  <div class="grid2">
+    <section class="card">
+      <h2>Baseline priority by product area</h2>
+      <p class="muted">Severity sum of complaint + cancellation reviews (= count × mean severity). Hover a bar for details.</p>
+      <div id="areas"></div>
+      <div class="scroll"><table id="areatable"></table></div>
+    </section>
+    <section class="card">
+      <h2>Complaint share by month</h2>
+      <p class="muted">Complaint + cancellation reviews ÷ classified reviews. First and last months are partial.</p>
+      <div id="trend"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>Issue ranking</h2>
+    <p class="muted">priority_score = complaint_count × mean_severity (= severity_sum); ties by issue ID. Click an issue to see its reviews from the database.</p>
+    <div class="scroll"><table id="issues"></table></div>
+  </section>
+
+  <section class="card" id="issuedetail" hidden></section>
+
+  <div class="grid2">
+    <section class="card" id="quality"></section>
+    <section class="card" id="coverage"></section>
+  </div>
+
+  <footer>
+    <ul>
+      <li>All numbers are read from Supabase via this site's backend; opening this page triggers no model calls. The recommendation was generated by the pipeline, checked by code against saved calculations, and stored.</li>
+      <li>Reviews are self-selected, historical public app-store text. Cancellation language is stated intent, not observed churn. No revenue, churn or causal estimates are made.</li>
+      <li>Source: BwandoWando, “3.4 Million Spotify Google Store Reviews” (Kaggle, CC0), course extract. Code: <a href="https://github.com/irenetong904/spotify-review-pipeline">github.com/irenetong904/spotify-review-pipeline</a>.</li>
+    </ul>
+  </footer>
+</main>
+<div class="tip" id="tip"></div>
+<aside class="drawer" id="drawer" aria-live="polite"></aside>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmt = (n) => (n == null ? "—" : Number(n).toLocaleString("en-US"));
+const pct = (x, d = 1) => (x == null ? "—" : (100 * x).toFixed(d) + "%");
+const UUID = /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/g;
+let CLAIMS = {};
+const tip = $("#tip");
+function showTip(e, html) { tip.innerHTML = html; tip.style.display = "block";
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8), y = Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8);
+  tip.style.left = x + "px"; tip.style.top = y + "px"; }
+function hideTip() { tip.style.display = "none"; }
+
+async function api(path) {
+  const r = await fetch(path);
+  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.statusText);
+  return r.json();
+}
+
+// Inline formatting for stored (already code-checked) memo text: escape first, then mark claims / IDs.
+function inline(text) {
+  let h = esc(text);
+  h = h.replace(/`([^`]+)`/g, (_, inner) => /^[0-9a-f-]{36}$/.test(inner)
+    ? `<button class="rid" data-rid="${inner}">${inner.slice(0, 8)}…</button>` : `<code>${inner}</code>`);
+  h = h.replace(/\[(C\d{3})\]/g, (_, c) => { const cl = CLAIMS[c];
+    const t = cl ? `${cl.claim_id}: ${cl.issue_id} ${cl.metric} = ${cl.value} (source: ${cl.source})` : c;
+    return `<span class="claim" title="${esc(t)}">${c}</span>`; });
+  return h;
+}
+function memoHtml(md) {
+  return md.split(/\n{2,}|\n(?=## )/).map((block) => {
+    const b = block.trim(); if (!b) return "";
+    if (b.startsWith("## ")) { const [head, ...rest] = b.split("\n"); return `<h3>${esc(head.slice(3))}</h3>` + (rest.length ? `<p>${inline(rest.join(" "))}</p>` : ""); }
+    return `<p>${inline(b.replace(/\n/g, " "))}</p>`;
+  }).join("");
+}
+
+function renderHero(rec) {
+  if (!rec) { $("#hero").innerHTML = `<p class="err">No stored recommendation found.</p>`; return; }
+  const ok = rec.check_status === "passed";
+  $("#hero").innerHTML = `
+    <div class="muted">AI-generated recommendation · stored ${esc(rec.created_at?.slice(0, 10))} · ${esc(rec.generator)}
+      <span class="badge ${ok ? "ok" : "bad"}">code claim-check ${esc(rec.check_status)}</span></div>
+    <div class="area">${esc(rec.recommended_area)}</div>
+    <h2>${inline(rec.headline)}</h2>
+    <div class="memo">${memoHtml(rec.memo_markdown)}</div>
+    <div class="recs">${(rec.items || []).map((r) => `<div class="rec"><b>${inline(r.title)}</b>
+      <div>${inline(r.rationale)}</div>
+      <div class="muted" style="margin-top:6px">Issues: ${r.issue_ids.map((i) => `<code>${esc(i)}</code>`).join(" ")}<br>
+      Claims: ${r.claim_ids.map((c) => inline(`[${c}]`)).join(" ")}<br>
+      Reviews: ${r.review_ids.map((i) => `<button class="rid" data-rid="${esc(i)}">${esc(i.slice(0, 8))}…</button>`).join(" ")}</div></div>`).join("")}</div>
+    <details style="margin-top:12px"><summary class="muted">Evidence pack given to the memo writer (${(rec.evidence || []).length} quotes)</summary>
+      ${(rec.evidence || []).map((e) => `<div class="quote">“${esc(e.quote)}” <span class="muted">— <button class="rid" data-rid="${esc(e.review_id)}">${esc(e.review_id.slice(0, 8))}…</button>
+      · <code>${esc(e.issue_id)}</code> · severity ${esc(e.severity)}</span></div>`).join("")}</details>`;
+}
+
+function renderTiles(info) {
+  const a = info.aggregates, p = info.run.profile || {}, st = a.record_status_counts || {};
+  const tiles = [
+    ["Reviews ingested", fmt(p.records)], ["Classified (completed)", fmt(st.completed)],
+    ["Quarantined", fmt(st.quarantined || 0)], ["Complaint + cancellation", fmt(a.complaint_or_cancellation_total)],
+    ["Cancellation intent", fmt(a.intent_counts?.cancellation)], ["Flagged needs_review", fmt(a.needs_review_count)],
+    ["Exact-text reuse", fmt(a.origin_counts?.exact_text_reuse)], ["Run API spend", "$" + (info.run.ledger?.spent_usd ?? 0).toFixed(2)],
+  ];
+  $("#tiles").innerHTML = tiles.map(([l, v]) => `<div class="tile"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
+  $("#runmeta").innerHTML = `Run ended ${esc(info.run.ended_at?.slice(0, 16).replace("T", " ") || "—")} UTC<br><code>${esc(info.run.label_config)}</code>`;
+}
+
+function renderAreas(areas) {
+  const W = 520, rowH = 34, left = 170, right = 70, H = areas.length * rowH + 10;
+  const max = Math.max(...areas.map((a) => a.severity_sum));
+  const x = (v) => left + (W - left - right) * v / max;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Severity sum by area">`;
+  areas.forEach((a, i) => {
+    const y = i * rowH + 8, ctx = a.area.startsWith("Outside");
+    s += `<text x="${left - 8}" y="${y + 15}" text-anchor="end">${esc(a.area)}</text>
+      <rect x="${left}" y="${y + 4}" width="${Math.max(2, x(a.severity_sum) - left)}" height="16" rx="4"
+        fill="var(${ctx ? "--context" : "--series-1"})" data-i="${i}" class="hit"/>
+      <rect x="${left}" y="${y}" width="${W - left}" height="${rowH - 4}" fill="transparent" data-i="${i}" class="hit"/>
+      <text x="${x(a.severity_sum) + 6}" y="${y + 16}" style="fill:var(--text-primary)">${fmt(a.severity_sum)}</text>`;
+  });
+  $("#areas").innerHTML = s + "</svg>";
+  $("#areas").querySelectorAll(".hit").forEach((el) => {
+    const a = areas[+el.dataset.i];
+    el.addEventListener("mousemove", (e) => showTip(e, `<b>${esc(a.area)}</b><br>Severity sum ${fmt(a.severity_sum)}<br>
+      Complaints ${fmt(a.complaint_count)} (${pct(+a.share_of_complaints)} of all)<br>Mean severity ${(+a.mean_severity).toFixed(2)}<br>
+      <span class="muted">Topics: ${a.topics.join(", ")}</span>`));
+    el.addEventListener("mouseleave", hideTip);
+  });
+  $("#areatable").innerHTML = `<tr><th>Area</th><th class="num">Complaints</th><th class="num">Share</th><th class="num">Mean sev.</th><th class="num">Severity sum</th></tr>` +
+    areas.map((a) => `<tr><td>${esc(a.area)}</td><td class="num">${fmt(a.complaint_count)}</td><td class="num">${pct(+a.share_of_complaints)}</td>
+      <td class="num">${(+a.mean_severity).toFixed(2)}</td><td class="num">${fmt(a.severity_sum)}</td></tr>`).join("");
+}
+
+function renderTrend(monthly) {
+  const pts = monthly.filter((m) => m.completed).map((m) => ({ ...m, share: (m.complaints || 0) / m.completed }));
+  if (!pts.length) { $("#trend").innerHTML = `<p class="muted">No data.</p>`; return; }
+  const W = 520, H = 230, L = 44, R = 12, T = 12, B = 34;
+  const ymax = Math.min(1, Math.ceil(Math.max(...pts.map((p) => p.share)) * 10) / 10 + 0.05);
+  const x = (i) => L + (W - L - R) * (pts.length === 1 ? 0.5 : i / (pts.length - 1));
+  const y = (v) => T + (H - T - B) * (1 - v / ymax);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Monthly complaint share">`;
+  for (let g = 0; g <= ymax + 1e-9; g += 0.1) s += `<line x1="${L}" x2="${W - R}" y1="${y(g)}" y2="${y(g)}" stroke="var(--grid)"/>
+    <text x="${L - 6}" y="${y(g) + 4}" text-anchor="end">${Math.round(g * 100)}%</text>`;
+  pts.forEach((p, i) => { if (i % 3 === 0 || i === pts.length - 1) s += `<text x="${x(i)}" y="${H - 12}" text-anchor="middle">${p.month}</text>`; });
+  s += `<polyline fill="none" stroke="var(--series-1)" stroke-width="2" points="${pts.map((p, i) => `${x(i)},${y(p.share)}`).join(" ")}"/>`;
+  pts.forEach((p, i) => { const partial = i === 0 || i === pts.length - 1;
+    s += `<circle cx="${x(i)}" cy="${y(p.share)}" r="4" fill="${partial ? "var(--surface-1)" : "var(--series-1)"}" stroke="var(--series-1)" stroke-width="2"/>`; });
+  s += `<line id="xh" y1="${T}" y2="${H - B}" stroke="var(--text-muted)" stroke-dasharray="3 3" visibility="hidden"/>
+    <rect x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent" id="trendhit"/></svg>`;
+  $("#trend").innerHTML = s;
+  const svg = $("#trend svg"), hit = $("#trendhit"), xh = $("#xh");
+  hit.addEventListener("mousemove", (e) => {
+    const r = svg.getBoundingClientRect(), px = (e.clientX - r.left) * W / r.width;
+    const i = Math.max(0, Math.min(pts.length - 1, Math.round((px - L) / ((W - L - R) / Math.max(1, pts.length - 1)))));
+    const p = pts[i]; xh.setAttribute("x1", x(i)); xh.setAttribute("x2", x(i)); xh.setAttribute("visibility", "visible");
+    showTip(e, `<b>${p.month}</b>${i === 0 || i === pts.length - 1 ? " (partial month)" : ""}<br>Complaint share ${pct(p.share)}<br>
+      ${fmt(p.complaints || 0)} of ${fmt(p.completed)} classified reviews`);
+  });
+  hit.addEventListener("mouseleave", () => { hideTip(); xh.setAttribute("visibility", "hidden"); });
+}
+
+function renderIssues(issues) {
+  const max = Math.max(...issues.map((i) => i.priority_score));
+  $("#issues").innerHTML = `<tr><th class="num">Rank</th><th>Issue</th><th>Area</th><th class="num">Complaints</th>
+    <th class="num">Mean sev.</th><th class="num">Score</th><th class="barcell"></th></tr>` +
+    issues.map((i) => `<tr class="click" data-id="${esc(i.issue_id)}"><td class="num">${i.rank}</td>
+      <td><b>${esc(i.name || i.issue_id)}</b><br><code>${esc(i.issue_id)}</code></td><td>${esc(i.area)}</td>
+      <td class="num">${fmt(i.complaint_count)}</td><td class="num">${(+i.mean_severity).toFixed(2)}</td>
+      <td class="num">${fmt(i.priority_score)}</td>
+      <td class="barcell"><div class="bar" style="width:${(100 * i.priority_score / max).toFixed(1)}%;${i.area.startsWith("Outside") ? "background:var(--context)" : ""}"></div></td></tr>`).join("");
+  $("#issues").querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", () => openIssue(tr.dataset.id)));
+}
+
+async function openIssue(id) {
+  document.querySelectorAll("#issues tr").forEach((tr) => tr.classList.toggle("sel", tr.dataset.id === id));
+  const box = $("#issuedetail"); box.hidden = false; box.innerHTML = `<p class="muted">Loading reviews for <code>${esc(id)}</code>…</p>`;
+  try {
+    const d = await api("/api/issue?id=" + encodeURIComponent(id)), i = d.issue;
+    box.innerHTML = `<h2>${esc(i.name || i.issue_id)} <code>${esc(i.issue_id)}</code></h2>
+      <p class="sub">${esc(i.description || "")}</p>
+      <p class="muted">Rank ${i.rank} · ${fmt(i.complaint_count)} complaints · severity sum ${fmt(i.severity_sum)} · mean ${esc(i.mean_severity)} · showing up to 25 highest-severity members</p>
+      <div class="scroll"><table><tr><th>Review</th><th>Month</th><th>Intent</th><th class="num">Sev.</th><th>Evidence quote</th></tr>
+      ${d.reviews.map((r) => `<tr><td><button class="rid" data-rid="${esc(r.review_id)}">${esc(r.review_id.slice(0, 8))}…</button></td>
+        <td>${esc(r.review_month)}</td><td>${esc(r.intent)}</td><td class="num">${r.severity}</td><td>${esc(r.evidence_quote)}</td></tr>`).join("")}</table></div>`;
+    box.scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (e) { box.innerHTML = `<p class="err">Could not load issue: ${esc(e.message)}</p>`; }
+}
+
+async function openReview(id) {
+  const d = $("#drawer"); d.style.display = "block"; d.innerHTML = `<p class="muted">Loading ${esc(id)}…</p>`;
+  try {
+    const r = await api("/api/review?id=" + encodeURIComponent(id));
+    d.innerHTML = `<button class="x" aria-label="Close">×</button><h2>Review record</h2><code>${esc(r.review_id)}</code>
+      ${r.evidence_quote ? `<div class="quote">“${esc(r.evidence_quote)}”</div>` : ""}
+      <dl>${["status", "reason", "review_month", "review_rating", "topic", "area", "intent", "severity", "sentiment", "needs_review", "issue_id", "cache_source_id"]
+        .filter((k) => r[k] != null).map((k) => `<dt>${k}</dt><dd>${esc(Array.isArray(r[k]) ? r[k].join(", ") : r[k])}</dd>`).join("")}
+        <dt>entities</dt><dd>${esc((r.entities || []).join(", ") || "—")}</dd></dl>
+      <p class="muted">Stars are shown as metadata only; labels come from the review text.</p>`;
+  } catch (e) { d.innerHTML = `<button class="x">×</button><p class="err">${esc(e.message)}</p>`; }
+}
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("button.rid"); if (b) { openReview(b.dataset.rid); return; }
+  if (e.target.closest("#drawer .x")) $("#drawer").style.display = "none";
+});
+
+function renderQuality(info) {
+  const v = info.verification || {}, g = info.golden_eval || {};
+  $("#quality").innerHTML = `<h2>Label quality checks</h2>
+    <table><tr><th>Check</th><th class="num">Topic</th><th class="num">Intent</th><th class="num">Severity exact</th></tr>
+      <tr><td>Blind verifier (Claude Haiku) vs enricher (Jev), n=${fmt(v.verified)}</td><td class="num">${pct(v.topic_agreement)}</td><td class="num">${pct(v.intent_agreement)}</td><td class="num">${pct(v.severity_exact)}</td></tr>
+      <tr><td>Human golden set vs pipeline, n=${fmt(g.n)}</td><td class="num">${pct(g.topic_agreement)}</td><td class="num">${pct(g.intent_agreement)}</td><td class="num">${pct(g.severity_exact)}</td></tr></table>
+    <p class="muted">Golden labels were hand-made and never used as model inputs. 50 cases are a diagnostic sample, not a population accuracy estimate.</p>`;
+}
+function renderCoverage(info) {
+  const p = info.run.profile || {}, a = info.aggregates, q = a.quarantine_reasons || {};
+  $("#coverage").innerHTML = `<h2>Coverage &amp; provenance</h2>
+    <dl><dt>Input SHA-256</dt><dd><code>${esc((info.run.input_sha256 || "").slice(0, 16))}…</code></dd>
+      <dt>Rows</dt><dd>${fmt(p.records)} (empty texts ${fmt(p.empty_review_text)}, missing app version ${fmt(p.missing_app_version)})</dd>
+      <dt>Distinct texts</dt><dd>${fmt(p.distinct_nonempty_texts)}</dd>
+      <dt>Quarantine reasons</dt><dd>${Object.entries(q).map(([k, n]) => `${esc(k)}: ${fmt(n)}`).join("; ") || "none"}</dd>
+      <dt>Result origin</dt><dd>${Object.entries(a.origin_counts || {}).map(([k, n]) => `${esc(k)}: ${fmt(n)}`).join("; ")}</dd>
+      <dt>Ranking SHA-256</dt><dd><code>${esc((info.run.ranking_sha256 || "").slice(0, 16))}…</code> (regenerable offline)</dd></dl>`;
+}
+
+(async () => {
+  try {
+    const d = await api("/api/overview");
+    d.claims.forEach((c) => (CLAIMS[c.claim_id] = c));
+    renderHero(d.recommendation); renderTiles(d.info); renderAreas(d.info.aggregates.areas);
+    renderTrend(d.info.monthly || []); renderIssues(d.issues); renderQuality(d.info); renderCoverage(d.info);
+  } catch (e) { $("#hero").innerHTML = `<p class="err">Could not load data from the backend: ${esc(e.message)}</p>`; }
+})();
+</script>
+</body>
+</html>

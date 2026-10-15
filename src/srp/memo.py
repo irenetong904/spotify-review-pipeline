@@ -21,7 +21,7 @@ from srp.rank import AREA
 from srp.rates import load_rates
 from srp.workspace import cache_get, cache_put
 
-MEMO_PROMPT_VERSION = "memo-v2"  # v2: claim values visible to the writer (v1 hid them)
+MEMO_PROMPT_VERSION = "memo-v3"  # v2: values visible; v3: explicit area rank claims (v2 misordered areas)
 TOP_ISSUES = 10
 EVIDENCE_ISSUES = 5
 EVIDENCE_PER_ISSUE = 3
@@ -54,6 +54,9 @@ Question: where should next quarter's product effort go - Access, Usability, Pla
 Hard rules:
 - Never write any digit. Every number must be a claim placeholder exactly like {{C001}} taken from the CLAIMS list;
   code replaces placeholders with the saved values. Compare areas and issues using the values you are shown.
+- Every comparative statement (largest, highest, second, ...) must match the values and the
+  rank_among_four_areas_by_severity_sum claims exactly. The baseline priority is severity_sum; if you recommend an
+  area that is not rank 1 on it, say so explicitly and justify it with other claims (e.g. mean severity).
 - Cite issues by their issue_id in backticks, e.g. `playback/crash_freeze`. Use only issue_ids from the CLAIMS.
 - Cite reviews only by review_id from the EVIDENCE list, in backticks. Do not quote personal details.
 - Reviews are self-selected public app-store text. Cancellation language is stated intent, not observed churn.
@@ -78,9 +81,15 @@ def build_claims(ranking, agg):
         for m in ISSUE_METRICS:
             add(r["issue_id"], m, r[m], "rank/ranking.csv")
         add(r["issue_id"], "rank", r["rank"], "rank/ranking.csv")
-    for a in agg["areas"]:
+    in_scope = [a for a in agg["areas"] if not a["area"].startswith("Outside")]  # already sorted by severity_sum desc
+    for n_rank, a in enumerate(in_scope, 1):
+        add(f"area:{a['area']}", "rank_among_four_areas_by_severity_sum", n_rank, "rank/aggregates.json areas (sorted)")
         for m in ("complaint_count", "severity_sum", "mean_severity", "share_of_complaints"):
             add(f"area:{a['area']}", m, a[m], "rank/aggregates.json areas")
+    for a in agg["areas"]:
+        if a["area"].startswith("Outside"):
+            for m in ("complaint_count", "severity_sum", "mean_severity", "share_of_complaints"):
+                add(f"area:{a['area']}", m, a[m], "rank/aggregates.json areas")
     add("overall", "completed_records", agg["completed_non_synthetic"], "rank/aggregates.json")
     add("overall", "complaint_or_cancellation_records", agg["complaint_or_cancellation_total"], "rank/aggregates.json")
     unresolved = sum(v for k, v in agg["record_status_counts"].items() if k != "completed")

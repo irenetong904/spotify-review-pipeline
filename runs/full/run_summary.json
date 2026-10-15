@@ -1,0 +1,39 @@
+{
+  "input": "data/Final Assignment - Spotify Reviews Dataset/spotify_reviews_18months.csv",
+  "prior_workspace_spend_usd": 0,
+  "spend_cap_usd": 18.5,
+  "stages": {
+    "enrich": {
+      "result": {
+        "attempts": 4065,
+        "exact_text_reuse": 128239,
+        "label_config": "jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b",
+        "ledger": {
+          "cap_usd": 18.5,
+          "reserved_usd": 0.0,
+          "spent_usd": 0.13953744
+        },
+        "model_completed": 4065,
+        "phase": "initial",
+        "quarantined": 0,
+        "queue_at_start": 484189,
+        "result_cache_hits": 8492,
+        "rps_limit": 20.0,
+        "session_id": "enrich-20261014T200223-6e591a",
+        "status_counts": {
+          "completed": 140796,
+          "pending": 519813,
+          "quarantined": 13
+        },
+        "still_pending_after_failures": 0,
+        "stop_reason": "interrupted",
+        "wall_seconds": 217.55,
+        "workers": 8
+      },
+      "seconds": 217.835
+    }
+  },
+  "started_at": "2026-10-15T03:02:22+00:00",
+  "workers": 8,
+  "workspace": "runs/full"
+}

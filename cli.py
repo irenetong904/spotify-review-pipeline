@@ -118,6 +118,15 @@ def cmd_export_grading(args):
     print(json.dumps(res, indent=2))
 
 
+def cmd_load_db(args):
+    from dotenv import load_dotenv
+
+    from srp.db_load import load
+
+    load_dotenv(Path(__file__).resolve().parent / ".env")
+    print(json.dumps(load(args.workspace), indent=2))
+
+
 def cmd_run(args):
     from srp.pipeline import STAGES, run_pipeline
 
@@ -184,6 +193,9 @@ def main(argv=None):
     p.add_argument("--checkpoint-before", type=Path)
     p.add_argument("--checkpoint-after", type=Path)
     p.set_defaults(func=cmd_export_grading)
+    p = sub.add_parser("load-db", help="Load a workspace's saved outputs into Supabase Postgres (no model calls)")
+    p.add_argument("--workspace", required=True, type=Path)
+    p.set_defaults(func=cmd_load_db)
     p = sub.add_parser("replay", help="Offline: regenerate ranking from saved outputs and re-check the memo")
     p.add_argument("--workspace", required=True, type=Path)
     p.set_defaults(func=cmd_replay)
