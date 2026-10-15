@@ -49,17 +49,17 @@ Controls: budget $20.0, output-token cap 1024, max workers 4, rps limit 20, decl
 | base | False | group | 40 | 1.0 | 0.00013531 | 0.0054 | 2.315 | 17.3 |  |
 | base | False | memo | 2 | 1.0 | 0.0026637 | 0.0053 | 0.197 | 10.1 |  |
 | base | False | TOTAL |  |  |  | 23.0575 |  | 33766.9 | OVER BUDGET (budget $20.0) |
-| conservative | True | enrich | 484189 | 1.55 | 3.511e-05 | 26.3513 | 20 | 37524.6 |  |
-| conservative | True | verify | 2000 | 1.55 | 0.0001833 | 0.5682 | 2.054 | 1508.9 |  |
-| conservative | True | group | 40 | 1.55 | 0.0002145 | 0.0133 | 1.437 | 43.2 |  |
-| conservative | True | memo | 2 | 1.55 | 0.0026637 | 0.0083 | 0.197 | 15.7 |  |
-| conservative | True | TOTAL |  |  |  | 26.9411 |  | 39109.4 | OVER BUDGET (budget $20.0) |
-| conservative | False | enrich | 660609 | 1.55 | 3.511e-05 | 35.9527 | 20 | 51197.2 |  |
-| conservative | False | verify | 2000 | 1.55 | 0.0001833 | 0.5682 | 2.054 | 1508.9 |  |
-| conservative | False | group | 40 | 1.55 | 0.0002145 | 0.0133 | 1.437 | 43.2 |  |
-| conservative | False | memo | 2 | 1.55 | 0.0026637 | 0.0083 | 0.197 | 15.7 |  |
-| conservative | False | TOTAL |  |  |  | 36.5425 |  | 52782.0 | OVER BUDGET (budget $20.0) |
+| conservative | True | enrich | 484189 | 1.1 | 3.511e-05 | 18.7009 | 20 | 26630.4 |  |
+| conservative | True | verify | 2000 | 1.1 | 0.0001833 | 0.4033 | 2.054 | 1070.9 |  |
+| conservative | True | group | 40 | 1.1 | 0.0002145 | 0.0094 | 1.437 | 30.6 |  |
+| conservative | True | memo | 2 | 1.1 | 0.0026637 | 0.0059 | 0.197 | 11.2 |  |
+| conservative | True | TOTAL |  |  |  | 19.1195 |  | 27760.0 | within budget (budget $20.0) |
+| conservative | False | enrich | 660609 | 1.1 | 3.511e-05 | 25.5148 | 20 | 36333.5 |  |
+| conservative | False | verify | 2000 | 1.1 | 0.0001833 | 0.4033 | 2.054 | 1070.9 |  |
+| conservative | False | group | 40 | 1.1 | 0.0002145 | 0.0094 | 1.437 | 30.6 |  |
+| conservative | False | memo | 2 | 1.1 | 0.0026637 | 0.0059 | 0.197 | 11.2 |  |
+| conservative | False | TOTAL |  |  |  | 25.9334 |  | 37463.1 | OVER BUDGET (budget $20.0) |
 
-**WARNING: base (reuse=False) $23.0575, conservative (reuse=True) $26.9411, conservative (reuse=False) $36.5425 exceed the $20.0 budget.**
+**WARNING: base (reuse=False) $23.0575, conservative (reuse=False) $25.9334 exceed the $20.0 budget.**
 
 Formulas: `item_cost = billed_units x price_per_unit`; per stage `cost = units x billed_calls_per_unit x cost_per_call`; `seconds = units x attempts_per_unit / min(workers / latency, rps_limit)`; fixed ingest overhead added once. Memo/group are fixed counts, not multiplied by reviews. Verification is a declared fraction of distinct texts. The 100-review sample is an initial estimate; refresh after 500 and 10,000.

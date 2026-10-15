@@ -1,6 +1,6 @@
 # Editable calculator controls and projection assumptions. Measured pilot results never depend on this file.
 controls:
-  budget_usd: 20.00              # course limit for the whole project (API only); full run hard cap: 16
+  budget_usd: 20.00              # course limit for the whole project (API only); full run hard cap: 18.5
   max_output_tokens: 1024        # cap on verify/group outputs incl. thinking (memo: 6000 in code)
   max_workers: 4                 # maximum concurrency for the full run
   rps_limit: 20                  # shared requests/second limit across workers
@@ -23,10 +23,10 @@ scenarios:
     retry_multiplier: 1.0        # x measured attempts per unit
     verify_fraction: 0.05
   conservative:
-    token_stat: p90
+    token_stat: p90              # 90th-percentile billed tokens per call
     latency_stat: p90
-    retry_multiplier: 1.5
-    extra_attempt_rate: 0.05     # +5% re-attempts on top of measured
+    retry_multiplier: 1.0
+    extra_attempt_rate: 0.10     # +10% billed re-attempts; measured: 0 retries in 879 Jev / 0 in 798 Haiku calls
     verify_fraction: 0.05
 
 local_compute:

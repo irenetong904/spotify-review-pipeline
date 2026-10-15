@@ -12,5 +12,5 @@ not used for any prompt, threshold, rubric or grouping change.
 | 215463ae-95b7-4481-8747-1754b68f31fa | intent | request | complaint | review reports failures (cannot play / open), so it is not a pure request |
 | 99b93e31-9f15-4daa-88ac-349ab0419c48 | intent | request | complaint | "Criticizes the update; the implied wish ... comes after the complaint" |
 
-Both versions are evaluated and reported: `eval_results_v1_frozen.json` (original labels) and `eval_results.json`
+Both versions are evaluated and reported: `v1_frozen_labels/eval_results.json` (original labels) and `eval_results.json`
 (corrected). The README reports both.
