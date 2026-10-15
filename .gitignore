@@ -1,6 +1,6 @@
 # Secrets — must exist before first commit
 .env
-.env.*
+.env*
 !.env.example
 
 # Raw / private data (not committed; see README for checksum + placement)
