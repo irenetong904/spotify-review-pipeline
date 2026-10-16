@@ -16,7 +16,7 @@ Jun–Oct 2022 and Jun–Oct 2023, the fastest of the four (observed, not causal
 | Decision memo | [results/memo.md](results/memo.md) · claims [grading/claims.csv](grading/claims.csv) · all claims [results/claims_all.csv](results/claims_all.csv) |
 | Cost calculator | [cost/](cost/) — offline replay: `python cost/calculator.py` · [measured 100-review report](cost/report.md) |
 | Resume recording | [evals/resume/resume_demo.mp4](evals/resume/resume_demo.mp4) + [checkpoints](evals/resume/) |
-| Total API spend | **$17.48** for the whole project (full run $16.91; development & tests $0.57) — course limit $20 |
+| Total API spend | **$17.48** computed for the whole project (full run $16.91; development & tests $0.57); provider dashboards show **$17.46** ([reconciliation](cost/reconciliation.md)) — course limit $20 |
 
 ---
 
@@ -236,6 +236,7 @@ editable, dated [rates.csv](cost/rates.csv); paid pilots are separate explicit c
   across workers; output-token caps per role; bounded retries with jitter and `retry-after`; invalid output retried once;
   declared fallback fraction 0 (no stronger-model fallback used).
 - Local compute (a laptop running orchestration) is not metered and is reported as unknown, not zero.
+- **Reconciled with provider dashboards** ([cost/reconciliation.md](cost/reconciliation.md)): TypeSafe $16.77 billed vs $16.77 computed (0.02%); Anthropic $0.69 vs $0.71 (reporting lag).
 
 ---
 
@@ -301,7 +302,7 @@ and in Vercel server-side environment variables.
 | **D4 Recommendation, alternatives, limitations** | [results/memo.md](results/memo.md) (recommendation, recent trend, alternatives, limitations); [like-for-like trend](#like-for-like-trend-same-months-two-years); [Limitations](#limitations) |
 | **T1 Golden 50, per-field comparison, error analysis** | [evals/golden/eval_report.md](evals/golden/eval_report.md), [per_case.csv](evals/golden/per_case.csv), [quote_support_review.csv](evals/golden/quote_support_review.csv), [label_corrections.md](evals/golden/label_corrections.md) |
 | **T2 Independent verification, planted errors, injection** | [results/verify_report.json](results/verify_report.json), [verify_disagreements.csv](results/verify_disagreements.csv), [disagreement analysis](docs/verifier_disagreement_analysis.md); [planted_error_result.json](evals/system_tests/planted_error/planted_error_result.json); [injection_report.md](evals/system_tests/injection/injection_report.md) |
-| **T3 Pilot, offline calculator, retry/spend/recovery controls** | [cost/report.md](cost/report.md), [pilot_calls.jsonl](cost/pilot_calls.jsonl), [rates.csv](cost/rates.csv), [usage.csv](cost/usage.csv), [assumptions.yaml](cost/assumptions.yaml); tests `test_spend_cap_*`, `test_retry_*`, `test_interrupt_and_resume_*`; [evals/resume/](evals/resume/) |
+| **T3 Pilot, offline calculator, retry/spend/recovery controls** | [cost/report.md](cost/report.md), [reconciliation](cost/reconciliation.md), [pilot_calls.jsonl](cost/pilot_calls.jsonl), [rates.csv](cost/rates.csv), [usage.csv](cost/usage.csv), [assumptions.yaml](cost/assumptions.yaml); tests `test_spend_cap_*`, `test_retry_*`, `test_interrupt_and_resume_*`; [evals/resume/](evals/resume/) |
 | **W1 Full ingestion, coverage, classification** | [reports/ingestion_report.json](reports/ingestion_report.json); [Self-check](#self-check) (coverage 1.0, 660,609/660,609) |
 | **W2 Staged program, bounded calls, handoffs, resume** | [cli.py](cli.py), [src/srp/](src/srp/); [results/run_log.jsonl](results/run_log.jsonl); [grading/calls.jsonl.gz](grading/) (1 review per enrich request); [evals/resume/resume_demo.mp4](evals/resume/resume_demo.mp4) |
 | **W3 Reproducible ranking + deployed dashboard with DB, backend, grounded AI recommendations** | `python cli.py rerank` (from committed files; identical) and `python cli.py replay`; https://spotify-review-dashboard-wheat.vercel.app; [db/schema.sql](db/schema.sql); [dashboard/](dashboard/) |
