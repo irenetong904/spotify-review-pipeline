@@ -154,6 +154,12 @@ def cmd_run(args):
         print(f"[{name}] {st['seconds']}s {json.dumps(brief, default=str)[:600]}")
 
 
+def cmd_rerank(args):
+    from srp.rank import rerank_from_export
+
+    print(json.dumps(rerank_from_export(args.grading), indent=2))
+
+
 def cmd_replay(args):
     from srp.pipeline import replay
 
@@ -208,6 +214,9 @@ def main(argv=None):
     p.add_argument("--input", required=True, type=Path)
     p.add_argument("--out", type=Path, default=Path("results"))
     p.set_defaults(func=cmd_publish_results)
+    p = sub.add_parser("rerank", help="Offline: rebuild the baseline ranking from the committed grading/ export only")
+    p.add_argument("--grading", type=Path, default=Path("grading"))
+    p.set_defaults(func=cmd_rerank)
     p = sub.add_parser("replay", help="Offline: regenerate ranking from saved outputs and re-check the memo")
     p.add_argument("--workspace", required=True, type=Path)
     p.set_defaults(func=cmd_replay)

@@ -1,9 +1,9 @@
 {
-  "code_version_git": "3a21724972b1309f7d82e1a932d9c568015fcf58",
+  "code_version_git": "de9527ce0eaa0d37d708e9d023d8ca2a91228ec3",
   "configs": {
     "group": "claude-haiku-5-5+effort-low+group-v1+taxonomy-v1",
     "label_config": "jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b",
-    "memo": "claude-haiku-5-5+effort-medium+memo-v6",
+    "memo": "claude-haiku-5-5+effort-medium+memo-v8",
     "verify": "claude-haiku-5-5+effort-low+verify-v1+rubric.002865e8"
   },
   "grading_export": "grading/ (records.jsonl.gz, calls.jsonl.gz, membership.csv, ranking.csv, claims.csv, ...)",
@@ -13,19 +13,22 @@
   },
   "outputs_sha256": {
     "aggregates.csv": "e577e693b0df0a879396fcab1a6e7a65374f064411631db5f96b5415070e40b3",
-    "aggregates.json": "4bea4a8f9de12eb137ffa36616d70cd09a336c60c0e677566fee637cd5c2d80d",
+    "aggregates.json": "662113cc0d501c6f87cd330cca5714795079cbd4f807d5afcc3026e55f6177f3",
     "claims.csv": "bda2b7fc5f7266a2526dabe3e00b9e64e1e1464e1ac92f86b23646524415b7be",
-    "claims_all.csv": "dce4af8297e1f9ae03a61b34e2cf1e1d8370a7662af7bc037f9cf0ced5373e55",
-    "evidence_pack.json": "d89f4d2dd322c4b1b3a2b702f7c2a797beaa58c98f8c255eb4f763253cacd6a9",
+    "claims_all.csv": "30a4b46edeb0ef8827adbaf7c2ea5ba1097987023e5b85dac49dee4a6547058b",
+    "evidence_pack.json": "5e19e22af7530014eb71743bcf4a47df2de7910f320f5af9b182d2165315b084",
     "ingestion_report.json": "72bb243ffdfeb15bdda9c42bcad4b7692b1ec0f4c27a43e4cbb7aa537ec6ad5b",
     "issues.json": "c98848e3fd7d8c6502694fd6e0b345342b45adf4b1acfe1e8b6d94e116e1a280",
-    "memo.json": "fd5293e6bd4d47a589527b44923db4732ff84fea2f7c65b84a8a628e267b82c5",
-    "memo.md": "cf21a17c49d877a82f0e03e602687ac448e02f9f897b7a75b5942967133a1ca4",
-    "memo_check.json": "f139d84aa904f77c3a749362b7953094167e32991952931bcb4f12b1734b3cbf",
+    "memo.json": "ad44ef14e76fe75a17a4f4a679b4dff2837bdec3d98ce30b6cddd514c116c488",
+    "memo.md": "06d50e372a942544f1940eda703b7fa9ad5709153c74c04ca11abd5cc93b383c",
+    "memo_check.json": "57fde7fad0e2544628eb505d957a2bd3028a18a46fdd2f48f12c511c12c7d8c1",
+    "memo_rejected_drafts.jsonl": "1678b135ba15163f85f0ace88a4d710bcaf320b70e9f76ee55728fb2f140d2ce",
     "quarantine.jsonl": "06e77c5c9be7d4cfe1bf7315c0dee1d83a17d33616f91c1e5c7d002cbdb093d0",
     "ranking.csv": "e4bffb66a954a4c55d61638540aa06e23c322ec1b5f47ebec585f2e55ed01fed",
     "run_log.jsonl": "90c9696961e70d7e169a99acaf0bc75442a933198477832355bbd96ec0cdc39e",
-    "run_summary.json": "adfb44fed27820d7f4cc4c2d47f52f110d922373d2aca40502a50beab81f0676",
+    "run_summary.json": "cd72fc95c0132659ea88fedf8f8181f621840cbba48c6fcc97e1c0ca877e84b1",
+    "severity_sensitivity.json": "0005dd1d13cb8c680a4104071c69cc8591d6c8c1776256ad6d96268380e69788",
+    "trend_comparable_periods.csv": "0d83d5c2e754773763b347f63be8a80b89a39cc4a25527e7c04f721017bbf137",
     "verifier_labels.jsonl": "9ab9570c95726674676f53a5b930282e00387ff366c805562797d28226b32533",
     "verify_disagreements.csv": "825c5a35cc4ae38cb7d7b8c325574075ef8719bca3a7804a25b8855bfd60ebd8",
     "verify_report.json": "67da92cc31b7df7e04424c7e2944bb42b39056f1501f15ecf77152c29e7a6448"
@@ -43,7 +46,7 @@
     "rubric/taxonomy_v1.yaml": "88e29379f26dbfe23e369cd916cc6f4e6529cf6a00368c6013d60f7b0293626c",
     "src/srp/group.py": "bb0fd0427aaff53a0a259ff68d54bdb795ee8ca290d5dcffac06a58fd9431726",
     "src/srp/jev.py": "e4f9c69a957159a43ddac38966323608b882ab52953fe96e20a3a0942d81a554",
-    "src/srp/memo.py": "08783f85d174180e2bc37066b6508da426f9f69897fb34e233102d2fd43c4158",
+    "src/srp/memo.py": "b43a0c382f5765c68caeba03cdba67ed355c89f49e36efca03f5d498f10b67ac",
     "src/srp/verify.py": "2ef3ecff2cacf272db873784cde3b33b30ed90ff809651911a06293c7bac00e7"
   },
   "source": {

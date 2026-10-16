@@ -96,6 +96,7 @@ def measured(calls, usage, runs, records):
                 **{item: sum(c.get(item) or 0 for c in cs) for item in ITEMS},
                 "api_cost_usd": round(cost_by[(run, role)], 8),
                 "stage_seconds": stage.get("seconds"),
+                "throughput_req_per_s": round(len(cs) / stage["seconds"], 3) if cs and stage.get("seconds") else 0,
             }
             table.append(row)
     return table
@@ -203,15 +204,17 @@ def report_md(meas, proj, runs, records, assumptions, rates, usage):
          f"- API spend: cold ${api_cold:.6f}, warm ${api_warm:.6f} (incremental). Unknown-usage attempts: {unknown}",
          f"- Cost per 1,000 input rows (cold): ${api_cold / max(n, 1) * 1000:.4f}; per completed record: ${api_cold / max(completed, 1):.6f}",
          f"- Local compute: {assumptions['local_compute']['note']} Cost: **{assumptions['local_compute']['cost_usd']}** (not counted as zero).",
-         "", "| run | stage | provider | model | effort | config | batch | workers | requests | attempts | failed | retries | in tok | cache-w | cache-r | out tok | API $ | stage s |",
-         "|" + "---|" * 18]
+         "", "| run | stage | provider | model | effort | config | batch | workers | requests | attempts | failed | retries | in tok | cache-w | cache-r | out tok | API $ | stage s | req/s |",
+         "|" + "---|" * 19]
     for m in meas:
         L.append(f"| {m['run']} | {m['stage']} | {m['provider']} | `{m['model']}` | {m['effort']} | `{m['config']}` | {m['batch_size']} "
                  f"| {m['workers']} | {m['requests']} | {m['attempts']} | {m['failed_attempts']} | {m['invalid_output_retries']} "
                  f"| {m['input_tokens']} | {m['cache_write_input_tokens']} | {m['cache_read_input_tokens']} | {m['output_tokens']} "
-                 f"| {m['api_cost_usd']:.6f} | {m['stage_seconds']} |")
+                 f"| {m['api_cost_usd']:.6f} | {m['stage_seconds']} | {m['throughput_req_per_s']} |")
     ctl = assumptions["controls"]
-    L += ["", "## Rates (editable: `rates.csv`)", "", "| model | item | USD/unit | as quoted | source | checked |", "|---|---|---|---|---|---|"]
+    L += ["", "Infrastructure: Supabase (free plan) and Vercel (Hobby plan) cost $0 for this project; provider prompt-cache "
+          "savings: none occurred (no cache-read tokens in any call). Local laptop compute: not metered (unknown).",
+          "", "## Rates (editable: `rates.csv`)", "", "| model | item | USD/unit | as quoted | source | checked |", "|---|---|---|---|---|---|"]
     for (model, item), r in rates.items():
         L.append(f"| `{model}` | {item} | {r['price_usd_per_unit']} | {r['price_as_quoted']} | {r['source_url']} | {r['checked_on']} |")
     L += ["", "## Full-run projection (660,622 rows; 660,609 classifications; 13 empty-text quarantines)", "",

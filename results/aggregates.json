@@ -64,6 +64,36 @@
       ]
     }
   ],
+  "comparable_periods": [
+    {
+      "area_complaints": {
+        "Access": 2110,
+        "Billing/support": 3788,
+        "Outside the four areas": 8359,
+        "Playback": 12432,
+        "Usability": 17976
+      },
+      "cancellation": 2789,
+      "classified": 148357,
+      "complaint_share": "0.301064",
+      "complaints": 44665,
+      "period": "2022 months 06-10"
+    },
+    {
+      "area_complaints": {
+        "Access": 5460,
+        "Billing/support": 30084,
+        "Outside the four areas": 80852,
+        "Playback": 12506,
+        "Usability": 32526
+      },
+      "cancellation": 16003,
+      "classified": 273370,
+      "complaint_share": "0.590511",
+      "complaints": 161428,
+      "period": "2023 months 06-10"
+    }
+  ],
   "complaint_or_cancellation_total": 296619,
   "completed_non_synthetic": 660609,
   "intent_counts": {

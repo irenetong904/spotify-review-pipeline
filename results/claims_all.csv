@@ -81,7 +81,26 @@ C079,area:Outside the four areas,complaint_count,114306,rank/aggregates.json are
 C080,area:Outside the four areas,severity_sum,245796,rank/aggregates.json areas
 C081,area:Outside the four areas,mean_severity,2.150333,rank/aggregates.json areas
 C082,area:Outside the four areas,share_of_complaints,0.385363,rank/aggregates.json areas
-C083,overall,completed_records,660609,rank/aggregates.json
-C084,overall,complaint_or_cancellation_records,296619,rank/aggregates.json
-C085,overall,unresolved_records_pending_or_quarantined,13,rank/aggregates.json record_status_counts
-C086,overall,cancellation_intent_records,26366,rank/aggregates.json
+C083,period:2022 months 06-10,classified_records,148357,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C084,period:2022 months 06-10,complaint_or_cancellation_records,44665,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C085,period:2022 months 06-10,complaint_share_of_classified,0.301064,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C086,period:2022 months 06-10,cancellation_intent_records,2789,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C087,period:2022 months 06-10 area:Access,complaint_count,2110,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C088,period:2022 months 06-10 area:Billing/support,complaint_count,3788,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C089,period:2022 months 06-10 area:Outside the four areas,complaint_count,8359,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C090,period:2022 months 06-10 area:Playback,complaint_count,12432,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C091,period:2022 months 06-10 area:Usability,complaint_count,17976,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C092,period:2023 months 06-10,classified_records,273370,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C093,period:2023 months 06-10,complaint_or_cancellation_records,161428,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C094,period:2023 months 06-10,complaint_share_of_classified,0.590511,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C095,period:2023 months 06-10,cancellation_intent_records,16003,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C096,period:2023 months 06-10 area:Access,complaint_count,5460,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C097,period:2023 months 06-10 area:Billing/support,complaint_count,30084,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C098,period:2023 months 06-10 area:Outside the four areas,complaint_count,80852,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C099,period:2023 months 06-10 area:Playback,complaint_count,12506,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C100,period:2023 months 06-10 area:Usability,complaint_count,32526,"rank/aggregates.json comparable_periods (same months, partial first/last months excluded)"
+C101,overall,completed_records,660609,rank/aggregates.json
+C102,overall,complaint_or_cancellation_records,296619,rank/aggregates.json
+C103,overall,quarantined_records_empty_review_text,13,rank/aggregates.json quarantine_reasons (empty texts cannot be classified)
+C104,overall,unclassified_records_pending_or_failed,0,rank/aggregates.json record_status_counts + quarantine_reasons
+C105,overall,cancellation_intent_records,26366,rank/aggregates.json

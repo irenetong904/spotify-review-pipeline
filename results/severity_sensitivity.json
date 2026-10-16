@@ -1,0 +1,52 @@
+[
+  {
+    "area": "Outside the four areas",
+    "sample_n": 321,
+    "jev_mean_sev": 2.1993769470404985,
+    "verifier_mean_sev": 1.9158878504672898,
+    "ratio": 0.8711048158640227,
+    "severity_sum": 245796,
+    "verifier_calibrated_severity_sum": 214114.07932011332,
+    "complaint_count": 114306
+  },
+  {
+    "area": "Usability",
+    "sample_n": 329,
+    "jev_mean_sev": 2.641337386018237,
+    "verifier_mean_sev": 2.486322188449848,
+    "ratio": 0.9413118527042578,
+    "severity_sum": 215962,
+    "verifier_calibrated_severity_sum": 203287.59033371691,
+    "complaint_count": 82988
+  },
+  {
+    "area": "Playback",
+    "sample_n": 174,
+    "jev_mean_sev": 3.3505747126436782,
+    "verifier_mean_sev": 3.2011494252873565,
+    "ratio": 0.9554030874785592,
+    "severity_sum": 143019,
+    "verifier_calibrated_severity_sum": 136640.79416809606,
+    "complaint_count": 42366
+  },
+  {
+    "area": "Billing/support",
+    "sample_n": 198,
+    "jev_mean_sev": 2.803030303030303,
+    "verifier_mean_sev": 2.54040404040404,
+    "ratio": 0.9063063063063063,
+    "severity_sum": 128973,
+    "verifier_calibrated_severity_sum": 116889.04324324324,
+    "complaint_count": 45504
+  },
+  {
+    "area": "Access",
+    "sample_n": 46,
+    "jev_mean_sev": 3.869565217391304,
+    "verifier_mean_sev": 3.760869565217391,
+    "ratio": 0.9719101123595506,
+    "severity_sum": 44570,
+    "verifier_calibrated_severity_sum": 43318.03370786517,
+    "complaint_count": 11455
+  }
+]

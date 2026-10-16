@@ -1,12 +1,12 @@
 {
-  "ended_at": "2026-10-15T14:59:59+00:00",
+  "ended_at": "2026-10-15T23:58:36+00:00",
   "input": "data/Final Assignment - Spotify Reviews Dataset/spotify_reviews_18months.csv",
   "ledger": {
     "cap_usd": 18.5,
     "reserved_usd": 0.0,
-    "spent_usd": 16.88157368
+    "spent_usd": 16.90702418
   },
-  "prior_workspace_spend_usd": 16.877292,
+  "prior_workspace_spend_usd": 16.907024,
   "ranking_sha256": "e4bffb66a954a4c55d61638540aa06e23c322ec1b5f47ebec585f2e55ed01fed",
   "spend_cap_usd": 18.5,
   "stages": {
@@ -15,7 +15,7 @@
         "passed",
         []
       ],
-      "seconds": 29.406
+      "seconds": 1.412
     },
     "rank": {
       "result": [
@@ -351,6 +351,36 @@
               ]
             }
           ],
+          "comparable_periods": [
+            {
+              "area_complaints": {
+                "Access": 2110,
+                "Billing/support": 3788,
+                "Outside the four areas": 8359,
+                "Playback": 12432,
+                "Usability": 17976
+              },
+              "cancellation": 2789,
+              "classified": 148357,
+              "complaint_share": "0.301064",
+              "complaints": 44665,
+              "period": "2022 months 06-10"
+            },
+            {
+              "area_complaints": {
+                "Access": 5460,
+                "Billing/support": 30084,
+                "Outside the four areas": 80852,
+                "Playback": 12506,
+                "Usability": 32526
+              },
+              "cancellation": 16003,
+              "classified": 273370,
+              "complaint_share": "0.590511",
+              "complaints": 161428,
+              "period": "2023 months 06-10"
+            }
+          ],
           "complaint_or_cancellation_total": 296619,
           "completed_non_synthetic": 660609,
           "intent_counts": {
@@ -551,11 +581,11 @@
           }
         }
       ],
-      "seconds": 2.154
+      "seconds": 4.682
     }
   },
-  "started_at": "2026-10-15T14:59:27+00:00",
-  "wall_seconds": 31.562,
+  "started_at": "2026-10-15T23:58:30+00:00",
+  "wall_seconds": 6.094,
   "workers": 1,
   "workspace": "runs/full"
 }

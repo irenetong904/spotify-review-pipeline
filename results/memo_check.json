@@ -1,7 +1,8 @@
 {
-  "attempts": 2,
+  "attempts": 0,
   "errors": [],
-  "from_cache": false,
-  "memo_config": "claude-haiku-5-5+effort-medium+memo-v6",
+  "from_cache": true,
+  "history": [],
+  "memo_config": "claude-haiku-5-5+effort-medium+memo-v8",
   "status": "passed"
 }

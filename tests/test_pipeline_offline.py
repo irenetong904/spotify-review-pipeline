@@ -93,10 +93,12 @@ class FakeClaude:
         self.memo_calls += 1
         claim = re.search(r"^\{\{(C\d{3})\}\}:", user, re.M).group(1)
         issue = re.search(r"\{\{C\d{3}\}\}: ([a-z]+/[a-z_]+) ", user).group(1)
-        rid = re.search(r'review_id="([^"]+)"', user).group(1)
+        pack = re.findall(r'<evidence issue="([^"]+)" review_id="([^"]+)"', user)
+        rid = next(r for i, r in pack if i == issue)
+        cited = " ".join(f"`{r}`" for _, r in pack[:3])
         digit = " in 3 weeks" if self.memo_digit_first and self.memo_calls == 1 else ""
         return {"recommended_area": "Playback", "headline": "Fix playback first",
-                "memo_markdown": f"## Recommendation\nPrioritise `{issue}` ({{{{{claim}}}}} complaints){digit}. See `{rid}`.",
+                "memo_markdown": f"## Recommendation\nPrioritise `{issue}` ({{{{{claim}}}}} complaints){digit}. See `{rid}` and {cited}.",
                 "recommendations": [{"title": "Fix crashes", "issue_ids": [issue], "claim_ids": ["{{" + claim + "}}"],
                                      "review_ids": [rid], "rationale": "Highest baseline score."}]}, ev
 
@@ -185,7 +187,10 @@ def test_memo_checker_rules():
     claims = [{"claim_id": "C001", "issue_id": "playback/crash_freeze", "metric": "severity_sum", "value": "9"}]
     ranking = [{"issue_id": "playback/crash_freeze"}]
     base = {"headline": "h", "recommendations": []}
-    assert check_memo({**base, "memo_markdown": "Fix `playback/crash_freeze` {{C001}}"}, claims, [], ranking) == []
+    pack = [{"review_id": f"00000000-0000-0000-0000-00000000000{i}", "issue_id": "playback/crash_freeze"} for i in range(3)]
+    cites = " ".join(f"`{p['review_id']}`" for p in pack)
+    assert check_memo({**base, "memo_markdown": f"Fix `playback/crash_freeze` {{{{C001}}}} {cites}"}, claims, pack, ranking) == []
+    assert any("at least 3" in e for e in check_memo({**base, "memo_markdown": "Fix `playback/crash_freeze` {{C001}}"}, claims, [], ranking))
     errs = check_memo({**base, "memo_markdown": "Fix `playback/x` {{C002}} with 40% gain"}, claims, [], ranking)
     assert any("digit" in e for e in errs) and any("C002" in e for e in errs) and any("playback/x" in e for e in errs)
 
@@ -219,3 +224,31 @@ def test_issue_attribution_check():
               {"claim_id": "C002", "issue_id": "usability/general", "metric": "rank", "value": "5"}]
     assert check_issue_attribution("`usability/ads` ranks third ({{C001}}), `usability/general` fifth ({{C002}}).", claims) == []
     assert check_issue_attribution("`usability/general` ranks third ({{C001}}).", claims)
+
+
+def test_area_and_period_claims_are_not_issue_claims():
+    from srp.memo import check_issue_attribution
+    claims = [{"claim_id": "C001", "issue_id": "area:Billing/support", "metric": "complaint_count", "value": "5"},
+              {"claim_id": "C002", "issue_id": "period:2023 months 06-10 area:Billing/support", "metric": "complaint_count", "value": "9"}]
+    assert check_issue_attribution("`usability/ads` is large, while Billing/support has {{C001}} and recently {{C002}}.", claims) == []
+
+
+def test_claim_ids_are_sequential_and_rank_superlatives():
+    from srp.memo import build_claims, check_superlatives
+    agg = {"areas": [{"area": a, "complaint_count": c, "severity_sum": c * 2, "mean_severity": m, "share_of_complaints": "0.1",
+                      "topics": []} for a, c, m in (("Usability", 9, "2.0"), ("Playback", 5, "3.0"), ("Access", 1, "4.0"))],
+           "comparable_periods": [{"period": "2022 months 06-10", "classified": 10, "complaints": 4, "complaint_share": "0.4",
+                                   "cancellation": 1, "area_complaints": {"Usability": 17976, "Access": 3}}],
+           "completed_non_synthetic": 15, "complaint_or_cancellation_total": 15, "record_status_counts": {"completed": 15},
+           "quarantine_reasons": {}, "intent_counts": {}}
+    claims = build_claims([], agg)
+    assert [c["claim_id"] for c in claims] == [f"C{i:03d}" for i in range(1, len(claims) + 1)]
+    from srp.memo import ISSUE_ID, ISSUE_METRICS
+    contract = [c for c in claims if c["metric"] in ISSUE_METRICS and ISSUE_ID.match(c["issue_id"])]
+    assert all(not c["issue_id"].startswith(("period:", "area:", "overall")) for c in contract)
+    rank_cnt = {c["issue_id"]: c["claim_id"] for c in claims if c["metric"] == "rank_among_four_areas_by_complaint_count"}
+    mean = {c["issue_id"]: c["claim_id"] for c in claims if c["metric"] == "mean_severity"}
+    ok = f"Access ranks lowest on complaint count ({{{{{rank_cnt['area:Access']}}}}}), mean {{{{{mean['area:Access']}}}}}."
+    assert check_superlatives(ok, claims) == []
+    bad = f"Usability ranks lowest on complaint count ({{{{{rank_cnt['area:Usability']}}}}})."
+    assert check_superlatives(bad, claims)

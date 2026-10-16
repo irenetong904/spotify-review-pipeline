@@ -78,7 +78,9 @@ def aggregates(con, ranking):
                       "mean_severity": mean_string(a["severity_sum"], a["complaint_count"]),
                       "share_of_complaints": mean_string(a["complaint_count"], total_c) if total_c else None,
                       "topics": sorted(a["topics"])})
+    periods = comparable_periods(con)
     return {
+        "comparable_periods": periods,
         "record_status_counts": status, "quarantine_reasons": reasons,
         "completed_non_synthetic": len(recs),
         "origin_counts": dict(Counter(r[4] for r in recs)),
@@ -95,6 +97,38 @@ def aggregates(con, ranking):
     }
 
 
+def comparable_periods(con):
+    """Same calendar months in the first and last year of the window, excluding the partial first/last months.
+    Returns complaint counts by area with denominators, for a like-for-like trend (not a causal claim)."""
+    rows = con.execute("""SELECT substr(r.review_timestamp,1,7), json_extract(e.fields_json,'$.topic'),
+                                 json_extract(e.fields_json,'$.intent')
+                          FROM reviews r JOIN enriched e USING(review_id) WHERE e.synthetic=0""").fetchall()
+    months = sorted({m for m, *_ in rows})
+    if len(months) < 3:
+        return []
+    full = months[1:-1]
+    y0, y1 = full[0][:4], full[-1][:4]
+    common = sorted({m[5:] for m in full if m[:4] == y0} & {m[5:] for m in full if m[:4] == y1})
+    if y0 == y1 or not common:
+        return []
+    out = []
+    for y in (y0, y1):
+        c = Counter()
+        for m, topic, intent in rows:
+            if m[:4] == y and m[5:] in common:
+                c["classified"] += 1
+                if intent in ("complaint", "cancellation"):
+                    c["complaints"] += 1
+                    c[AREA[topic]] += 1
+                if intent == "cancellation":
+                    c["cancellation"] += 1
+        out.append({"period": f"{y} months {common[0]}-{common[-1]}", "classified": c["classified"],
+                    "complaints": c["complaints"], "cancellation": c["cancellation"],
+                    "complaint_share": mean_string(c["complaints"], c["classified"]) if c["classified"] else None,
+                    "area_complaints": {a: c[a] for a in sorted(set(AREA.values()))}})
+    return out
+
+
 def ranking_hash(ws):
     import hashlib
 
@@ -103,3 +137,30 @@ def ranking_hash(ws):
 
 def dump(o):
     return json.dumps(o, indent=2)
+
+
+def rerank_from_export(grading_dir):
+    """Offline, from committed files only: rebuild the baseline ranking from grading/records.jsonl(.gz) and
+    grading/membership.csv, then compare with grading/ranking.csv and grading/claims.csv. No workspace, no model."""
+    import gzip
+    from pathlib import Path
+
+    g = Path(grading_dir)
+    path = g / "records.jsonl" if (g / "records.jsonl").exists() else g / "records.jsonl.gz"
+    opener = gzip.open if path.suffix == ".gz" else open
+    sev = {}
+    with opener(path, "rt", encoding="utf-8") as f:
+        for line in f:
+            r = json.loads(line)
+            if r["status"] == "completed" and r["intent"] in ("complaint", "cancellation"):
+                sev[r["review_id"]] = r["severity"]
+    rows = compute_ranking(sev, read_membership(g / "membership.csv"))
+    rebuilt = ranking_csv(rows)
+    saved = (g / "ranking.csv").read_text(encoding="utf-8")
+    by_issue = {r["issue_id"]: r for r in rows}
+    with open(g / "claims.csv", encoding="utf-8", newline="") as f:
+        claims = list(csv.DictReader(f))
+    claim_mismatch = [c["claim_id"] for c in claims if str(by_issue.get(c["issue_id"], {}).get(c["metric"])) != c["value"]]
+    return {"source": str(path), "complaint_records": len(sev), "issues": len(rows),
+            "ranking_identical_to_saved": rebuilt == saved, "claims_checked": len(claims),
+            "claim_mismatches": claim_mismatch, "top3": [(r["rank"], r["issue_id"], r["priority_score"]) for r in rows[:3]]}

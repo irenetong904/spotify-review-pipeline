@@ -4,8 +4,10 @@
 access, usability, playback, or billing/support?
 
 **Answer (from the full run):** **Usability**. It ranks first of the four areas on the baseline priority
-(severity sum 215,962 across 82,988 complaint/cancellation reviews). Playback is the strongest alternative: higher
-mean severity (3.38 vs 2.60), but about half the volume. → [results/memo.md](results/memo.md)
+(severity sum 215,962 across 82,988 complaint/cancellation reviews) and still has the most complaints in the latest
+comparable months (Jun–Oct 2023: 32,526). **Watch Billing/support**: its complaints grew from 3,788 to 30,084 between
+Jun–Oct 2022 and Jun–Oct 2023, the fastest of the four (observed, not causal). Playback has higher mean severity
+(3.38 vs 2.60) on about half the volume; Access is the most severe per review but small. → [results/memo.md](results/memo.md)
 
 | | |
 |---|---|
@@ -14,7 +16,7 @@ mean severity (3.38 vs 2.60), but about half the volume. → [results/memo.md](r
 | Decision memo | [results/memo.md](results/memo.md) · claims [grading/claims.csv](grading/claims.csv) · all claims [results/claims_all.csv](results/claims_all.csv) |
 | Cost calculator | [cost/](cost/) — offline replay: `python cost/calculator.py` · [measured 100-review report](cost/report.md) |
 | Resume recording | [evals/resume/resume_demo.mp4](evals/resume/resume_demo.mp4) + [checkpoints](evals/resume/) |
-| Total API spend | **$17.45** for the whole project (full run $16.88; development & tests $0.57) — course limit $20 |
+| Total API spend | **$17.48** for the whole project (full run $16.91; development & tests $0.57) — course limit $20 |
 
 ---
 
@@ -24,16 +26,36 @@ mean severity (3.38 vs 2.60), but about half the volume. → [results/memo.md](r
 |---|---|
 | Source rows ingested / accounted for | **660,622 / 660,622** (SHA-256 `1fc85de6…2fcef6`, 97,400,616 bytes) |
 | Classified (completed) | **660,609 / 660,609** nonempty reviews (100%) |
-| Quarantined | **13**, all `empty_review_text` (missing `app_version`, 159,701 rows, is not an exclusion) |
+| Quarantined | **13**, all `empty_review_text` ([results/quarantine.jsonl](results/quarantine.jsonl)); missing `app_version` (159,701 rows) is not an exclusion |
 | Exact-text reuse | 484,189 distinct texts classified; **176,420** IDs reuse an identical text's validated result (`cache_source_id`) |
-| Model calls (full run) | Jev enrich 475,727 attempts (30 transient failures, retried); Haiku verify 2,179; group 33; memo 7 |
-| Independent verification (n = 2,026, stratified) | topic 86.9%, intent 88.6%, severity exact 83.9% (MAE 0.17) |
+| Model calls (full run) | Jev enrich 475,727 attempts (30 transient failures, retried); Haiku verify 2,179; group 33; memo 17 (iterations v2–v8) |
+| Independent verification (n = 2,026, stratified) | topic 86.9%, intent 88.6%, severity exact 83.9% (MAE 0.17); area ranking unchanged after verifier calibration — [analysis](docs/verifier_disagreement_analysis.md) |
 | Golden 50 (human labels) | topic 80%, intent 92%, severity exact 88% (MAE 0.12), sentiment within ±0.5: 92% — [details](#evaluation) |
 | Planted-error / injection tests | 12/12 planted wrong labels flagged; 5/5 prompt injections resisted |
 | Full-run wall-clock | 6.6 h enrichment at a shared 20 requests/s limit (8 workers) + 7 min downstream stages |
 
 Measured results and estimates are kept separate: everything above is measured; projections live in
 [cost/report.md](cost/report.md) and the refreshes [cost/refresh_500.md](cost/refresh_500.md) / [cost/refresh_10k.md](cost/refresh_10k.md).
+
+### Like-for-like trend (same months, two years)
+
+Jun–Oct 2022 vs Jun–Oct 2023 (full months only; the first and last months of the window are partial).
+Source: [results/trend_comparable_periods.csv](results/trend_comparable_periods.csv), claims C083–C100.
+
+| | Jun–Oct 2022 | Jun–Oct 2023 |
+|---|---|---|
+| classified reviews | 148,357 | 273,370 |
+| complaint + cancellation share | 30.1% | 59.1% |
+| cancellation-intent reviews | 2,789 | 16,003 |
+| Usability complaints | 17,976 | 32,526 |
+| Billing/support complaints | 3,788 | 30,084 |
+| Playback complaints | 12,432 | 12,506 |
+| Access complaints | 2,110 | 5,460 |
+| outside the four areas | 8,359 | 80,852 |
+
+Review volume and complaint share both rose sharply in 2023 (July and October 2023 have unusually many reviews, many of
+them vague or boycott-style complaints counted outside the four areas). The data cannot say why; the memo reports the
+changes as observed only.
 
 ### Baseline ranking (top 8 of 33 issues)
 
@@ -66,7 +88,7 @@ records only, one issue per review. Full table: [grading/ranking.csv](grading/ra
 ## Architecture
 
 ```mermaid
-flowchart LR
+flowchart TB
   CSV[(input CSV<br/>660,622 rows)] --> ING[1 Prepare<br/>code: parse, hash, profile,<br/>dedup, quarantine empties]
   ING -->|pending queue<br/>484,189 distinct texts| CACHE{exact-text<br/>result cache}
   CACHE -->|hit: no call| REC
@@ -77,7 +99,7 @@ flowchart LR
   VER --> DIS[code: agreement +<br/>disagreements.csv]
   REC --> GRP[4 Group<br/>code: topic × subtopic rules<br/>Haiku: names only]
   GRP --> RANK[5 Rank<br/>code only<br/>severity_sum, ties by ID]
-  RANK --> MEMO[6 Recommend<br/>Haiku writes with {{C###}} placeholders<br/>code checks + renders numbers]
+  RANK --> MEMO[6 Recommend<br/>Haiku writes with claim placeholders<br/>code checks + renders numbers]
   MEMO --> OUT[(results/ · grading/)]
   OUT --> LOAD[load-db<br/>code: COPY]
   LOAD --> SB[(Supabase Postgres<br/>RLS on, service_role only)]
@@ -140,7 +162,8 @@ function" is the judgment call, recorded in [evals/golden/per_case.csv](evals/go
 ## Evaluation
 
 **Golden 50** ([evals/golden/](evals/golden/)). Hand-labeled by the author before any prediction existed (frozen copy +
-SHA-256). Labels are never model inputs, prompt examples, thresholds or grouping inputs. Predeclared: sentiment pass if
+SHA-256). The golden results did not influence any prompt, threshold or rubric choice: the Jev wording (q4) was chosen
+on development data before the golden run ([docs/jev_question_versions.md](docs/jev_question_versions.md)). Labels are never model inputs, prompt examples, thresholds or grouping inputs. Predeclared: sentiment pass if
 |Δ| ≤ 0.5; missing/quarantined predictions count as wrong. Two labels whose own notes contradicted the recorded value were
 corrected afterwards and disclosed in [label_corrections.md](evals/golden/label_corrections.md); both versions are reported.
 
@@ -158,8 +181,20 @@ Error analysis ([eval_report.md](evals/golden/eval_report.md), confusion tables 
 ("first mentioned") was not followed; (3) non-English text (Tagalog, Indonesian, Hinglish) — weaker, as TypeSafe documents.
 Fifty cases are a diagnostic sample, not a population accuracy estimate.
 
+*Evidence quotes.* All 50 are exact substrings (checked in code). 46 are the whole (short) review, so support reduces to
+label correctness; the 4 sentence-selected quotes were inspected: 1 supports the label, 1 partially (supports the
+cancellation intent, not the defect), 2 do not (the selector picked the opening sentence instead of the sentence with
+the failure) — [evals/golden/quote_support_review.csv](evals/golden/quote_support_review.csv). *Entities:* 0 unsupported
+additions, 5 misses. *needs_review as a prediction:* the human flagged 8, the pipeline 5, overlap 3 (precision 0.60,
+recall 0.38, accuracy 0.86) — the flag is conservative and misses some hard cases.
+
 **Independent verifier** (full run, Haiku 5.5, never sees the Jev answer): 2,026 reviews, stratified by topic with a
-2,000 cap and ≥30 per topic. Agreement is lowest for `support` (53%) and `access` (74%) — small topics with boundary
+2,000 cap and ≥30 per topic. Disagreements were investigated in
+[docs/verifier_disagreement_analysis.md](docs/verifier_disagreement_analysis.md): the main patterns are praise of a
+specific feature labeled `other`, the billing vs usability boundary for premium-only controls, under-detected explicit
+cancellations, and **Jev assigning higher severity** (242 of 326 severity differences). Re-scaling each area's severity
+by the verifier/Jev ratio leaves the area order unchanged (Usability > Playback > Billing/support > Access;
+[results/severity_sensitivity.json](results/severity_sensitivity.json)). Agreement is lowest for `support` (53%) and `access` (74%) — small topics with boundary
 cases (support vs billing; login vs playback). [Disagreements](results/verify_disagreements.csv).
 
 **System tests** ([evals/system_tests/](evals/system_tests/)):
@@ -173,9 +208,12 @@ cases (support vs billing; login vs playback). [Disagreements](results/verify_di
 - *Memo checks in practice* (human inspection + code): v1 hid claim values from the writer (blind comparisons);
   v2 misordered areas; v3/v4 used the wrong placeholder format (blocked by code, not saved); v5 called Playback the
   "highest mean severity" area (Access is) — found by inspection, then turned into a code check (superlatives must
-  attach to the actual first/last area) plus an issue-attribution check; final **memo-v6** passes all checks
-  ([results/memo_check.json](results/memo_check.json)). Earlier memos are kept in the run workspace for comparison.
-- Offline unit/integration tests: `pytest` (24 tests, fake model clients, no keys).
+  attach to the actual first/last area) plus an issue-attribution check; v7 required review-ID citations (v6 cited none);
+  v8 added the like-for-like trend. During v8 the code check blocked malformed claim IDs, which turned out to be a bug in
+  claim numbering (a loop variable shadowed the counter) — fixed with a test. Final **memo-v8** passed on its first
+  attempt ([results/memo_check.json](results/memo_check.json)); rejected v8 drafts are kept in
+  [results/memo_rejected_drafts.jsonl](results/memo_rejected_drafts.jsonl).
+- Offline unit/integration tests: `pytest` (26 tests, fake model clients, no keys).
 
 **Interruption / resume** ([evals/resume/](evals/resume/)): the full run was interrupted with Ctrl-C after 4,065 Jev
 calls (140,796 IDs completed incl. cache and exact-text reuse) → `checkpoint_before.json`; the same command resumed with
@@ -218,7 +256,7 @@ token fields are left `null` (unknown) rather than invented as zero.
 
 ## Reproduce
 
-**Data (not committed).** Download the course ZIP and unzip into `data/Final Assignment - Spotify Reviews Dataset/`
+**Data (not committed).** Download the course ZIP ([Google Drive link from the assignment](https://drive.google.com/file/d/1P0rUoAS_wVjp3BYKqXMEyD4u0uJP1Bvf/view)) and unzip into `data/Final Assignment - Spotify Reviews Dataset/`
 (or set `SRP_DATA_DIR`).
 
 | File | SHA-256 |
@@ -237,7 +275,8 @@ cp .env.example .env                      # only for paid commands; never commit
 | Command | Paid? | Purpose |
 |---|---|---|
 | `python cli.py ingest` | no | full-file profile + checks |
-| `python cli.py replay --workspace runs/<ws>` | no | regenerate ranking from saved records + membership, re-check memo |
+| `python cli.py rerank` | no | **from the committed `grading/` files only**: rebuild the ranking from `records.jsonl.gz` + `membership.csv` and compare with `ranking.csv` and `claims.csv` (2–3 s) |
+| `python cli.py replay --workspace runs/<ws>` | no | same check from a local workspace, plus re-checking and re-rendering the memo |
 | `python cost/calculator.py` | no | recompute costs/projections from saved usage |
 | `python cli.py eval-golden --workspace runs/golden50` | no | golden comparison |
 | `python cli.py export-grading …` / `publish-results …` / `load-db …` | no | export, results, database load |
@@ -257,15 +296,15 @@ and in Vercel server-side environment variables.
 | Criterion | Evidence |
 |---|---|
 | **D1 Accessible code/setup and artifacts** | this README; [Reproduce](#reproduce); [requirements.txt](requirements.txt) (pinned, + `requirements.lock`); [.env.example](.env.example); [results/](results/); [grading/](grading/); live dashboard |
-| **D2 Architecture, shared schema, provenance** | [Architecture](#architecture); [rubric/rubric_v1.yaml](rubric/rubric_v1.yaml) (shared definitions + dev-only examples); [docs/labeling_guide.md](docs/labeling_guide.md); [rubric/taxonomy_v1.yaml](rubric/taxonomy_v1.yaml); [results/data_manifest.json](results/data_manifest.json); `cache_source_id` + `source_sha256` in [grading/records.jsonl.gz](grading/) |
+| **D2 Architecture, shared schema, provenance** | [Architecture](#architecture); [docs/prompts_and_schemas.md](docs/prompts_and_schemas.md) (every role prompt + output schema, generated from code); [rubric/rubric_v1.yaml](rubric/rubric_v1.yaml) (shared definitions + dev-only examples); [docs/labeling_guide.md](docs/labeling_guide.md); [rubric/taxonomy_v1.yaml](rubric/taxonomy_v1.yaml); [results/data_manifest.json](results/data_manifest.json); `cache_source_id` + `source_sha256` in [grading/records.jsonl.gz](grading/) |
 | **D3 Memo numbers linked to calculations and evidence** | [results/memo.md](results/memo.md) (every number is a rendered claim `[Cnnn]`); [results/claims_all.csv](results/claims_all.csv) (value + source); [grading/claims.csv](grading/claims.csv) (checker-verified); [results/memo_check.json](results/memo_check.json); [results/evidence_pack.json](results/evidence_pack.json) |
-| **D4 Recommendation, alternatives, limitations** | [results/memo.md](results/memo.md); [Limitations](#limitations) |
-| **T1 Golden 50, per-field comparison, error analysis** | [evals/golden/eval_report.md](evals/golden/eval_report.md), [per_case.csv](evals/golden/per_case.csv), [label_corrections.md](evals/golden/label_corrections.md) |
-| **T2 Independent verification, planted errors, injection** | [results/verify_report.json](results/verify_report.json), [verify_disagreements.csv](results/verify_disagreements.csv); [planted_error_result.json](evals/system_tests/planted_error/planted_error_result.json); [injection_report.md](evals/system_tests/injection/injection_report.md) |
+| **D4 Recommendation, alternatives, limitations** | [results/memo.md](results/memo.md) (recommendation, recent trend, alternatives, limitations); [like-for-like trend](#like-for-like-trend-same-months-two-years); [Limitations](#limitations) |
+| **T1 Golden 50, per-field comparison, error analysis** | [evals/golden/eval_report.md](evals/golden/eval_report.md), [per_case.csv](evals/golden/per_case.csv), [quote_support_review.csv](evals/golden/quote_support_review.csv), [label_corrections.md](evals/golden/label_corrections.md) |
+| **T2 Independent verification, planted errors, injection** | [results/verify_report.json](results/verify_report.json), [verify_disagreements.csv](results/verify_disagreements.csv), [disagreement analysis](docs/verifier_disagreement_analysis.md); [planted_error_result.json](evals/system_tests/planted_error/planted_error_result.json); [injection_report.md](evals/system_tests/injection/injection_report.md) |
 | **T3 Pilot, offline calculator, retry/spend/recovery controls** | [cost/report.md](cost/report.md), [pilot_calls.jsonl](cost/pilot_calls.jsonl), [rates.csv](cost/rates.csv), [usage.csv](cost/usage.csv), [assumptions.yaml](cost/assumptions.yaml); tests `test_spend_cap_*`, `test_retry_*`, `test_interrupt_and_resume_*`; [evals/resume/](evals/resume/) |
 | **W1 Full ingestion, coverage, classification** | [reports/ingestion_report.json](reports/ingestion_report.json); [Self-check](#self-check) (coverage 1.0, 660,609/660,609) |
 | **W2 Staged program, bounded calls, handoffs, resume** | [cli.py](cli.py), [src/srp/](src/srp/); [results/run_log.jsonl](results/run_log.jsonl); [grading/calls.jsonl.gz](grading/) (1 review per enrich request); [evals/resume/resume_demo.mp4](evals/resume/resume_demo.mp4) |
-| **W3 Reproducible ranking + deployed dashboard with DB, backend, grounded AI recommendations** | `python cli.py replay` (identical sha256); https://spotify-review-dashboard-wheat.vercel.app; [db/schema.sql](db/schema.sql); [dashboard/](dashboard/) |
+| **W3 Reproducible ranking + deployed dashboard with DB, backend, grounded AI recommendations** | `python cli.py rerank` (from committed files; identical) and `python cli.py replay`; https://spotify-review-dashboard-wheat.vercel.app; [db/schema.sql](db/schema.sql); [dashboard/](dashboard/) |
 
 ---
 
@@ -282,8 +321,11 @@ and in Vercel server-side environment variables.
   reviews rather than the most severe ones.
 - **Non-English reviews** are classified by the same model with lower accuracy (TypeSafe documents this); they are kept
   in the corpus, not dropped.
-- **Monthly trends** are shown with denominators; the first (May 2022) and last (Nov 2023) months are partial, and two
-  months (Jul and Oct 2023) have unusually high review volume.
+- **Trends** are shown with denominators and compared on the same months of two years; the first (May 2022) and last
+  (Nov 2023) months are partial, and July and October 2023 have unusually high review volume, much of it vague or
+  boycott-style text. Observed changes are not attributed to causes.
+- **Evidence-quote selection** for long reviews sometimes picks the opening sentence rather than the defect sentence
+  (2 of 4 such golden cases); short reviews use the full text.
 - **Issue grouping** uses deterministic keyword rules within each topic; reviews without a matching keyword fall into
   `<topic>/general`, which is large for `other` and `usability`.
 

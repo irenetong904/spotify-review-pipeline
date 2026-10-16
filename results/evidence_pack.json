@@ -15,13 +15,6 @@
   },
   {
     "intent": "complaint",
-    "issue_id": "other/general",
-    "quote": "It's really bad app not working properly nonsense",
-    "review_id": "3f462947-3f4b-4d38-ada4-7dab21c0055e",
-    "severity": 2
-  },
-  {
-    "intent": "complaint",
     "issue_id": "billing/subscription_entitlement",
     "quote": "Pathetic user experience as it requires only premium users and force users to pay user subscription",
     "review_id": "c917e047-2d4b-41c5-ad41-bc9355b6d6e4",
@@ -32,13 +25,6 @@
     "issue_id": "billing/subscription_entitlement",
     "quote": "and I'm going to uninstall your app Request to the others to uninstall such kind of greedy apps.",
     "review_id": "4ff359d6-ce1b-4074-a63f-2e97e566d294",
-    "severity": 3
-  },
-  {
-    "intent": "complaint",
-    "issue_id": "billing/subscription_entitlement",
-    "quote": "this spotify just looking for profit.",
-    "review_id": "5332a9f1-d7ff-4062-ad9f-47cd3cc7bacc",
     "severity": 3
   },
   {
@@ -57,13 +43,6 @@
   },
   {
     "intent": "complaint",
-    "issue_id": "usability/ads",
-    "quote": "4 stars but not 5 for too many ads. Else love it",
-    "review_id": "d3c809f6-c059-417a-83ac-50753c9a0449",
-    "severity": 2
-  },
-  {
-    "intent": "complaint",
     "issue_id": "playback/general",
     "quote": "Your app is suppose to stay on when you go on another app and is not letting me",
     "review_id": "ec296b31-61cb-4588-ba80-e8ab992b2281",
@@ -74,13 +53,6 @@
     "issue_id": "playback/general",
     "quote": "When you select a song to play, it plays a completely different song.",
     "review_id": "557527a9-d504-4387-a2e5-47d80048747c",
-    "severity": 3
-  },
-  {
-    "intent": "complaint",
-    "issue_id": "playback/general",
-    "quote": "UPDATE SEPTEMBER 2023: Moved it down to 3 stars because music constantly after a few seconds",
-    "review_id": "303c3d70-06d6-4600-a3cb-b4d8c120a2ed",
     "severity": 3
   },
   {
@@ -98,10 +70,45 @@
     "severity": 3
   },
   {
-    "intent": "complaint",
-    "issue_id": "usability/general",
-    "quote": "Wants to choose songs for you constantly. Useless if you want to listen to what you want to listen to. Mind boggling.",
-    "review_id": "257d14d1-776a-42d9-a08d-396adc567692",
+    "intent": "cancellation",
+    "issue_id": "usability/ui_layout",
+    "quote": "Is getting worse each update.",
+    "review_id": "e7747485-42c5-4bb9-b1e2-1b4044eedb5a",
     "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/ui_layout",
+    "quote": "Latest update was not good👎loop mode shuffle mode basics features remove 💀 Successfully Deleted!",
+    "review_id": "141bd2c2-8403-45b8-ae65-6e9cfa24270b",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/queue_playlist",
+    "quote": "Dlaczego usuwacie ficzery jak playlist radio?",
+    "review_id": "bb701f30-d334-4728-9ec9-82e9bdc6e09c",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "usability/queue_playlist",
+    "quote": "It's great app ... But the problem is i cannot view my liked songs .. the display goes blank... And that's irritating... Plss solve it ....",
+    "review_id": "5185fc7e-8e72-45e4-8d85-91ab76c43fae",
+    "severity": 3
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "access/login_failure",
+    "quote": "Not able to login my mobile number, Couple of weeks getting 1 ⭐ ratings Congratulations Spotify achieved this record 💯👉",
+    "review_id": "97be5642-eab6-45f4-9c08-3aa28cc8e8ac",
+    "severity": 4
+  },
+  {
+    "intent": "complaint",
+    "issue_id": "access/login_failure",
+    "quote": "It's not god l can't login my account",
+    "review_id": "663a93eb-c77a-4b86-a883-c98889ac5f11",
+    "severity": 4
   }
 ]

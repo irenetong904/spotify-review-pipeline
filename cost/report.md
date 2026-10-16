@@ -11,16 +11,18 @@ Generated offline by `python cost/calculator.py` from `pilot_calls.jsonl`, `pilo
 - Cost per 1,000 input rows (cold): $0.2644; per completed record: $0.000264
 - Local compute: Pipeline orchestration runs on a personal laptop; electricity/hardware cost not metered. Cost: **unknown** (not counted as zero).
 
-| run | stage | provider | model | effort | config | batch | workers | requests | attempts | failed | retries | in tok | cache-w | cache-r | out tok | API $ | stage s |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| cold | enrich | typesafe | `jev-1.13.0` | n/a (Jev classifier, no generation) | `jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b` | 1 review/request | 1 | 100 | 100 | 0 | 0 | 81774 | 0 | 0 | 21781 | 0.003435 | 10.184 |
-| cold | verify | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=low | `claude-haiku-5-5+effort-low+verify-v1+rubric.002865e8` | 1 review/request | 1 | 100 | 100 | 0 | 0 | 140892 | 0 | 0 | 7627 | 0.017903 | 138.529 |
-| cold | group | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=low | `claude-haiku-5-5+effort-low+group-v1+taxonomy-v1` | <=20 examples/request | 1 | 18 | 18 | 0 | 0 | 11446 | 0 | 0 | 2582 | 0.002436 | 31.132 |
-| cold | memo | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=medium | `claude-haiku-5-5+effort-medium+memo-v2` | aggregates only | 1 | 1 | 1 | 0 | 0 | 4502 | 0 | 0 | 4427 | 0.002664 | 20.299 |
-| warm | enrich | typesafe | `jev-1.13.0` | n/a (Jev classifier, no generation) | `jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b` | 1 review/request | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.000000 | 0.007 |
-| warm | verify | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=low | `claude-haiku-5-5+effort-low+verify-v1+rubric.002865e8` | 1 review/request | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.000000 | 0.003 |
-| warm | group | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=low | `claude-haiku-5-5+effort-low+group-v1+taxonomy-v1` | <=20 examples/request | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.000000 | 0.005 |
-| warm | memo | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=medium | `claude-haiku-5-5+effort-medium+memo-v2` | aggregates only | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.000000 | 0.002 |
+| run | stage | provider | model | effort | config | batch | workers | requests | attempts | failed | retries | in tok | cache-w | cache-r | out tok | API $ | stage s | req/s |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| cold | enrich | typesafe | `jev-1.13.0` | n/a (Jev classifier, no generation) | `jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b` | 1 review/request | 1 | 100 | 100 | 0 | 0 | 81774 | 0 | 0 | 21781 | 0.003435 | 10.184 | 9.819 |
+| cold | verify | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=low | `claude-haiku-5-5+effort-low+verify-v1+rubric.002865e8` | 1 review/request | 1 | 100 | 100 | 0 | 0 | 140892 | 0 | 0 | 7627 | 0.017903 | 138.529 | 0.722 |
+| cold | group | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=low | `claude-haiku-5-5+effort-low+group-v1+taxonomy-v1` | <=20 examples/request | 1 | 18 | 18 | 0 | 0 | 11446 | 0 | 0 | 2582 | 0.002436 | 31.132 | 0.578 |
+| cold | memo | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=medium | `claude-haiku-5-5+effort-medium+memo-v2` | aggregates only | 1 | 1 | 1 | 0 | 0 | 4502 | 0 | 0 | 4427 | 0.002664 | 20.299 | 0.049 |
+| warm | enrich | typesafe | `jev-1.13.0` | n/a (Jev classifier, no generation) | `jev-1.13.0+rubric-v1.002865e8+q4.cd7ce12b` | 1 review/request | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.000000 | 0.007 | 0 |
+| warm | verify | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=low | `claude-haiku-5-5+effort-low+verify-v1+rubric.002865e8` | 1 review/request | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.000000 | 0.003 | 0 |
+| warm | group | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=low | `claude-haiku-5-5+effort-low+group-v1+taxonomy-v1` | <=20 examples/request | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.000000 | 0.005 | 0 |
+| warm | memo | anthropic | `claude-haiku-5-5` | adaptive thinking, effort=medium | `claude-haiku-5-5+effort-medium+memo-v2` | aggregates only | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.000000 | 0.002 | 0 |
+
+Infrastructure: Supabase (free plan) and Vercel (Hobby plan) cost $0 for this project; provider prompt-cache savings: none occurred (no cache-read tokens in any call). Local laptop compute: not metered (unknown).
 
 ## Rates (editable: `rates.csv`)
 

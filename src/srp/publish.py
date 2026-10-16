@@ -32,7 +32,7 @@ def publish(ws, out_dir, input_csv):
         "rank/aggregates.json": "aggregates.json", "group/issues.json": "issues.json",
         "verify/report.json": "verify_report.json", "verify/disagreements.csv": "verify_disagreements.csv",
         "verify/verifier_labels.jsonl": "verifier_labels.jsonl", "enrich/quarantine.jsonl": "quarantine.jsonl",
-        "run_summary.json": "run_summary.json",
+        "run_summary.json": "run_summary.json", "memo/rejected_drafts.jsonl": "memo_rejected_drafts.jsonl",
     }
     for src, dst in copies.items():
         shutil.copy(ws / src, out / dst)
