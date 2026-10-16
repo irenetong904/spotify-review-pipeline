@@ -11,12 +11,12 @@ Jun–Oct 2022 and Jun–Oct 2023, the fastest of the four (observed, not causal
 
 | | |
 |---|---|
-| **Live dashboard** | **https://spotify-review-dashboard-wheat.vercel.app** (public, no login; opening it makes no model calls) |
+| **Live dashboard** | **https://spotify-review-dashboard-wheat.vercel.app** (public, no login; opening it makes no model calls; a daily Vercel Cron keeps the free Supabase database from pausing) — [screenshot](#dashboard) |
 | Grading export | [grading/](grading/) — passes `check_submission.py` with coverage 1.0 (see [Self-check](#self-check)) |
 | Decision memo | [results/memo.md](results/memo.md) · claims [grading/claims.csv](grading/claims.csv) · all claims [results/claims_all.csv](results/claims_all.csv) |
 | Cost calculator | [cost/](cost/) — offline replay: `python cost/calculator.py` · [measured 100-review report](cost/report.md) |
 | Resume recording | [evals/resume/resume_demo.mp4](evals/resume/resume_demo.mp4) + [checkpoints](evals/resume/) |
-| Total API spend | **$17.48** computed for the whole project (full run $16.91; development & tests $0.57); provider dashboards show **$17.46** ([reconciliation](cost/reconciliation.md)) — course limit $20 |
+| Total API spend | **$17.49** computed for the whole project (full run $16.92; development & tests $0.57); provider dashboards showed **$17.46** before the last ~$0.02 of memo/naming calls ([reconciliation](cost/reconciliation.md)) — course limit $20 |
 
 ---
 
@@ -28,7 +28,7 @@ Jun–Oct 2022 and Jun–Oct 2023, the fastest of the four (observed, not causal
 | Classified (completed) | **660,609 / 660,609** nonempty reviews (100%) |
 | Quarantined | **13**, all `empty_review_text` ([results/quarantine.jsonl](results/quarantine.jsonl)); missing `app_version` (159,701 rows) is not an exclusion |
 | Exact-text reuse | 484,189 distinct texts classified; **176,420** IDs reuse an identical text's validated result (`cache_source_id`) |
-| Model calls (full run) | Jev enrich 475,727 attempts (30 transient failures, retried); Haiku verify 2,179; group 33; memo 17 (iterations v2–v8) |
+| Model calls (full run) | Jev enrich 475,727 attempts (30 transient failures, retried); Haiku verify 2,179; group 66 (v1 + v2 naming); memo 18 (iterations v2–v8) |
 | Independent verification (n = 2,026, stratified) | topic 86.9%, intent 88.6%, severity exact 83.9% (MAE 0.17); area ranking unchanged after verifier calibration — [analysis](docs/verifier_disagreement_analysis.md) |
 | Golden 50 (human labels) | topic 80%, intent 92%, severity exact 88% (MAE 0.12), sentiment within ±0.5: 92% — [details](#evaluation) |
 | Planted-error / injection tests | 12/12 planted wrong labels flagged; 5/5 prompt injections resisted |
@@ -64,7 +64,7 @@ records only, one issue per review. Full table: [grading/ranking.csv](grading/ra
 
 | rank | issue_id | complaints | mean severity | priority |
 |---|---|---|---|---|
-| 1 | `other/general` (vague "bad app", outside the four areas) | 99,133 | 2.063692 | 204,580 |
+| 1 | `other/general` (general dissatisfaction, outside the four areas) | 99,133 | 2.063692 | 204,580 |
 | 2 | `billing/subscription_entitlement` | 28,301 | 2.888237 | 81,740 |
 | 3 | `usability/ads` | 28,991 | 2.303163 | 66,771 |
 | 4 | `playback/general` | 15,778 | 3.390671 | 53,498 |
@@ -84,6 +84,14 @@ records only, one issue per review. Full table: [grading/ranking.csv](grading/ra
 | *Outside the four (catalog + other)* | 114,306 | 38.5% | 2.15 | 245,796 |
 
 ---
+
+## Dashboard
+
+https://spotify-review-dashboard-wheat.vercel.app — the stored AI recommendation (every number is a claim chip; hover for
+its source; review IDs open the stored record), overall metrics, area comparison, monthly complaint share with
+denominators, and the issue ranking with drill-down to member reviews read from Supabase.
+
+![Dashboard (full page, 2026-10-15)](docs/img/dashboard_full.png)
 
 ## Architecture
 
@@ -213,6 +221,13 @@ cases (support vs billing; login vs playback). [Disagreements](results/verify_di
   claim numbering (a loop variable shadowed the counter) — fixed with a test. Final **memo-v8** passed on its first
   attempt ([results/memo_check.json](results/memo_check.json)); rejected v8 drafts are kept in
   [results/memo_rejected_drafts.jsonl](results/memo_rejected_drafts.jsonl).
+- *Issue naming*: group-v1 picked the highest-severity members as naming examples, so the vague `other/general` bucket
+  was named "Privacy concerns and data misuse fears" after its rare severity-5 reviews; group-v2 uses a representative
+  (hash-ordered) sample ("General dissatisfaction with app after updates"). Membership and ranking were unaffected.
+- *Human inspection of the final memo*: all numbers, ranks and comparisons match the saved calculations. One paraphrase
+  is wrong: review `45e2aab4…` ("It plays my favorite ads. But every 12 or so ads these weird songs start playing") is
+  sarcasm about too many ads, which the memo reads literally as "unrelated songs playing in ad breaks". The
+  recommendation does not depend on it (the second cited review, `92bd7ff4…`, states "too many ads" directly).
 - Offline unit/integration tests: `pytest` (26 tests, fake model clients, no keys).
 
 **Interruption / resume** ([evals/resume/](evals/resume/)): the full run was interrupted with Ctrl-C after 4,065 Jev

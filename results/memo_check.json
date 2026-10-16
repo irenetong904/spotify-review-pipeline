@@ -1,8 +1,14 @@
 {
-  "attempts": 0,
+  "attempts": 1,
   "errors": [],
-  "from_cache": true,
-  "history": [],
+  "from_cache": false,
+  "history": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "request_id": "req_011Cg4xg6U1d88R6vmY8jbs3"
+    }
+  ],
   "memo_config": "claude-haiku-5-5+effort-medium+memo-v8",
   "status": "passed"
 }

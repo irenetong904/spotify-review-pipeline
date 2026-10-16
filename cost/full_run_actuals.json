@@ -41,7 +41,7 @@
       "usage_missing": 0
     }
   ],
-  "full_run_api_cost_usd": 16.907,
+  "full_run_api_cost_usd": 16.9209,
   "enrich_sessions": [
     {
       "session_id": "enrich-20261014T200223-6e591a",
@@ -73,11 +73,12 @@
   ],
   "enrich_wall_seconds_total": 23856.2,
   "development_and_test_spend_usd": 0.5708,
-  "project_total_api_spend_usd": 17.4778,
+  "project_total_api_spend_usd": 17.4917,
   "notes": [
     "Recomputed offline from runs/full/calls.jsonl x cost/rates.csv.",
     "30 failed enrich attempts (HTTP 499/502, connection resets) have no provider usage: left unknown, not zero.",
     "verify includes 189 calls made by mistake on the partial corpus right after the recorded interruption (results discarded).",
-    "memo: 17 attempts across memo-v2..v8 iterations (rejected drafts in results/memo_rejected_drafts.jsonl for v8; earlier failures listed in README)."
+    "memo: 17 attempts across memo-v2..v8 iterations (rejected drafts in results/memo_rejected_drafts.jsonl for v8; earlier failures listed in README).",
+    "Includes group-v2 renaming (33 calls) and the final memo-v8 regeneration on 2026-10-15, after the dashboard reconciliation."
   ]
 }

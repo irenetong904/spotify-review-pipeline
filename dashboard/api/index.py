@@ -4,6 +4,8 @@ secret key from environment variables; the browser never sees the key and nothin
 GET /api/overview            run info, aggregates, monthly trend, quality metrics, ranked issues, stored recommendation
 GET /api/issue?id=<issue_id> one issue + up to 25 member reviews (highest severity first)
 GET /api/review?id=<review_id> one processed review record
+GET /api/keepalive            tiny uncached DB read; called daily by Vercel Cron so the free Supabase project never
+                              pauses for inactivity while the work is being graded
 """
 
 import json
@@ -63,6 +65,8 @@ class handler(BaseHTTPRequestHandler):
                 status, body = issue(q.get("id"))
             elif route == "review":
                 status, body = review(q.get("id"))
+            elif route == "keepalive":
+                status, body = 200, {"ok": bool(rest("run_info?select=key&limit=1"))}
             else:
                 status, body = 404, {"error": "unknown endpoint"}
         except Exception as e:  # never leak secrets or stack traces to the browser
@@ -70,7 +74,8 @@ class handler(BaseHTTPRequestHandler):
         data = json.dumps(body, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
-        self.send_header("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600" if status == 200 else "no-store")
+        cacheable = status == 200 and route != "keepalive"
+        self.send_header("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600" if cacheable else "no-store")
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
         self.wfile.write(data)

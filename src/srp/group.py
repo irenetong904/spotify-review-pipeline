@@ -18,7 +18,7 @@ from srp.rates import load_rates
 from srp.taxonomy import assign_issue, taxonomy_version
 from srp.workspace import cache_get, cache_put
 
-GROUP_PROMPT_VERSION = "group-v1"
+GROUP_PROMPT_VERSION = "group-v2"  # v2: representative examples (v1 used highest-severity ones)
 MAX_EXAMPLES = 20
 MAX_TOKENS = 1024  # includes any adaptive thinking at effort=low
 SCHEMA = {
@@ -47,9 +47,11 @@ def build_membership(con):
 
 
 def _examples(ms):
-    """Up to MAX_EXAMPLES distinct texts: highest severity first, then a stable hash order."""
+    """Up to MAX_EXAMPLES distinct texts in a stable pseudo-random (hash) order, i.e. a representative sample.
+    v1 took the highest-severity members first, which named the vague `other/general` bucket after its rare
+    privacy complaints ("Privacy concerns and data misuse fears")."""
     seen, out = set(), []
-    for issue, rid, sev, text, tsha in sorted(ms, key=lambda m: (-m[2], hashlib.sha256(m[1].encode()).hexdigest())):
+    for issue, rid, sev, text, tsha in sorted(ms, key=lambda m: hashlib.sha256(m[1].encode()).hexdigest()):
         if tsha in seen:
             continue
         seen.add(tsha)

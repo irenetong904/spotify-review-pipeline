@@ -1,21 +1,30 @@
 {
-  "ended_at": "2026-10-15T23:58:36+00:00",
+  "ended_at": "2026-10-16T00:22:10+00:00",
   "input": "data/Final Assignment - Spotify Reviews Dataset/spotify_reviews_18months.csv",
   "ledger": {
     "cap_usd": 18.5,
     "reserved_usd": 0.0,
-    "spent_usd": 16.90702418
+    "spent_usd": 16.92090108
   },
   "prior_workspace_spend_usd": 16.907024,
   "ranking_sha256": "e4bffb66a954a4c55d61638540aa06e23c322ec1b5f47ebec585f2e55ed01fed",
   "spend_cap_usd": 18.5,
   "stages": {
+    "group": {
+      "result": {
+        "issues": 33,
+        "named_by_code": 0,
+        "naming_cache_hits": 0,
+        "naming_calls_needed": 33
+      },
+      "seconds": 76.683
+    },
     "memo": {
       "result": [
         "passed",
         []
       ],
-      "seconds": 1.412
+      "seconds": 26.027
     },
     "rank": {
       "result": [
@@ -581,11 +590,11 @@
           }
         }
       ],
-      "seconds": 4.682
+      "seconds": 5.572
     }
   },
-  "started_at": "2026-10-15T23:58:30+00:00",
-  "wall_seconds": 6.094,
+  "started_at": "2026-10-16T00:20:21+00:00",
+  "wall_seconds": 108.285,
   "workers": 1,
   "workspace": "runs/full"
 }
