@@ -182,7 +182,7 @@ Error analysis ([eval_report.md](evals/golden/eval_report.md), confusion tables 
 Fifty cases are a diagnostic sample, not a population accuracy estimate.
 
 *Evidence quotes.* All 50 are exact substrings (checked in code). 46 are the whole (short) review, so support reduces to
-label correctness; the 4 sentence-selected quotes were inspected: 1 supports the label, 1 partially (supports the
+label correctness; the 4 sentence-selected quotes were inspected (pre-judged by Claude, confirmed by the human labeler): 1 supports the label, 1 partially (supports the
 cancellation intent, not the defect), 2 do not (the selector picked the opening sentence instead of the sentence with
 the failure) — [evals/golden/quote_support_review.csv](evals/golden/quote_support_review.csv). *Entities:* 0 unsupported
 additions, 5 misses. *needs_review as a prediction:* the human flagged 8, the pipeline 5, overlap 3 (precision 0.60,
